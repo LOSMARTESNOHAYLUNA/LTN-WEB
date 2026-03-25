@@ -1,0 +1,38 @@
+{
+  "rewrites": [
+    { "source": "/servicios",  "destination": "/servicios/index.html" },
+    { "source": "/precios",    "destination": "/precios/index.html" },
+    { "source": "/casos",      "destination": "/casos/index.html" },
+    { "source": "/ia-tools",   "destination": "/ia-tools/index.html" },
+    { "source": "/nosotras",   "destination": "/nosotras/index.html" },
+    { "source": "/auditoria",  "destination": "/auditoria/index.html" },
+    { "source": "/aviso-legal","destination": "/aviso-legal/index.html" },
+    { "source": "/privacidad", "destination": "/privacidad/index.html" },
+    { "source": "/cookies",    "destination": "/cookies/index.html" }
+  ],
+
+  "redirects": [
+    { "source": "/calculadora",          "destination": "https://saas.lideratunegocio.com/calculadora/", "permanent": false },
+    { "source": "/calculadora/",         "destination": "https://saas.lideratunegocio.com/calculadora/", "permanent": false },
+    { "source": "/auditoria-gratuita",   "destination": "/auditoria/", "permanent": true },
+    { "source": "/contacto",             "destination": "/auditoria/", "permanent": true }
+  ],
+
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options",        "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection",       "value": "1; mode=block" },
+        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(js|css|png|jpg|jpeg|svg|webp|woff2|ico)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}
