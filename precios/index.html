@@ -915,6 +915,7 @@ const history = [];
 let isLoading = false;
 let ctaShown  = false;
 let chatInited = false;
+let inactivityTimer = null;
 
 const INITIAL_QR = [
   '¿Qué podéis hacer por mi empresa?',
@@ -1014,6 +1015,8 @@ input.addEventListener('input', () => {
 /* ── SEND ── */
 async function sendMessage(text) {
   if (!text.trim() || isLoading) return;
+  // Cancelar timer de inactividad al recibir mensaje
+  if (inactivityTimer) { clearTimeout(inactivityTimer); inactivityTimer = null; }
   input.value = ''; input.style.height = 'auto';
   const qr = document.getElementById('ltn-qr');
   if (qr) qr.remove();
@@ -1067,6 +1070,14 @@ async function initChat() {
   removeTyping();
   await addBubble('¡Hola! Soy el asistente de <strong>Lidera tu Negocio</strong>.<br><br>Cuéntame qué está pasando en tu empresa y te digo qué se puede hacer. ¿Por dónde empezamos?', 'bot');
   setTimeout(() => showQR(INITIAL_QR), 300);
+
+  // Si no hay respuesta en 45 segundos → CTA proactivo
+  inactivityTimer = setTimeout(() => {
+    if (!ctaShown && history.length === 0) {
+      addBubble('¿Tienes dudas sobre por dónde empezar? Te propongo una <strong>Auditoría gratuita de 40 minutos</strong> — sin compromiso. Analizamos tu proceso y te decimos exactamente qué cambiaría.', 'bot');
+      setTimeout(showCTA, 400);
+    }
+  }, 45000);
 }
 
 })();

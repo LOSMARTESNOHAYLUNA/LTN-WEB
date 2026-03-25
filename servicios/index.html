@@ -561,7 +561,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
     </div>
     <div class="fc"><h4>Servicios</h4><a href="/servicios/">Consultoría comercial</a><a href="/servicios/#implementacion">Implementación</a><a href="/ia-tools/">IA Tools</a><a href="/precios/">Precios</a></div>
     <div class="fc"><h4>Empresa</h4><a href="/nosotras/">Quién somos</a><a href="/auditoria/">Auditoría gratuita</a><a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener">Mide tus fugas</a></div>
-    <div class="fc"><h4>Contacto</h4><a href="mailto:info@lideratunegocio.com">info@lideratunegocio.com</a><a href="https://api.whatsapp.com/send?phone=34614160803" target="_blank" rel="noopener">614 160 803</a><a href="https://www.linkedin.com/company/lideratunegocio" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/lideratunegocio" target="_blank" rel="noopener">Instagram</a></div>
+    <div class="fc"><h4>Contacto</h4><a href="/cdn-cgi/l/email-protection#d9b0b7bfb699b5b0bdbcabb8adacb7bcbeb6bab0b6f7bab6b4"><span class="__cf_email__" data-cfemail="167f787079567a7f72736477626378737179757f793875797b">[email&#160;protected]</span></a><a href="https://api.whatsapp.com/send?phone=34614160803" target="_blank" rel="noopener">614 160 803</a><a href="https://www.linkedin.com/company/lideratunegocio" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/lideratunegocio" target="_blank" rel="noopener">Instagram</a></div>
   </div>
   <div class="fbot">
     <span class="fcop">© 2025 Lidera tu Negocio® — Todos los derechos reservados</span>
@@ -572,7 +572,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 <div id="cookieBanner"><h3>🍪 Usamos cookies</h3><p>Para mejorar tu experiencia. <a href="/cookies/">Política de cookies</a></p><div class="ckw"><button class="cka" onclick="ackC()">Aceptar</button><button class="ckr" onclick="rejC()">Solo necesarias</button></div></div>
 <button class="ckf" id="ckf" onclick="shCK()" title="Cookies">🍪</button>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
 function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
 var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.12});
@@ -1063,6 +1063,7 @@ const history = [];
 let isLoading = false;
 let ctaShown  = false;
 let chatInited = false;
+let inactivityTimer = null;
 
 const INITIAL_QR = [
   '¿Qué podéis hacer por mi empresa?',
@@ -1162,6 +1163,8 @@ input.addEventListener('input', () => {
 /* ── SEND ── */
 async function sendMessage(text) {
   if (!text.trim() || isLoading) return;
+  // Cancelar timer de inactividad al recibir mensaje
+  if (inactivityTimer) { clearTimeout(inactivityTimer); inactivityTimer = null; }
   input.value = ''; input.style.height = 'auto';
   const qr = document.getElementById('ltn-qr');
   if (qr) qr.remove();
@@ -1213,12 +1216,4 @@ async function initChat() {
   showTyping();
   await new Promise(r => setTimeout(r, 1000));
   removeTyping();
-  await addBubble('¡Hola! Soy el asistente de <strong>Lidera tu Negocio</strong>.<br><br>Cuéntame qué está pasando en tu empresa y te digo qué se puede hacer. ¿Por dónde empezamos?', 'bot');
-  setTimeout(() => showQR(INITIAL_QR), 300);
-}
-
-})();
-</script>
-<!-- END WIDGET -->
-</body>
-</html>
+  await addBubble('¡Hola! Soy el asistente d
