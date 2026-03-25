@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios — Próximamente | Lidera tu Negocio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://lideratunegocio.com/privacidad/">
+  <style>
+    body{background:#0f0a1e;color:#f0ebff;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:2rem;}
+    h1{font-family:sans-serif;font-size:2rem;margin-bottom:1rem;}
+    p{color:#9080b8;margin-bottom:2rem;}
+    a{background:#e61978;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;}
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Página en construcción</h1>
+    <p>Esta página estará lista muy pronto.</p>
+    <a href="/">← Volver al inicio</a>
+  </div>
+
+<!-- START WIDGET -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET SCOPED ── */
+#ltn-widget * {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── VARIABLES ── */
+#ltn-widget {
+  --bg:        #1a0f2e;
+  --surface:   #221442;
+  --surface2:  #2d1a52;
+  --surface3:  #3a2060;
+  --accent:    #ee46bc;
+  --text:      #f5f0ff;
+  --text-muted:#a08abf;
+  --border:    rgba(238,70,188,0.18);
+  --radius:    16px;
+  --w:         370px;
+  --h:         540px;
+}
+
+/* ── LAUNCHER BUTTON ── */
+#ltn-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9998;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ee46bc, #3e2b86);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(238,70,188,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+  outline: none;
+}
+#ltn-launcher:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 32px rgba(238,70,188,0.6);
+}
+#ltn-launcher svg {
+  width: 26px; height: 26px;
+  fill: #fff;
+  transition: transform 0.25s ease, opacity 0.2s;
+  position: absolute;
+}
+#ltn-launcher .icon-chat  { opacity: 1;  transform: scale(1) rotate(0deg); }
+#ltn-launcher .icon-close { opacity: 0;  transform: scale(0.5) rotate(45deg); }
+#ltn-launcher.open .icon-chat  { opacity: 0;  transform: scale(0.5) rotate(-45deg); }
+#ltn-launcher.open .icon-close { opacity: 1;  transform: scale(1) rotate(0deg); }
+
+/* Notification badge */
+#ltn-badge {
+  position: absolute;
+  top: -2px; right: -2px;
+  width: 18px; height: 18px;
+  background: #ff4f4f;
+  border-radius: 50%;
+  border: 2px solid white;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: badge-pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  transition: opacity 0.2s;
+}
+#ltn-badge.hidden { opacity: 0; pointer-events: none; }
+
+/* ── CHAT PANEL ── */
+#ltn-panel {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  z-index: 9999;
+  width: var(--w);
+  height: var(--h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform-origin: bottom right;
+  transform: scale(0.85) translateY(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
+}
+#ltn-panel.open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ambient glows */
+#ltn-panel::before {
+  content: '';
+  position: absolute;
+  top: -20%; left: -20%;
+  width: 60%; height: 60%;
+  background: radial-gradient(ellipse, rgba(238,70,188,0.07) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+#ltn-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -10%; right: -10%;
+  width: 50%; height: 50%;
+  background: radial-gradient(ellipse, rgba(62,43,134,0.15) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── PANEL HEADER ── */
+.ltn-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.ltn-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ee46bc, #3e2b86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.ltn-header-info { flex: 1; }
+.ltn-header-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.ltn-header-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+.ltn-dot {
+  width: 7px; height: 7px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(74,222,128,0.7);
+  animation: ltn-pulse 2s infinite;
+}
+.ltn-powered {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* ── CHAT BODY ── */
+.ltn-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
+}
+.ltn-body::-webkit-scrollbar { width: 3px; }
+.ltn-body::-webkit-scrollbar-track { background: transparent; }
+.ltn-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── BUBBLES ── */
+.ltn-bubble {
+  max-width: 84%;
+  padding: 11px 14px;
+  border-radius: 13px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  animation: ltn-pop 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+  color: var(--text);
+}
+.ltn-bubble.bot {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.ltn-bubble.user {
+  background: linear-gradient(135deg, #482b66, #3e2b86);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.ltn-bubble strong { color: var(--accent); font-weight: 600; }
+.ltn-bubble ul { margin: 6px 0 2px 16px; }
+.ltn-bubble li { margin-bottom: 4px; }
+
+/* typing */
+.ltn-typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  animation: ltn-pop 0.3s ease both;
+}
+.ltn-typing span {
+  width: 6px; height: 6px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  animation: ltn-bounce 1.2s infinite;
+}
+.ltn-typing span:nth-child(2) { animation-delay: 0.2s; }
+.ltn-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+/* quick replies */
+.ltn-qr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 2px 0;
+  animation: ltn-fade 0.3s ease both;
+}
+.ltn-qr-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 7px 12px;
+  border-radius: 18px;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.16s;
+  white-space: nowrap;
+}
+.ltn-qr-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(238,70,188,0.07);
+}
+
+/* CTA block */
+.ltn-cta {
+  background: linear-gradient(135deg, rgba(238,70,188,0.08), rgba(62,43,134,0.15));
+  border: 1px solid rgba(238,70,188,0.28);
+  border-radius: 11px;
+  padding: 14px;
+  animation: ltn-pop 0.4s ease both;
+  align-self: stretch;
+  max-width: 100%;
+}
+.ltn-cta p {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.ltn-cta p strong { color: var(--text); }
+.ltn-cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.16s;
+}
+.ltn-cta-btn:hover { background: #f568cc; transform: translateY(-1px); }
+
+/* ── INPUT AREA ── */
+.ltn-input-area {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.ltn-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  resize: none;
+  max-height: 100px;
+  line-height: 1.45;
+  transition: border-color 0.16s;
+}
+.ltn-input:focus { border-color: var(--accent); }
+.ltn-input::placeholder { color: var(--text-muted); }
+.ltn-send {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: flex-end;
+  transition: all 0.16s;
+}
+.ltn-send:hover { background: #f568cc; transform: scale(1.06); }
+.ltn-send:disabled { background: var(--surface3); cursor: not-allowed; transform: none; }
+
+/* ── FOOTER ── */
+.ltn-footer {
+  text-align: center;
+  padding: 6px 0 10px;
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  background: var(--surface);
+}
+.ltn-footer a { color: var(--accent); text-decoration: none; }
+
+/* ── KEYFRAMES ── */
+@keyframes ltn-pop    { from { opacity:0; transform:scale(0.92) translateY(6px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes ltn-fade   { from { opacity:0; } to { opacity:1; } }
+@keyframes ltn-bounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-5px); } }
+@keyframes ltn-pulse  { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+@keyframes badge-pop  { from { transform:scale(0); } to { transform:scale(1); } }
+
+/* ── MOBILE ── */
+@media (max-width: 420px) {
+  #ltn-panel {
+    --w: 100vw;
+    right: 0; left: 0;
+    bottom: 84px;
+    border-radius: 16px 16px 0 0;
+    transform-origin: bottom center;
+  }
+  #ltn-launcher { right: 16px; bottom: 16px; }
+}
+</style>
+
+<!-- LAUNCHER -->
+<button id="ltn-launcher" aria-label="Abrir chat de consulta">
+  <span id="ltn-badge">1</span>
+  <!-- Chat icon -->
+  <svg class="icon-chat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+  </svg>
+  <!-- Close icon -->
+  <svg class="icon-close" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+  </svg>
+</button>
+
+<!-- PANEL -->
+<div id="ltn-panel" role="dialog" aria-label="Chat Lidera tu Negocio">
+  <div class="ltn-header">
+    <div class="ltn-avatar">✦</div>
+    <div class="ltn-header-info">
+      <div class="ltn-header-name">Asistente LTN</div>
+      <div class="ltn-header-sub">
+        <span class="ltn-dot"></span>
+        <span>Consultor de procesos y automatización</span>
+      </div>
+    </div>
+    <span class="ltn-powered">Lidera tu Negocio</span>
+  </div>
+
+  <div class="ltn-body" id="ltn-body"></div>
+
+  <div class="ltn-input-area">
+    <textarea class="ltn-input" id="ltn-input" placeholder="Escribe tu pregunta..." rows="1"></textarea>
+    <button class="ltn-send" id="ltn-send">➤</button>
+  </div>
+
+  <div class="ltn-footer">
+    ¿Prefieres hablar? <a href="https://api.leadconnectorhq.com/widget/bookings/carla-sheila-ltn" target="_blank">Agenda aquí →</a>
+  </div>
+</div>
+
+<script>
+(function () {
+
+/* ── KNOWLEDGE BASE ── */
+const SYSTEM_PROMPT = `Eres el asistente consultor de **Lidera tu Negocio (LTN)**, una consultoría española especializada en optimización de procesos comerciales y automatización para PYMEs de 4 a 25 empleados.
+
+## TU ROL
+Actúas como un consultor experto que:
+1. Escucha la situación real del negocio del visitante
+2. Hace preguntas inteligentes para entender el problema de fondo
+3. Propone ideas concretas y aplicables de lo que se podría hacer
+4. Invita de forma natural (nunca forzada) a agendar una sesión con el equipo de LTN
+
+## SERVICIOS DE LTN
+
+**Diagnóstico y optimización comercial:** Analizamos el embudo de ventas completo, identificamos dónde se pierden leads y cuantificamos el impacto económico.
+
+**Implementación de CRM (GoHighLevel):** Configuramos el CRM adaptado al proceso real de la empresa, formación del equipo, pipelines y automatizaciones de primer contacto.
+
+**Automatización de seguimiento de leads:** Secuencias automáticas: primer contacto en <15 minutos, recordatorios, reactivación de leads fríos. GHL + WhatsApp + email.
+
+**Agentes de IA y bots de WhatsApp:** Bots que responden leads 24/7, califican y agendan reuniones automáticamente. Integrados con GoHighLevel.
+
+**Apps y herramientas a medida:** Aplicaciones web para procesos internos o externos: calculadoras, dashboards, trackers de tiempo, portales de cliente.
+
+**Dashboards de ventas:** Paneles en tiempo real con pipeline, tasas de conversión por etapa/comercial, ROI por fuente.
+
+**Automatización de WhatsApp (plataforma propia):** Infraestructura propia integrada con GHL para negocios donde WhatsApp es el canal principal.
+
+**Auditoría de Conversión de Leads (gratuita, 40 min):** Analizamos el proceso actual, identificamos los 3 puntos de mayor fuga y proponemos la solución concreta.
+
+## CLIENTES TÍPICOS
+- Fundadores/directores de PYMEs (4-25 personas) cuyo proceso comercial está en su cabeza, sin documentar
+- Directores comerciales con CRM que nadie usa y equipo sin metodología común
+- Sectores: inmobiliaria, clínicas, formación, asesorías, agencias, distribución, e-commerce B2B, ingeniería
+
+## CASOS DE USO QUE RESOLVEMOS
+- "Nadie llama al lead hasta el día siguiente" → Automatización de primer contacto
+- "Cada comercial hace el seguimiento a su manera" → CRM con protocolo documentado
+- "No sé cuántos leads perdí el mes pasado" → Dashboard de conversión
+- "El CRM lo tenemos pero nadie lo usa" → Implementación adaptada + formación
+- "Necesito un bot por WhatsApp fuera de horario" → Agente IA integrado
+- "Hacemos cosas en Excel que podrían automatizarse" → App a medida
+- "Mis comerciales olvidan los leads fríos" → Secuencia automática de reactivación
+
+## CONTACTO
+- Email: info@lideratunegocio.com | Teléfono: 614 160 803
+- Auditoría gratuita: https://api.leadconnectorhq.com/widget/bookings/carla-sheila-ltn
+
+## INSTRUCCIONES
+
+**TONO:** Directo, cercano, de igual a igual. Nunca corporativo ni vendedor. Máximo 160 palabras por respuesta.
+
+**FORMATO:** Responde en español. Usa HTML básico: <strong>, <br>, <ul><li>. Sin markdown con asteriscos.
+
+**CTA:** No propongas la auditoría en los primeros 1-2 mensajes. Cuando hayas entendido el problema y propuesto ideas, incluye al final de tu respuesta el texto exacto: [MOSTRAR_CTA]. Solo una vez por conversación.
+
+**NO:** No inventes datos ni precios. No des respuestas genéricas. No seas insistente.`;
+
+/* ── ESTADO ── */
+const history = [];
+let isLoading = false;
+let ctaShown  = false;
+let chatInited = false;
+
+const INITIAL_QR = [
+  '¿Qué podéis hacer por mi empresa?',
+  'Perdemos leads sin saber por qué',
+  'Quiero un bot de WhatsApp',
+  'Necesito un dashboard de ventas',
+  'Tengo un proceso que quiero automatizar',
+  '¿Qué tipo de apps hacéis?',
+];
+
+/* ── ELEMENTOS ── */
+const launcher = document.getElementById('ltn-launcher');
+const panel    = document.getElementById('ltn-panel');
+const body     = document.getElementById('ltn-body');
+const input    = document.getElementById('ltn-input');
+const sendBtn  = document.getElementById('ltn-send');
+const badge    = document.getElementById('ltn-badge');
+
+/* ── TOGGLE ── */
+launcher.addEventListener('click', () => {
+  const isOpen = panel.classList.toggle('open');
+  launcher.classList.toggle('open', isOpen);
+  badge.classList.add('hidden');
+  if (isOpen && !chatInited) { chatInited = true; initChat(); }
+  if (isOpen) setTimeout(() => input.focus(), 300);
+});
+
+/* ── HELPERS ── */
+function scrollBottom() {
+  setTimeout(() => { body.scrollTop = body.scrollHeight; }, 80);
+}
+
+function addBubble(html, type, delay = 0) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const b = document.createElement('div');
+      b.className = 'ltn-bubble ' + type;
+      b.innerHTML = html;
+      body.appendChild(b);
+      scrollBottom();
+      resolve(b);
+    }, delay);
+  });
+}
+
+function showTyping() {
+  const t = document.createElement('div');
+  t.className = 'ltn-typing'; t.id = 'ltn-typing';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  body.appendChild(t); scrollBottom();
+}
+function removeTyping() {
+  const el = document.getElementById('ltn-typing');
+  if (el) el.remove();
+}
+
+function showQR(options) {
+  const qr = document.createElement('div');
+  qr.className = 'ltn-qr'; qr.id = 'ltn-qr';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'ltn-qr-btn';
+    btn.textContent = opt;
+    btn.onclick = () => { qr.remove(); sendMessage(opt); };
+    qr.appendChild(btn);
+  });
+  body.appendChild(qr); scrollBottom();
+}
+
+function showCTA() {
+  if (ctaShown) return; ctaShown = true;
+  const cta = document.createElement('div');
+  cta.className = 'ltn-cta';
+  cta.innerHTML = `
+    <p>Si quieres que analicemos tu caso en profundidad, te propongo una <strong>Auditoría gratuita de 40 minutos</strong> donde identificamos qué está fallando y qué haríamos para resolverlo.</p>
+    <a class="ltn-cta-btn" href="https://api.leadconnectorhq.com/widget/bookings/carla-sheila-ltn" target="_blank">Agendar Auditoría Gratuita →</a>
+  `;
+  body.appendChild(cta); scrollBottom();
+}
+
+function setLoading(val) {
+  isLoading = val;
+  sendBtn.disabled = val;
+  input.disabled = val;
+}
+
+function escapeHTML(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── AUTO-RESIZE ── */
+input.addEventListener('input', () => {
+  input.style.height = 'auto';
+  input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+});
+
+/* ── SEND ── */
+async function sendMessage(text) {
+  if (!text.trim() || isLoading) return;
+  input.value = ''; input.style.height = 'auto';
+  const qr = document.getElementById('ltn-qr');
+  if (qr) qr.remove();
+
+  await addBubble(escapeHTML(text), 'user');
+  history.push({ role: 'user', content: text });
+  setLoading(true); showTyping();
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: history
+      })
+    });
+    const data = await res.json();
+    let reply = data?.content?.[0]?.text || 'Ha habido un error. Escríbenos a <strong>info@lideratunegocio.com</strong>.';
+
+    let shouldCTA = false;
+    if (reply.includes('[MOSTRAR_CTA]')) {
+      shouldCTA = true;
+      reply = reply.replace('[MOSTRAR_CTA]', '').trim();
+    }
+
+    history.push({ role: 'assistant', content: reply });
+    removeTyping();
+
+    const formatted = reply
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+    await addBubble(formatted, 'bot');
+
+    if (shouldCTA) setTimeout(showCTA, 400);
+
+  } catch (e) {
+    removeTyping();
+    await addBubble('Error de conexión. Escríbenos a <strong>info@lideratunegocio.com</strong> o llámanos al <strong>614 160 803</strong>.', 'bot');
+  }
+
+  setLoading(false);
+}
+
+sendBtn.addEventListener('click', () => sendMessage(input.value.trim()));
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(input.value.trim()); }
+});
+
+/* ── INIT ── */
+async function initChat() {
+  showTyping();
+  await new Promise(r => setTimeout(r, 1000));
+  removeTyping();
+  await addBubble('¡Hola! Soy el asistente de <strong>Lidera tu Negocio</strong>.<br><br>Cuéntame qué está pasando en tu empresa y te digo qué se puede hacer. ¿Por dónde empezamos?', 'bot');
+  setTimeout(() => showQR(INITIAL_QR), 300);
+}
+
+})();
+</script>
+<!-- END WIDGET -->
+
+</body>
+</html>

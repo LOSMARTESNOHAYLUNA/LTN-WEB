@@ -60,12 +60,12 @@ Antes del primer despliegue, añadir en `img/`:
 
 | Archivo | Tamaño mínimo | Descripción |
 |---|---|---|
-| `team/carla-vallejos-lidera-tu-negocio.jpg` | 800×1067px | Foto de Carla |
-| `team/sheila-aguilar-lidera-tu-negocio.jpg` | 800×1067px | Foto de Sheila |
-| `casos/medioambiente-castro-caso-real.jpg` | 1200×800px | Imagen del caso |
-| `og/og-home.jpg` | 1200×630px | OG para la home |
-| `og/og-nosotras.jpg` | 1200×630px | OG para Nosotras |
-| `favicon.svg` | — | Logo en SVG |
+| `img/LOGO-LTN-01.svg` | — | Logo principal (favicon) |
+| `img/logo-blanco-lideratunegocio.png` | — | Logo blanco para nav |
+| `img/team/carla-sola.webp` | — | Foto de Carla |
+| `img/team/sheila-sola.webp` | — | Foto de Sheila |
+| `img/team/SheilaCarla-*.webp` | — | Fotos juntas (hero, secciones) |
+| `img/casos/medioambiente-castro.jpg` | 1200×800px | Imagen del caso |
 | `favicon-32.png` | 32×32px | Favicon navegador |
 | `favicon-180.png` | 180×180px | Apple Touch Icon |
 

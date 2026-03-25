@@ -1,0 +1,71 @@
+<!-- ═══════════════════════════════════
+     NAV — copiar en todas las páginas
+     Cambiar clase active según página
+═══════════════════════════════════ -->
+<nav>
+  <a href="/" class="nav-logo"><img src="/img/logo-blanco-lideratunegocio.png" alt="Lidera tu Negocio" height="34" loading="lazy"></a>
+  <ul class="nav-links">
+    <li><a href="/servicios/">Servicios</a></li>
+    <li><a href="/precios/">Precios</a></li>
+    <li><a href="/casos/">Casos reales</a></li>
+    <li><a href="/ia-tools/">IA Tools</a></li>
+    <li><a href="/nosotras/">Nosotras</a></li>
+  </ul>
+  <a href="/auditoria/" class="nav-cta">Auditoría gratuita →</a>
+  <button class="nav-hamburger" onclick="openMobileMenu()" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" onclick="closeMobileMenu()">×</button>
+  <a href="/" onclick="closeMobileMenu()">Inicio</a>
+  <a href="/servicios/" onclick="closeMobileMenu()">Servicios</a>
+  <a href="/precios/" onclick="closeMobileMenu()">Precios</a>
+  <a href="/casos/" onclick="closeMobileMenu()">Casos reales</a>
+  <a href="/ia-tools/" onclick="closeMobileMenu()">IA Tools</a>
+  <a href="/nosotras/" onclick="closeMobileMenu()">Nosotras</a>
+  <a href="/auditoria/" class="mm-cta" onclick="closeMobileMenu()">Auditoría gratuita →</a>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     FOOTER — copiar en todas las páginas
+═══════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="nav-logo"><img src="/img/logo-blanco-lideratunegocio.png" alt="Lidera tu Negocio" height="34" loading="lazy"></a>
+      <p>Consultoría de procesos comerciales para pymes de servicios B2B. Diseñamos, implementamos y automatizamos.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <a href="/servicios/">Consultoría comercial</a>
+      <a href="/servicios/">Implementación y automatización</a>
+      <a href="/ia-tools/">IA Tools</a>
+      <a href="/precios/">Precios</a>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <a href="/nosotras/">Nosotras</a>
+      <a href="/casos/">Casos reales</a>
+      <a href="/auditoria/">Auditoría gratuita</a>
+      <a href="https://saas.lideratunegocio.com" target="_blank" rel="noopener">Calculadora SVD</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="mailto:info@lideratunegocio.com">info@lideratunegocio.com</a>
+      <a href="https://api.whatsapp.com/send?phone=34614160803" target="_blank" rel="noopener">614 160 803</a>
+      <a href="https://www.linkedin.com/company/lideratunegocio" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/lideratunegocio" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Lidera tu Negocio® — Todos los derechos reservados</span>
+    <div class="footer-legal">
+      <a href="/aviso-legal/">Aviso legal</a>
+      <a href="/privacidad/">Privacidad</a>
+      <a href="/cookies/">Cookies</a>
+    </div>
+  </div>
+</footer>
