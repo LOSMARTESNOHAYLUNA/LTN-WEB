@@ -263,7 +263,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
         </div>
         <div class="pq-card">
           <h4>😓 "Todo depende de que yo esté"</h4>
-          <p>Si no estás mirando, el seguimiento de leads se ralentiza o para.</p>
+          <p>Si falta el responsable, el seguimiento de leads se ralentiza o para.</p>
         </div>
         <div class="pq-card">
           <h4>📊 "No sé cuántos leads perdí el mes pasado"</h4>
@@ -341,7 +341,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
     </div>
     <div class="fc"><h4>Servicios</h4><a href="/servicios/">Consultoría comercial</a><a href="/servicios/#implementacion">Implementación</a><a href="/ia-tools/">IA Tools</a><a href="/precios/">Precios</a></div>
     <div class="fc"><h4>Empresa</h4><a href="/nosotras/">Quién somos</a><a href="/auditoria/">Auditoría gratuita</a><a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener">Mide tus fugas</a></div>
-    <div class="fc"><h4>Contacto</h4><a href="mailto:info@lideratunegocio.com">info@lideratunegocio.com</a><a href="https://api.whatsapp.com/send?phone=34614160803" target="_blank" rel="noopener">614 160 803</a><a href="https://es.linkedin.com/company/lidera-tu-negocio" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/lidera_tu_negocio" target="_blank" rel="noopener">Instagram</a></div>
+    <div class="fc"><h4>Contacto</h4><a href="/cdn-cgi/l/email-protection#543d3a323b14383d3031263520213a31333b373d3b7a373b39"><span class="__cf_email__" data-cfemail="7d14131b123d111419180f1c090813181a121e1412531e1210">[email&#160;protected]</span></a><a href="https://api.whatsapp.com/send?phone=34614160803" target="_blank" rel="noopener">614 160 803</a><a href="https://es.linkedin.com/company/lidera-tu-negocio" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/lidera_tu_negocio" target="_blank" rel="noopener">Instagram</a></div>
   </div>
   <div class="fbot">
     <span class="fcop">© 2025 Lidera tu Negocio® — Todos los derechos reservados</span>
@@ -352,7 +352,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 <div id="cookieBanner"><h3>🍪 Usamos cookies</h3><p>Para mejorar tu experiencia. <a href="/cookies/">Política de cookies</a></p><div class="ckw"><button class="cka" onclick="ackC()">Aceptar</button><button class="ckr" onclick="rejC()">Solo necesarias</button></div></div>
 <button class="ckf" id="ckf" onclick="shCK()" title="Cookies">🍪</button>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
 function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
 var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.12});
@@ -796,17 +796,17 @@ Actúas como un consultor experto que:
 
 **Diagnóstico y optimización comercial:** Analizamos el embudo de ventas completo, identificamos dónde se pierden leads y cuantificamos el impacto económico.
 
-**Implementación de CRM (GoHighLevel):** Configuramos el CRM adaptado al proceso real de la empresa, formación del equipo, pipelines y automatizaciones de primer contacto.
+**Implementación de CRM (CRM):** Configuramos el CRM adaptado al proceso real de la empresa, formación del equipo, pipelines y automatizaciones de primer contacto.
 
-**Automatización de seguimiento de leads:** Secuencias automáticas: primer contacto en <15 minutos, recordatorios, reactivación de leads fríos. GHL + WhatsApp + email.
+**Automatización de seguimiento de leads:** Secuencias automáticas: primer contacto en <15 minutos, recordatorios, reactivación de leads fríos. CRM + WhatsApp + email.
 
-**Agentes de IA y bots de WhatsApp:** Bots que responden leads 24/7, califican y agendan reuniones automáticamente. Integrados con GoHighLevel.
+**Agentes de IA y bots de WhatsApp:** Bots que responden leads 24/7, califican y agendan reuniones automáticamente. Integrados con CRM.
 
 **Apps y herramientas a medida:** Aplicaciones web para procesos internos o externos: calculadoras, dashboards, trackers de tiempo, portales de cliente.
 
 **Dashboards de ventas:** Paneles en tiempo real con pipeline, tasas de conversión por etapa/comercial, ROI por fuente.
 
-**Automatización de WhatsApp (plataforma propia):** Infraestructura propia integrada con GHL para negocios donde WhatsApp es el canal principal.
+**Automatización de WhatsApp (plataforma propia):** Infraestructura propia integrada con CRM para negocios donde WhatsApp es el canal principal.
 
 **Auditoría de Conversión de Leads (gratuita, 40 min):** Analizamos el proceso actual, identificamos los 3 puntos de mayor fuga y proponemos la solución concreta.
 
@@ -985,12 +985,4 @@ async function sendMessage(text) {
 
 sendBtn.addEventListener('click', () => sendMessage(input.value.trim()));
 input.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(input.value.trim()); }
-});
-
-/* ── INIT ── */
-async function initChat() {
-  showTyping();
-  await new Promise(r => setTimeout(r, 1000));
-  removeTyping();
-  await addBubble('¡Hola! Soy el asistente d
+  if (e.key === 'Enter' && !
