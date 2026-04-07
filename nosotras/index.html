@@ -88,7 +88,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 6%;height:68px;dis
 .nav-cta{background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:.04em;transition:all .2s;white-space:nowrap;}
 .nav-cta:hover{background:var(--accent-light);transform:translateY(-1px);}
 .nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.4rem;z-index:300;}
-.nav-hamburger span{display:block;width:24px;height:2px;background:var(--text);transition:all .3s;border-radius:2px;}
+.nav-ham span{display:block;width:24px;height:2px;background:var(--text);transition:all .3s;border-radius:2px;}
 .mm{display:none;position:fixed;inset:0;background:rgba(10,6,25,0.98);z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
 .mm.open{display:flex;}
 .mm-x{position:absolute;top:24px;right:6%;background:none;border:none;color:var(--text-muted);font-size:32px;cursor:pointer;line-height:1;}
@@ -251,7 +251,6 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
   <ul class="nav-links">
     <li><a href="/servicios/">Servicios</a></li>
     <li><a href="/precios/">Precios</a></li>
-    <li><a href="/ia-tools/">IA Tools</a></li>
     <li><a href="/webapps/">Web Apps</a></li>
     <li><a href="/nosotras/" class="active">Quién somos</a></li>
     <li><a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" style="color:var(--accent-light)!important;">Mide tus fugas →</a></li>
@@ -268,6 +267,7 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
   <a href="/ia-tools/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ IA Tools</a>
   <a href="/webapps/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ Web Apps</a>
   <a href="/precios/" onclick="cmm()">Precios</a>
+  <a href="/webapps/" onclick="cmm()">Web Apps</a>
   <a href="/nosotras/" onclick="cmm()">Quién somos</a>
   <a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" onclick="cmm()" style="color:var(--accent-light)!important;">Mide tus fugas →</a>
   <a href="/auditoria/" class="mm-cta" onclick="cmm()">Auditoría gratuita →</a>

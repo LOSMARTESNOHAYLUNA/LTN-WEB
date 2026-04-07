@@ -70,15 +70,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 6%;height:68px;dis
 .nav-links a:hover,.nav-links a.active{color:var(--text);}
 .nav-cta{background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:.04em;transition:all .2s;white-space:nowrap;}
 .nav-cta:hover{background:var(--accent-light);transform:translateY(-1px);}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.4rem;z-index:300;}
-.nav-hamburger span{display:block;width:24px;height:2px;background:var(--text);transition:all .3s;border-radius:2px;}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.4rem;z-index:300;}
+.nav-ham span{display:block;width:24px;height:2px;background:var(--text);transition:all .3s;border-radius:2px;}
 .mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,6,25,0.98);z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
 .mobile-menu.open{display:flex;}
 .mm-close{position:absolute;top:24px;right:6%;background:none;border:none;color:var(--text-muted);font-size:32px;cursor:pointer;line-height:1;}
 .mobile-menu a{font-family:'Outfit',sans-serif;font-size:24px;font-weight:700;color:var(--text);text-decoration:none;transition:color .2s;}
 .mobile-menu a:hover{color:var(--accent);}
 .mm-cta{background:var(--accent)!important;color:#fff!important;padding:14px 32px!important;border-radius:10px!important;font-size:16px!important;}
-@media(max-width:900px){.nav-hamburger{display:flex;}.nav-links{display:none;}.nav-cta{display:none;}}
+@media(max-width:900px){.nav-ham{display:flex;}.nav-links{display:none;}.nav-cta{display:none;}}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 6%;position:relative;z-index:1;}
 section{position:relative;}
 .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
@@ -209,7 +209,7 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
     <li><a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" style="color:var(--accent-light)!important;">Mide tus fugas →</a></li>
   </ul>
   <a href="/auditoria/" class="nav-cta">Auditoría gratuita →</a>
-  <button class="nav-hamburger" onclick="omm()" aria-label="Abrir menú">
+  <button class="nav-ham" onclick="omm()" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -217,7 +217,12 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
   <button class="mm-x" onclick="cmm()">×</button>
   <a href="/" onclick="cmm()">Inicio</a>
   <a href="/servicios/" onclick="cmm()">Servicios</a>
+  <a href="/servicios/consultoria/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ Consultoría</a>
+  <a href="/servicios/implementacion/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ Implementación</a>
+  <a href="/ia-tools/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ IA Tools</a>
+  <a href="/webapps/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ Web Apps</a>
   <a href="/precios/" onclick="cmm()">Precios</a>
+  <a href="/webapps/" onclick="cmm()">Web Apps</a>
   <a href="/nosotras/" onclick="cmm()">Quién somos</a>
   <a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" onclick="cmm()" style="color:var(--accent-light)!important;">Mide tus fugas →</a>
   <a href="/auditoria/" class="mm-cta" onclick="cmm()">Auditoría gratuita →</a>
