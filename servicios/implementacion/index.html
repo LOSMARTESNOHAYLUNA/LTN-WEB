@@ -386,3 +386,8 @@ function ackC(){localStorage.setItem('cookies','accepted');hCK();}
 function rejC(){localStorage.setItem('cookies','rejected');hCK();}
 function hCK(){document.getElementById('cookieBanner').classList.remove('show');document.getElementById('ckf').classList.add('show');}
 function shCK(){document.getElementById('cookieBanner').classList.add('show');docum
+ent.getElementById('ckf').classList.remove('show');}
+(function(){if(!localStorage.getItem('cookies'))document.getElementById('cookieBanner').classList.add('show');else document.getElementById('ckf').classList.add('show');})();
+</script>
+</body>
+</html>
