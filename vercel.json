@@ -47,6 +47,10 @@
     {
       "source": "/webapps",
       "destination": "/webapps/index.html"
+    },
+    {
+      "source": "/euskadi-spri",
+      "destination": "/euskadi-spri/index.html"
     }
   ],
   "redirects": [
