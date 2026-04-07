@@ -207,6 +207,18 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
 
 /* Widget cursor fix */
 #ltn-launcher,#ltn-panel *,#ltn-send,#ltn-qr-btn,.ltn-qr-btn,.ltn-cta-btn{cursor:pointer!important;}
+
+/* ── NAV DROPDOWN ── */
+.nav-links li{position:relative;}
+.nav-links li:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);background:rgba(9,6,26,.97);border:1px solid rgba(230,25,120,.15);border-radius:12px;padding:8px;min-width:230px;opacity:0;visibility:hidden;transition:all .2s ease;z-index:300;backdrop-filter:blur(16px);}
+.nav-dropdown::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:rgba(230,25,120,.15);border-top:none;}
+.nav-dropdown a{display:block;padding:10px 14px;font-size:13px;color:var(--text-muted);text-decoration:none;border-radius:8px;transition:all .18s;white-space:nowrap;}
+.nav-dropdown a:hover{background:rgba(230,25,120,.08);color:var(--text);}
+.nav-dropdown a::after{display:none!important;}
+.nav-links a.active{color:var(--text)!important;}
+.nav-links a.active::after{width:100%!important;}
+.mm a.active{color:var(--accent)!important;}
 </style>
 </head>
 <body>
@@ -1210,4 +1222,4 @@ async function initChat() {
   showTyping();
   await new Promise(r => setTimeout(r, 1000));
   removeTyping();
-  await addBubble('¡Hola! Soy el asistente de <strong>Lidera tu Negocio</strong>.<br><br>Cuéntame qué está pasando en tu empresa y te digo qué 
+  await addBubble('¡Hola! Soy el asistente de <strong>Lidera tu Negocio</strong>.<br><br>Cuéntame qué está pasando en tu empresa y te digo qué
