@@ -214,23 +214,30 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
 <nav>
   <a href="/" class="nav-logo"><img src="/img/LOGO-LTN-06-HORIZONTAL-BLANCO.svg" alt="Lidera tu Negocio" height="34" loading="lazy"></a>
   <ul class="nav-links">
-    <li><a href="/servicios/">Servicios</a></li>
+    <li>
+      <a href="/servicios/">Servicios</a>
+      <div class="nav-dropdown">
+        <a href="/servicios/consultoria/">Consultoría de procesos</a>
+        <a href="/servicios/implementacion/">Implementación y automatización</a>
+        <a href="/ia-tools/">IA Tools — Apps a medida</a>
+      </div>
+    </li>
     <li><a href="/precios/">Precios</a></li>
     <li><a href="/ia-tools/">IA Tools</a></li>
     <li><a href="/nosotras/">Quién somos</a></li>
     <li><a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" style="color:var(--accent-light)!important;">Mide tus fugas →</a></li>
   </ul>
   <a href="/auditoria/" class="nav-cta">Auditoría gratuita →</a>
-  <button class="nav-hamburger" onclick="openMobileMenu()" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" onclick="omm()" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mm-close" onclick="closeMobileMenu()">×</button>
-  <a href="/" onclick="closeMobileMenu()">Inicio</a>
-  <a href="/servicios/" onclick="closeMobileMenu()">Servicios</a>
-  <a href="/precios/" onclick="closeMobileMenu()">Precios</a>
-  <a href="/nosotras/" onclick="closeMobileMenu()">Quién somos</a>
-  <a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" onclick="closeMobileMenu()" style="color:var(--accent-light)!important;">Mide tus fugas →</a>
-  <a href="/auditoria/" class="mm-cta" onclick="closeMobileMenu()">Auditoría gratuita →</a>
+<div class="mm" id="mm">
+  <button class="mm-x" onclick="cmm()">×</button>
+  <a href="/" onclick="cmm()">Inicio</a>
+  <a href="/servicios/" onclick="cmm()">Servicios</a>
+  <a href="/precios/" onclick="cmm()">Precios</a>
+  <a href="/nosotras/" onclick="cmm()">Quién somos</a>
+  <a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" onclick="cmm()" style="color:var(--accent-light)!important;">Mide tus fugas →</a>
+  <a href="/auditoria/" class="mm-cta" onclick="cmm()">Auditoría gratuita →</a>
 </div>
 
 <!-- HERO -->
@@ -543,8 +550,22 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
 <button class="cookie-float" id="cookieFloat" onclick="showCookieBanner()" title="Cookies">🍪</button>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function openMobileMenu(){document.getElementById('mobileMenu').classList.add('open');document.body.style.overflow='hidden';}
-function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.body.style.overflow='';}
+
+/* Marcar enlace activo */
+(function(){
+  var path = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.nav-links a, .mm a').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('http')) return;
+    var h = href.replace(/\/$/, '') || '/';
+    if(h === path || (h !== '' && h !== '/' && path.startsWith(h))){
+      a.classList.add('active');
+    }
+  });
+})();
+
+function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
+function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
 function acceptCookies(){localStorage.setItem('cookies','accepted');hideBanner();}
 function rejectCookies(){localStorage.setItem('cookies','rejected');hideBanner();}
 function hideBanner(){document.getElementById('cookieBanner').classList.remove('show');document.getElementById('cookieFloat').classList.add('show');}

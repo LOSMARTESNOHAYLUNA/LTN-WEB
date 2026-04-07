@@ -47,6 +47,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 6%;height:66px;dis
 .mm a{font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;color:var(--text);text-decoration:none;transition:color .2s;}
 .mm a:hover{color:var(--accent);}
 .mm-cta{background:var(--accent)!important;color:#fff!important;padding:13px 30px!important;border-radius:10px!important;}
+
+/* Dropdown servicios */
+.nav-links li{position:relative;}
+.nav-links li:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);background:rgba(9,6,26,.97);border:1px solid rgba(230,25,120,.15);border-radius:12px;padding:8px;min-width:220px;opacity:0;visibility:hidden;transition:all .2s ease;z-index:300;backdrop-filter:blur(16px);}
+.nav-dropdown::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:rgba(230,25,120,.15);border-top:none;}
+.nav-dropdown a{display:block;padding:10px 14px;font-size:13px;color:var(--text-muted);text-decoration:none;border-radius:8px;transition:all .18s;white-space:nowrap;}
+.nav-dropdown a:hover{background:rgba(230,25,120,.08);color:var(--text);}
+.nav-dropdown a::after{display:none!important;}
+/* Activo */
+.nav-links a.active{color:var(--text)!important;}
+.nav-links a.active::after{width:100%!important;}
+.mm a.active{color:var(--accent)!important;}
 @media(max-width:900px){.nav-ham{display:flex;}.nav-links,.nav-cta{display:none;}}
 
 .container{max-width:var(--max-w);margin:0 auto;padding:0 6%;position:relative;z-index:1;}
@@ -54,7 +67,6 @@ section{position:relative;}
 .sl{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
 .sl::before{content:'';display:block;width:20px;height:1.5px;background:var(--accent);}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
 .rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
 
 /* HERO */
@@ -157,7 +169,14 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 <nav id="nav">
   <a href="/" class="nav-logo"><img src="/img/LOGO-LTN-06-HORIZONTAL-BLANCO.svg" alt="Lidera tu Negocio" height="34" loading="lazy"></a>
   <ul class="nav-links">
-    <li><a href="/servicios/">Servicios</a></li>
+    <li>
+      <a href="/servicios/">Servicios</a>
+      <div class="nav-dropdown">
+        <a href="/servicios/consultoria/">Consultoría de procesos</a>
+        <a href="/servicios/implementacion/">Implementación y automatización</a>
+        <a href="/ia-tools/">IA Tools — Apps a medida</a>
+      </div>
+    </li>
     <li><a href="/precios/">Precios</a></li>
     <li><a href="/ia-tools/">IA Tools</a></li>
     <li><a href="/nosotras/">Quién somos</a></li>
@@ -355,6 +374,20 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 <button class="ckf" id="ckf" onclick="shCK()" title="Cookies">🍪</button>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+/* Marcar enlace activo */
+(function(){
+  var path = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.nav-links a, .mm a').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('http')) return;
+    var h = href.replace(/\/$/, '') || '/';
+    if(h === path || (h !== '' && h !== '/' && path.startsWith(h))){
+      a.classList.add('active');
+    }
+  });
+})();
+
 function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
 function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
 var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.12});

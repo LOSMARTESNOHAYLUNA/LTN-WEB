@@ -32,14 +32,14 @@
 html,body{max-width:100%;overflow-x:hidden;}
 img{max-width:100%;height:auto;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:19px;line-height:1.75;overflow-x:hidden;cursor:none;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:19px;line-height:1.75;overflow-x:hidden;}
 @media(max-width:900px){body{cursor:auto;}}
 
-#cursor{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:screen;}
-#cursor-ring{width:40px;height:40px;border:1.5px solid rgba(230,25,120,0.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);will-change:transform;transition:width .3s,height .3s,border-color .3s;}
-#cursor.h{width:0;height:0;}
-#cursor-ring.h{width:54px;height:54px;border-color:var(--accent);background:rgba(230,25,120,.05);}
-@media(max-width:900px){#cursor,#cursor-ring{display:none;}}
+
+
+
+
+
 
 #bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
@@ -63,6 +63,19 @@ nav.sc{background:rgba(9,6,26,.95);backdrop-filter:blur(24px);border-bottom:1px 
 .mm a{font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;color:var(--text);text-decoration:none;transition:color .2s;}
 .mm a:hover{color:var(--accent);}
 .mm-cta{background:var(--accent)!important;color:#fff!important;padding:13px 30px!important;border-radius:10px!important;}
+
+/* Dropdown servicios */
+.nav-links li{position:relative;}
+.nav-links li:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);background:rgba(9,6,26,.97);border:1px solid rgba(230,25,120,.15);border-radius:12px;padding:8px;min-width:220px;opacity:0;visibility:hidden;transition:all .2s ease;z-index:300;backdrop-filter:blur(16px);}
+.nav-dropdown::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:rgba(230,25,120,.15);border-top:none;}
+.nav-dropdown a{display:block;padding:10px 14px;font-size:13px;color:var(--text-muted);text-decoration:none;border-radius:8px;transition:all .18s;white-space:nowrap;}
+.nav-dropdown a:hover{background:rgba(230,25,120,.08);color:var(--text);}
+.nav-dropdown a::after{display:none!important;}
+/* Activo */
+.nav-links a.active{color:var(--text)!important;}
+.nav-links a.active::after{width:100%!important;}
+.mm a.active{color:var(--accent)!important;}
 @media(max-width:900px){.nav-ham{display:flex;}.nav-links,.nav-cta{display:none;}}
 
 .container{max-width:var(--max-w);margin:0 auto;padding:0 6%;position:relative;z-index:1;}
@@ -71,11 +84,11 @@ nav.sc{background:rgba(9,6,26,.95);backdrop-filter:blur(24px);border-bottom:1px 
 h2.t{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(30px,4vw,52px);line-height:1.08;letter-spacing:-.025em;}
 h2.t em{font-style:normal;color:var(--accent);}
 
-.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:15px 32px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all .25s;border:none;cursor:none;box-shadow:0 8px 28px rgba(230,25,120,.3);}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:15px 32px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all .25s;border:none;box-shadow:0 8px 28px rgba(230,25,120,.3);}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 48px rgba(230,25,120,.45);}
-.btn-f{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#6b3fa0,#e61978);color:#fff;padding:15px 32px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all .25s;border:none;cursor:none;box-shadow:0 8px 28px rgba(107,63,160,.3);}
+.btn-f{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#6b3fa0,#e61978);color:#fff;padding:15px 32px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all .25s;border:none;box-shadow:0 8px 28px rgba(107,63,160,.3);}
 .btn-f:hover{background:linear-gradient(135deg,#7c4db8,#f04d99);transform:translateY(-2px);box-shadow:0 16px 48px rgba(230,25,120,.38);}
-.btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);padding:15px 32px;border-radius:10px;border:1.5px solid var(--border2);font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:all .25s;cursor:none;}
+.btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);padding:15px 32px;border-radius:10px;border:1.5px solid var(--border2);font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:all .25s;}
 .btn-g:hover{border-color:rgba(230,25,120,.4);color:var(--accent);}
 
 /* HERO */
@@ -299,16 +312,27 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 /* Widget cursor fix */
 #ltn-launcher,#ltn-panel *,#ltn-send,#ltn-qr-btn,.ltn-qr-btn,.ltn-cta-btn{cursor:pointer!important;}
 </style>
+<meta property="og:image" content="https://lideratunegocio.com/img/og/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Lidera tu Negocio — Consultoría de procesos comerciales para pymes B2B">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lideratunegocio.com/img/og/og-home.jpg">
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
 <canvas id="bg-canvas"></canvas>
 
 <nav id="nav">
   <a href="/" class="nav-logo"><img src="/img/LOGO-LTN-06-HORIZONTAL-BLANCO.svg" alt="Lidera tu Negocio" height="34" loading="lazy"></a>
   <ul class="nav-links">
-    <li><a href="/servicios/">Servicios</a></li>
+    <li>
+      <a href="/servicios/">Servicios</a>
+      <div class="nav-dropdown">
+        <a href="/servicios/consultoria/">Consultoría de procesos</a>
+        <a href="/servicios/implementacion/">Implementación y automatización</a>
+        <a href="/ia-tools/">IA Tools — Apps a medida</a>
+      </div>
+    </li>
     <li><a href="/precios/">Precios</a></li>
     <li><a href="/ia-tools/">IA Tools</a></li>
     <li><a href="/nosotras/">Quién somos</a></li>
@@ -339,8 +363,8 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
     <div class="hero-grid">
       <div>
         <div class="h-tag"><div class="h-dot"></div>Consultoría para pymes B2B</div>
-        <h1 class="ht">Si tu negocio<br>depende de que<br>estés <em>presente</em>,<br>no tienes un sistema.</h1>
-        <p class="h-sub">Construimos los procesos comerciales que hacen que tu negocio funcione sin depender de nadie. Para que crezca aunque tú no estés mirando.</p>
+        <h1 class="ht">Si tu negocio<br>depende de que<br>estés <em>tú</em>,<br>todavía no tienes un sistema.</h1>
+        <p class="h-sub">Ayudamos a pymes de servicios B2B a construir los procesos comerciales y operativos que funcionan solos. Para que el negocio crezca sin que todo dependa de una sola persona.</p>
         <div class="h-acts">
           <a href="/auditoria/" class="btn-p">Quiero mi Auditoría gratuita →</a>
           <a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" class="btn-f">Mide tus fugas →</a>
@@ -387,7 +411,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
   <div class="container">
     <div style="max-width:500px;">
       <div class="sl">El diagnóstico</div>
-      <h2 class="t">¿Te suena<br>alguna de <em>estas</em>?</h2>
+      <h2 class="t">¿Te suena<br><em>esto</em>?</h2>
     </div>
     <div class="pg">
       <div class="pc tilt">
@@ -421,10 +445,10 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
     <div class="prop-inner">
       <div>
         <div class="sl">La propuesta</div>
-        <h2 class="t">Construimos el sistema<br>que hace que tu negocio<br>funcione <em>sin depender<br>de nadie</em>.</h2>
-        <p class="prop-text" style="color:var(--text-soft);font-size:17px;line-height:1.82;margin-top:20px;">No somos una consultora que entrega informes. Somos el equipo que entra en tu negocio, entiende cómo funciona de verdad, y construye el sistema que lo hace predecible.</p>
+        <h2 class="t">Construimos el sistema<br>que hace que tu negocio<br>funcione <em>sin depender<br>de nadie en particular</em>.</h2>
+        <p class="prop-text" style="color:var(--text-soft);font-size:17px;line-height:1.82;margin-top:20px;">No somos una agencia de marketing ni una consultora que entrega informes. Somos el equipo que entra en tu negocio, entiende cómo funciona realmente, y construye el sistema que lo hace predecible. Diseñamos el proceso, lo implementamos y lo automatizamos. Todo con el mismo equipo, de principio a fin.</p>
         <div class="prop-claim">
-          <p>La diferencia con la mayoría de consultores:<br><span>nosotras también ejecutamos.</span></p>
+          <p>La diferencia entre nosotras y la mayoría de consultores es simple:<br><span>nosotras también ejecutamos.</span></p>
         </div>
       </div>
       <div class="psteps" id="pSteps">
@@ -518,32 +542,64 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
   <div class="container">
     <div style="text-align:center;max-width:520px;margin:0 auto;">
       <div class="sl">Cómo trabajamos</div>
-      <h2 class="t">Tres formas de entrar.<br>Un solo <em>resultado</em>.</h2>
+      <h2 class="t">Los servicios</h2>
     </div>
     <div class="svg">
       <div class="svc">
         <div class="svg-gl"></div>
         <span class="svn">01</span>
         <h3>Consultoría de procesos comerciales</h3>
-        <p>Mapeamos tu proceso real, documentamos cada etapa y construimos el sistema que necesitas. El resultado vive fuera de la cabeza de las personas.</p>
+        <p>El punto de partida. Mapeamos tu proceso comercial real, identificamos dónde se pierden oportunidades, documentamos cada etapa y construimos el sistema que necesitas. El resultado es un proceso que existe fuera de la cabeza de las personas y puede funcionar de forma consistente.</p>
         <div class="svf"><div class="prec"><strong>Desde 1.300 €</strong>Proyecto</div><a href="/servicios/" class="bsm">Saber más</a></div>
       </div>
       <div class="svc">
         <div class="svg-gl"></div>
         <span class="svn">02</span>
         <h3>Implementación y automatización</h3>
-        <p>CRM, formularios, pipelines y secuencias de seguimiento. Todo probado y funcionando en 10 días hábiles.</p>
+        <p>Cuando el proceso está diseñado y las recomendaciones de automatizaciones que lo optimicen fueron hechas, nos encargamos de la implementación. Formularios, CRM, secuencias de seguimiento, pipelines. Todo probado y funcionando en 10 días hábiles. Sin costes mensuales de software.</p>
         <div class="svf"><div class="prec"><strong>Desde 900 €</strong>Proyecto</div><a href="/servicios/" class="bsm">Saber más</a></div>
       </div>
       <div class="svc">
         <div class="svg-gl"></div>
         <span class="svn">03</span>
-        <h3>IA Tools — Apps a medida</h3>
-        <p>Calculadoras, portales de clientes, generadores de propuestas. Herramientas que antes solo tenían las grandes empresas.</p>
-        <div class="svf"><div class="prec"><strong>Desde 800 €</strong>Proyecto</div><a href="/ia-tools/" class="bsm">Ver soluciones</a></div>
+        <h3>Apps a medida con IA: IA Tools</h3>
+        <p>Si durante el análisis encontramos una tarea que una herramienta resolvería mejor que un proceso, la desarrollamos. Calculadoras, asistentes internos, sistemas de documentación. Una solución construida específicamente para tu operación.</p>
+        <div class="svf"><div class="prec"><strong>Desde 800 €</strong>Proyecto</div><a href="/ia-tools/" class="bsm">Ver soluciones con IA</a></div>
       </div>
     </div>
     <div class="svfoot"><a href="/precios/" class="btn-g">Ver todos los precios →</a></div>
+  </div>
+</section>
+
+<!-- POR QUÉ NOSOTRAS -->
+<section id="porque" style="padding:100px 0;background:var(--bg2);position:relative;z-index:1;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,80px);align-items:start;">
+      <div class="reveal">
+        <div class="sl">Por qué nosotras</div>
+        <h2 class="t" style="margin-bottom:28px;">Consultoría con las<br>manos en la <em>masa</em>.</h2>
+        <p style="color:var(--text-soft);font-size:17px;line-height:1.82;margin-bottom:20px;">Llevamos años implementando sistemas de automatización y CRM para pymes. Eso nos da algo que la mayoría de consultores no tienen: sabemos exactamente qué funciona cuando se lleva a la práctica, no solo en papel.</p>
+        <p style="color:var(--text-soft);font-size:17px;line-height:1.82;">Cuando diseñamos un proceso, sabemos cómo implementarlo. Cuando recomendamos una automatización, la construimos nosotras.</p>
+      </div>
+      <div class="reveal rd1" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div style="background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:28px 24px;">
+          <div style="font-family:'Outfit',sans-serif;font-size:36px;font-weight:800;color:var(--accent);margin-bottom:8px;">+5</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">años implementando sistemas comerciales para pymes B2B</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:28px 24px;">
+          <div style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--accent);margin-bottom:8px;line-height:1.2;">✦</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Certificadas en Growth Marketing e Inteligencia Artificial</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:28px 24px;">
+          <div style="font-family:'Outfit',sans-serif;font-size:36px;font-weight:800;color:var(--accent);margin-bottom:8px;">+300</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">automatizaciones creadas</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:28px 24px;">
+          <div style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--accent);margin-bottom:8px;line-height:1.2;">🌍</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Clientes activos en España y Latinoamérica</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -612,17 +668,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
-/* ─── CURSOR ─── */
-var cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-var mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function aR(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(aR);})();
-document.addEventListener('mousedown',function(){ring.style.transform='translate(-50%,-50%) scale(.8)';});
-document.addEventListener('mouseup',function(){ring.style.transform='';});
-document.querySelectorAll('a,button,.pc,.pstep,.cq,.svc,.rit,.tpr').forEach(function(el){
-  el.addEventListener('mouseenter',function(){cur.classList.add('h');ring.classList.add('h');});
-  el.addEventListener('mouseleave',function(){cur.classList.remove('h');ring.classList.remove('h');});
-});
+
 
 /* ─── CANVAS DOTS ─── */
 (function(){
@@ -762,6 +808,20 @@ setInterval(function(){
 },120);
 
 /* ─── MOBILE ─── */
+
+/* Marcar enlace activo */
+(function(){
+  var path = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.nav-links a, .mm a').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('http')) return;
+    var h = href.replace(/\/$/, '') || '/';
+    if(h === path || (h !== '' && h !== '/' && path.startsWith(h))){
+      a.classList.add('active');
+    }
+  });
+})();
+
 function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
 function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
 

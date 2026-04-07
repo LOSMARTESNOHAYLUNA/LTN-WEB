@@ -94,7 +94,6 @@ h2.title em{font-style:normal;color:var(--accent);}
 .btn-fugas{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#6b3fa0,#e61978);color:#fff;padding:15px 30px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:.03em;transition:all .22s;border:none;cursor:pointer;box-shadow:0 10px 32px rgba(107,63,160,.35);}
 .btn-fugas:hover{background:linear-gradient(135deg,#7c4db8,#f04d99);transform:translateY(-2px);box-shadow:0 16px 44px rgba(230,25,120,.38);}
 .reveal{opacity:1;transform:translateY(0);transition:opacity .65s ease,transform .65s ease;}.js-reveal{opacity:0;transform:translateY(28px);}
-.reveal.visible{opacity:1;transform:translateY(0);}.js-reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}.reveal-delay-3{transition-delay:.3s;}
 
 /* PAGE HERO */
@@ -201,19 +200,19 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
     <li><a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" style="color:var(--accent-light)!important;">Mide tus fugas →</a></li>
   </ul>
   <a href="/auditoria/" class="nav-cta">Auditoría gratuita →</a>
-  <button class="nav-hamburger" onclick="openMobileMenu()" aria-label="Abrir menú">
+  <button class="nav-hamburger" onclick="omm()" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mm-close" onclick="closeMobileMenu()">×</button>
-  <a href="/" onclick="closeMobileMenu()">Inicio</a>
-  <a href="/servicios/" onclick="closeMobileMenu()">Servicios</a>
-  <a href="/precios/" onclick="closeMobileMenu()">Precios</a>
-  <a href="/ia-tools/" onclick="closeMobileMenu()">IA Tools</a>
-  <a href="/nosotras/" onclick="closeMobileMenu()">Quién somos</a>
-  <a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" onclick="closeMobileMenu()" style="color:var(--accent-light)!important;">Mide tus fugas →</a>
-  <a href="/auditoria/" class="mm-cta" onclick="closeMobileMenu()">Auditoría gratuita →</a>
+<div class="mm" id="mm">
+  <button class="mm-x" onclick="cmm()">×</button>
+  <a href="/" onclick="cmm()">Inicio</a>
+  <a href="/servicios/" onclick="cmm()">Servicios</a>
+  <a href="/precios/" onclick="cmm()">Precios</a>
+  <a href="/ia-tools/" onclick="cmm()">IA Tools</a>
+  <a href="/nosotras/" onclick="cmm()">Quién somos</a>
+  <a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" onclick="cmm()" style="color:var(--accent-light)!important;">Mide tus fugas →</a>
+  <a href="/auditoria/" class="mm-cta" onclick="cmm()">Auditoría gratuita →</a>
 </div>
 
 <!-- HERO -->
@@ -419,8 +418,22 @@ footer{border-top:1px solid var(--border2);padding:60px 6% 40px;position:relativ
 <button class="cookie-float" id="cookieFloat" onclick="showCookieBanner()" title="Cookies">🍪</button>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function openMobileMenu(){document.getElementById('mobileMenu').classList.add('open');document.body.style.overflow='hidden';}
-function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.body.style.overflow='';}
+
+/* Marcar enlace activo */
+(function(){
+  var path = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.nav-links a, .mm a').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('http')) return;
+    var h = href.replace(/\/$/, '') || '/';
+    if(h === path || (h !== '' && h !== '/' && path.startsWith(h))){
+      a.classList.add('active');
+    }
+  });
+})();
+
+function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
+function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
 var obs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){
     if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}

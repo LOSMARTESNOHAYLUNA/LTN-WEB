@@ -35,6 +35,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 6%;height:66px;dis
 .mm a{font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;color:var(--text);text-decoration:none;}
 .mm a:hover{color:var(--accent);}
 .mm-cta{background:var(--accent)!important;color:#fff!important;padding:13px 30px!important;border-radius:10px!important;}
+
+/* Dropdown servicios */
+.nav-links li{position:relative;}
+.nav-links li:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);background:rgba(9,6,26,.97);border:1px solid rgba(230,25,120,.15);border-radius:12px;padding:8px;min-width:220px;opacity:0;visibility:hidden;transition:all .2s ease;z-index:300;backdrop-filter:blur(16px);}
+.nav-dropdown::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:rgba(230,25,120,.15);border-top:none;}
+.nav-dropdown a{display:block;padding:10px 14px;font-size:13px;color:var(--text-muted);text-decoration:none;border-radius:8px;transition:all .18s;white-space:nowrap;}
+.nav-dropdown a:hover{background:rgba(230,25,120,.08);color:var(--text);}
+.nav-dropdown a::after{display:none!important;}
+/* Activo */
+.nav-links a.active{color:var(--text)!important;}
+.nav-links a.active::after{width:100%!important;}
+.mm a.active{color:var(--accent)!important;}
 @media(max-width:900px){.nav-ham{display:flex;}.nav-links,.nav-cta{display:none;}}
 .container{max-width:var(--max-w);margin:0 auto;padding:100px 6% 80px;position:relative;z-index:1;}
 .legal-header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border2);}
