@@ -1,0 +1,27 @@
+# Sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos temporales
+*.tmp
+*.bak
+
+# Archivos de entorno (nunca subir)
+.env
+.env.local
+.env.production
+
+# Carpetas de trabajo locales
+_drafts/
+_nosubir/

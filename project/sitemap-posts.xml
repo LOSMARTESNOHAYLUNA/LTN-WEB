@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Los artículos del blog se añadirán aquí cuando se publiquen -->
+  <!-- Ejemplo:
+  <url>
+    <loc>https://lideratunegocio.com/blog/como-sistematizar-proceso-comercial/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  -->
+</urlset>
