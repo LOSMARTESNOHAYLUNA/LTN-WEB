@@ -475,7 +475,7 @@ function rejectCookies(){localStorage.setItem('cookies','rejected');hideBanner()
 function hideBanner(){document.getElementById('cookieBanner').classList.remove('show');document.getElementById('cookieFloat').classList.add('show');}
 function showCookieBanner(){document.getElementById('cookieBanner').classList.add('show');document.getElementById('cookieFloat').classList.remove('show');}
 (function(){if(!localStorage.getItem('cookies'))document.getElementById('cookieBanner').classList.add('show');else document.getElementById('cookieFloat').classList.add('show');})();
-</script>
+
 /* Marcar enlace activo */
 (function(){
   var path = window.location.pathname.replace(/\/$/, '') || '/';
