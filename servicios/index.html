@@ -534,7 +534,7 @@ function rejC(){localStorage.setItem('cookies','rejected');hCK();}
 function hCK(){document.getElementById('cookieBanner').classList.remove('show');document.getElementById('ckf').classList.add('show');}
 function shCK(){document.getElementById('cookieBanner').classList.add('show');document.getElementById('ckf').classList.remove('show');}
 (function(){if(!localStorage.getItem('cookies'))document.getElementById('cookieBanner').classList.add('show');else document.getElementById('ckf').classList.add('show');})();
-
+</script>
 /* Marcar enlace activo */
 (function(){
   var path = window.location.pathname.replace(/\/$/, '') || '/';
@@ -550,6 +550,11 @@ function shCK(){document.getElementById('cookieBanner').classList.add('show');do
 
 function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
 function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
+function ackC(){localStorage.setItem('cookies','accepted');hCK();}
+function rejC(){localStorage.setItem('cookies','rejected');hCK();}
+function hCK(){document.getElementById('cookieBanner').classList.remove('show');document.getElementById('ckf').classList.add('show');}
+function shCK(){document.getElementById('cookieBanner').classList.add('show');}
+(function(){if(!localStorage.getItem('cookies'))document.getElementById('cookieBanner').classList.add('show');else document.getElementById('ckf').classList.add('show');})();
 </script>
 </body>
 </html>
