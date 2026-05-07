@@ -66,7 +66,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 6%;height:66px;dis
 section{position:relative;}
 .sl{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
 .sl::before{content:'';display:block;width:20px;height:1.5px;background:var(--accent);}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease;}
 .rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
 
 /* HERO */
@@ -377,7 +377,8 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 <div id="cookieBanner"><h3>🍪 Usamos cookies</h3><p>Para mejorar tu experiencia. <a href="/cookies/">Política de cookies</a></p><div class="ckw"><button class="cka" onclick="ackC()">Aceptar</button><button class="ckr" onclick="rejC()">Solo necesarias</button></div></div>
 <button class="ckf" id="ckf" onclick="shCK()" title="Cookies">🍪</button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
 
 /* Marcar enlace activo */
 (function(){
