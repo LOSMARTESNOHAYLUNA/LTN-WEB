@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva confirmada — Bilboinform × Lidera tu Negocio</title>
+  <meta name="description" content="Tu reserva de 100€ ha sido confirmada. Pronto nos pondremos en contacto contigo para arrancar tu web.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black:      #0F0F0F;
+      --black-2:    #1A1A1A;
+      --dark:       #1F1F1F;
+      --dark-2:     #2A2A2A;
+      --orange:     #F76205;
+      --orange-lt:  #FF8B3A;
+      --orange-dk:  #C84D00;
+      --green:      #25D366;
+      --cream:      #FFF8F1;
+      --white:      #FFFFFF;
+      --text:       #FFFFFF;
+      --text-soft:  rgba(255,255,255,0.85);
+      --text-muted: rgba(255,255,255,0.62);
+      --border:     rgba(255,255,255,0.08);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Manrope', -apple-system, sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+    }
+    em {
+      font-style: italic;
+      color: var(--orange-lt);
+      font-weight: 700;
+    }
+
+    /* Radial glows */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%; right: -18%;
+      width: 60%; height: 60%;
+      background: radial-gradient(ellipse, rgba(247,98,5,0.16) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -18%; left: -15%;
+      width: 55%; height: 55%;
+      background: radial-gradient(ellipse, rgba(200,77,0,0.18) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index: 100;
+      padding: 0 40px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(15,15,15,0.85);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo em { color: var(--orange); font-style: normal; }
+    .nav-partner {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding-left: 14px;
+      border-left: 1px solid var(--border);
+      font-weight: 500;
+    }
+    .nav-partner strong { color: var(--white); font-weight: 700; }
+
+    /* ─── MAIN CONTAINER ─── */
+    main {
+      position: relative; z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 32px 80px;
+    }
+
+    /* ─── HERO SUCCESS ─── */
+    .success-hero {
+      text-align: center;
+      margin-bottom: 56px;
+      animation: fadeUp .7s ease both;
+    }
+
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 28px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-icon-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid rgba(247,98,5,0.3);
+      animation: ring-expand 2.4s ease-out infinite;
+    }
+    .success-icon-ring:nth-child(2) { animation-delay: 0.8s; }
+    .success-icon-inner {
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dk));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 40px rgba(247,98,5,0.4);
+      z-index: 1;
+    }
+
+    .success-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(247,98,5,.12);
+      border: 1px solid rgba(247,98,5,.35);
+      padding: 7px 16px; border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--orange-lt);
+      margin-bottom: 24px;
+    }
+    .success-badge span {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--orange);
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-size: clamp(34px, 4.8vw, 56px);
+      margin-bottom: 18px;
+      letter-spacing: -0.025em;
+    }
+
+    .success-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-soft);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ─── PAYMENT SUMMARY ─── */
+    .payment-card {
+      background: linear-gradient(160deg, var(--dark), #221410);
+      border: 1px solid rgba(247,98,5,.3);
+      border-radius: 18px;
+      padding: 32px;
+      margin-bottom: 44px;
+      animation: fadeUp .7s ease .15s both;
+      position: relative;
+      overflow: hidden;
+    }
+    .payment-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(247,98,5,.16) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .payment-card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .payment-card-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--orange-lt);
+    }
+    .payment-status {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      color: var(--green);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .payment-status::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .payment-row {
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative;
+    }
+    .payment-row + .payment-row {
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px dashed rgba(255,255,255,0.06);
+    }
+    .payment-row-label {
+      font-size: 15px; color: var(--text-soft);
+    }
+    .payment-row-label small {
+      display: block;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .payment-row-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .payment-row-val.paid {
+      color: var(--orange);
+    }
+    .payment-row-val.pending {
+      color: rgba(255,255,255,0.55);
+      font-style: italic;
+    }
+    .payment-note {
+      position: relative;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .payment-note strong { color: var(--white); font-weight: 600; }
+
+    /* ─── NEXT STEPS ─── */
+    .next-title {
+      font-size: 26px;
+      margin-bottom: 8px;
+      animation: fadeUp .7s ease .25s both;
+    }
+    .next-subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 28px;
+      animation: fadeUp .7s ease .3s both;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 44px;
+    }
+
+    .step {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 26px;
+      transition: border-color .2s, transform .2s;
+      animation: fadeUp .7s ease both;
+    }
+    .step:nth-child(1) { animation-delay: .35s; }
+    .step:nth-child(2) { animation-delay: .45s; }
+    .step:nth-child(3) { animation-delay: .55s; }
+    .step:hover { border-color: rgba(247,98,5,0.3); }
+
+    .step-num {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--black-2);
+      border: 2px solid var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 800;
+      color: var(--orange-lt);
+      flex-shrink: 0;
+    }
+    .step-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .step-body p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-soft);
+    }
+    .step-body p strong { color: var(--white); font-weight: 600; }
+    .step-body p em { color: var(--orange-lt); font-weight: 600; }
+
+    /* ─── HELP BLOCK ─── */
+    .help-block {
+      background: linear-gradient(160deg, var(--dark), var(--dark-2));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      text-align: center;
+      animation: fadeUp .7s ease .65s both;
+    }
+    .help-block h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .help-block p {
+      font-size: 15px;
+      color: var(--text-soft);
+      margin-bottom: 20px;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--green);
+      color: #fff;
+      padding: 14px 26px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid var(--green);
+      transition: all .2s;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+    }
+    .btn-whatsapp:hover {
+      background: #20BD5A; border-color: #20BD5A;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(37, 211, 102, 0.45);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative; z-index: 1;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      text-align: center;
+    }
+    .foot-brands {
+      display: inline-flex; align-items: center; gap: 14px;
+      margin-bottom: 8px;
+    }
+    .foot-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .foot-brand em { color: var(--orange); font-style: normal; }
+    .foot-x {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--orange-lt);
+    }
+    .foot-info {
+      font-size: 12.5px; color: var(--text-muted);
+    }
+
+    /* ─── KEYFRAMES ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .4; transform: scale(1.5); }
+    }
+    @keyframes ring-expand {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    @keyframes check-draw {
+      from { stroke-dashoffset: 60; }
+      to   { stroke-dashoffset: 0; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-partner { display: none; }
+      main { padding: 100px 20px 60px; }
+      .payment-card { padding: 24px 20px; }
+      .payment-row { flex-wrap: wrap; gap: 6px; }
+      .step { padding: 20px 22px; }
+      .help-block { padding: 24px 20px; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="/bilboinform/">
+    <div class="nav-logo">Bilbo<em>inform</em></div>
+    <div class="nav-partner">× <strong>Lidera tu Negocio</strong></div>
+  </a>
+</nav>
+
+<main>
+
+  <!-- SUCCESS HERO -->
+  <div class="success-hero">
+    <div class="success-icon">
+      <div class="success-icon-ring"></div>
+      <div class="success-icon-ring"></div>
+      <div class="success-icon-inner">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:60;animation:check-draw 0.6s ease 0.5s forwards;stroke-dashoffset:60"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="success-badge"><span></span>Reserva confirmada</div>
+    <h1>¡Gracias!<br>Tu web ya <em>está en marcha</em>.</h1>
+    <p class="success-sub">Hemos recibido tu reserva. En las próximas 24-48 horas nos pondremos en contacto contigo para arrancar el proyecto.</p>
+  </div>
+
+  <!-- PAYMENT SUMMARY -->
+  <div class="payment-card">
+    <div class="payment-card-header">
+      <div class="payment-card-title">Resumen de tu reserva</div>
+      <div class="payment-status">Pago confirmado</div>
+    </div>
+
+    <div class="payment-row">
+      <div class="payment-row-label">
+        Reserva pagada hoy
+        <small>Confirmada vía Stripe</small>
+      </div>
+      <div class="payment-row-val paid">100€</div>
+    </div>
+
+    <div class="payment-row">
+      <div class="payment-row-label">
+        Pendiente
+        <small>Al inicio del diseño de tu web</small>
+      </div>
+      <div class="payment-row-val pending">400€</div>
+    </div>
+
+    <div class="payment-note">
+      💡 <strong>Total del proyecto:</strong> 500€ (IVA incluido). Los <strong>400€ restantes</strong> se abonan tras la consultoría estratégica, cuando arrancamos el diseño de tu web. Sin extras escondidos.
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <h2 class="next-title">Los <em>próximos pasos</em></h2>
+  <p class="next-subtitle">Esto es lo que va a pasar a partir de ahora, en orden:</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Te llamamos para la consultoría estratégica</h3>
+        <p>En las <strong>próximas 24-48 horas</strong> te contactaremos para agendar una llamada de <em>consultoría estratégica</em>. Durante esta sesión analizaremos tu negocio, entenderemos qué necesita tu web y definiremos juntos la dirección del proyecto.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Abonas los 400€ restantes y arrancamos el diseño</h3>
+        <p>Tras la consultoría estratégica te enviaremos la <strong>factura de los 400€ restantes</strong>. Una vez abonados, comenzamos inmediatamente con el <em>diseño y desarrollo</em> de tu web. Te mantendremos al día del avance en todo momento.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Revisamos, publicamos y entregamos</h3>
+        <p>Cuando el diseño esté listo, tendrás una <strong>ronda de revisión</strong> para ajustar todo lo que consideres antes de publicar. Al terminar, la <em>publicamos y te la entregamos</em> con las instrucciones básicas de uso. Sin más pagos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HELP BLOCK -->
+  <div class="help-block">
+    <h4>¿Tienes alguna duda?</h4>
+    <p>Escríbenos por WhatsApp y te respondemos lo antes posible.</p>
+    <a class="btn-whatsapp" href="https://wa.me/34621060659?text=Hola%2C%20acabo%20de%20hacer%20la%20reserva%20de%20la%20web%20de%20Bilboinform%20y%20tengo%20una%20duda." target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+      Escríbenos por WhatsApp
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brands">
+    <a class="foot-brand" href="https://bilboinform.com" target="_blank">Bilbo<em>inform</em></a>
+    <span class="foot-x">×</span>
+    <a class="foot-brand" href="https://lideratunegocio.com" target="_blank">Lidera tu Negocio</a>
+  </div>
+  <div class="foot-info">Acuerdo exclusivo · Solo para clientes Bilboinform</div>
+</footer>
+
+</body>
+</html>
