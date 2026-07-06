@@ -71,7 +71,115 @@
       font-weight: 700;
     }
 
-    /* Radial glows */
+    /* ─── OFFER BAR (sticky top) ─── */
+    .offer-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: linear-gradient(90deg, var(--orange-dk), var(--orange), var(--orange-dk));
+      background-size: 200% 100%;
+      color: #fff;
+      padding: 10px 20px;
+      box-shadow: 0 4px 20px rgba(247,98,5,0.35);
+      animation: offer-shine 6s ease-in-out infinite;
+    }
+    .offer-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex; align-items: center; gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .offer-bar-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      display: inline-block;
+      animation: obt-tilt 2s ease-in-out infinite;
+    }
+    .offer-bar-text {
+      font-family: 'Manrope', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .offer-bar-text strong {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    .offer-bar-timer {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .obt-block {
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 15px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 3px;
+      font-variant-numeric: tabular-nums;
+      min-width: 44px;
+      justify-content: center;
+    }
+    .obt-lbl {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      opacity: 0.75;
+    }
+    .obt-tick {
+      animation: obt-flash 0.3s ease;
+    }
+    .offer-bar-cta {
+      background: #fff;
+      color: var(--orange-dk);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: transform .18s, box-shadow .18s;
+      flex-shrink: 0;
+    }
+    .offer-bar-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    @keyframes offer-shine {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    @keyframes obt-tilt {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(-10deg); }
+    }
+    @keyframes obt-flash {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); background: rgba(255,255,255,0.3); }
+      100% { transform: scale(1); }
+    }
+
+    /* Reposition nav below the offer bar */
+    nav {
+      top: 52px;
+    }
+    body {
+      padding-top: 52px;
+    }
     .glow-tr {
       position: fixed;
       top: -18%; right: -18%;
@@ -266,40 +374,162 @@
       letter-spacing: 0;
     }
 
-    /* Scarcity banner */
-    .scarcity-banner {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 28px;
-      padding: 14px 22px;
-      background: linear-gradient(90deg, rgba(247,98,5,.14), rgba(247,98,5,.06));
-      border: 1px solid rgba(247,98,5,.4);
-      border-radius: 12px;
-      text-align: left;
-      box-shadow: 0 6px 24px rgba(247,98,5,.15);
+    /* Countdown + Pricing tiers */
+    .countdown-wrap {
+      margin-top: 40px;
+      padding: 32px 28px;
+      background: linear-gradient(160deg, rgba(247,98,5,0.10), rgba(247,98,5,0.03));
+      border: 1px solid rgba(247,98,5,0.35);
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(247,98,5,0.12);
     }
-    .scarcity-icon {
-      font-size: 26px;
-      flex-shrink: 0;
-      animation: scarcity-shake 2.4s ease-in-out infinite;
-    }
-    .scarcity-text {
+    .countdown-label {
       font-family: 'Manrope', sans-serif;
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 13px;
+      font-weight: 600;
       color: var(--text-soft);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 18px;
     }
-    .scarcity-text strong {
+    .countdown-label strong {
+      color: var(--orange-lt);
+      font-weight: 800;
+    }
+    .countdown-timer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+    .cd-block {
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(247,98,5,0.25);
+      border-radius: 10px;
+      padding: 14px 18px;
+      min-width: 80px;
+      text-align: center;
+      transition: transform .18s;
+    }
+    .cd-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--orange);
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .cd-lbl {
+      font-family: 'Manrope', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .cd-sep {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--orange-lt);
+      opacity: 0.5;
+      padding: 0 2px;
+      align-self: flex-start;
+      margin-top: 8px;
+    }
+    .cd-tick {
+      animation: cd-flash 0.25s ease;
+    }
+    @keyframes cd-flash {
+      0% { transform: scale(1); color: var(--orange); }
+      50% { transform: scale(1.08); color: var(--orange-lt); }
+      100% { transform: scale(1); color: var(--orange); }
+    }
+
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .tier {
+      position: relative;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 14px 14px;
+      text-align: center;
+    }
+    .tier-best {
+      background: linear-gradient(160deg, rgba(247,98,5,0.16), rgba(247,98,5,0.06));
+      border-color: rgba(247,98,5,0.55);
+      box-shadow: 0 6px 20px rgba(247,98,5,0.18);
+    }
+    .tier-badge {
+      position: absolute;
+      top: -10px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Manrope', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .tier-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .tier-best .tier-price { color: var(--orange); }
+    .tier-strike {
+      position: relative;
+      color: rgba(255,255,255,0.55);
+      font-size: 22px;
+    }
+    .tier-strike::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: -4px; right: -4px;
+      height: 2px;
+      background: var(--orange);
+      transform: rotate(-6deg);
+    }
+    .tier-desc {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+    .tier-desc strong { color: var(--white); font-weight: 700; }
+
+    .tiers-reason {
+      margin-top: 20px;
+      padding: 14px 20px;
+      background: rgba(247,98,5,0.06);
+      border-radius: 10px;
+      text-align: center;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-soft);
+      font-style: italic;
+    }
+    .tiers-reason strong {
       color: var(--orange-lt);
       font-weight: 700;
-    }
-    @keyframes scarcity-shake {
-      0%, 100% { transform: rotate(0deg); }
-      15% { transform: rotate(-8deg); }
-      30% { transform: rotate(6deg); }
-      45% { transform: rotate(-4deg); }
-      60% { transform: rotate(2deg); }
+      font-style: normal;
     }
 
     /* Discount code box */
@@ -456,6 +686,12 @@
         padding: 14px;
       }
       .whatsapp-float-label { display: none; }
+
+      /* Offer bar even smaller: hide "Termina en" label, compact everything */
+      .offer-bar-text strong { font-size: 11.5px; }
+      .offer-bar-text { font-size: 11.5px; gap: 6px; }
+      .obt-block { padding: 2px 5px; font-size: 12px; min-width: 32px; }
+      .obt-lbl { font-size: 8.5px; }
     }
 
     /* Browser mockup */
@@ -1125,6 +1361,17 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
+      /* Offer bar mobile: compact */
+      .offer-bar { padding: 8px 14px; }
+      .offer-bar-inner { gap: 12px; }
+      .offer-bar-text { font-size: 12.5px; gap: 8px; }
+      .offer-bar-icon { font-size: 17px; }
+      .obt-block { padding: 2px 6px; font-size: 13px; min-width: 36px; }
+      .obt-lbl { font-size: 9px; }
+      .offer-bar-cta { padding: 7px 14px; font-size: 12px; }
+      nav { top: 62px; }
+      body { padding-top: 62px; }
+
       nav { padding: 0 20px; }
       .nav-partner { display: none; }
       .hero { grid-template-columns: 1fr; padding: 92px 20px 56px; gap: 44px; }
@@ -1145,6 +1392,18 @@
       .acuerdo-brands { flex-direction: column; gap: 8px; }
       .precio-card { padding: 36px 24px; }
       .precio-big { font-size: 72px; }
+
+      /* Countdown responsive */
+      .countdown-wrap { padding: 24px 18px; }
+      .cd-block { padding: 10px 12px; min-width: 62px; }
+      .cd-num { font-size: 28px; }
+      .cd-lbl { font-size: 9px; }
+      .cd-sep { font-size: 24px; }
+      .tiers { grid-template-columns: 1fr; gap: 8px; }
+      .tier { padding: 14px 16px; text-align: left; display: flex; align-items: center; gap: 16px; }
+      .tier-badge { position: static; transform: none; align-self: flex-start; }
+      .tier-best { flex-direction: column; align-items: flex-start; padding-top: 14px; }
+      .tier-price { margin-bottom: 0; font-size: 26px; min-width: 90px; }
     }
   </style>
 </head>
@@ -1152,6 +1411,23 @@
 
 <div class="glow-tr"></div>
 <div class="glow-bl"></div>
+
+<!-- OFFER BAR -->
+<div class="offer-bar" id="offerBar">
+  <div class="offer-bar-inner">
+    <span class="offer-bar-icon">🏆</span>
+    <span class="offer-bar-text">
+      <strong>Oferta exclusiva Bilboinform</strong> · Termina en
+      <span class="offer-bar-timer">
+        <span class="obt-block"><span id="obt-days">00</span><span class="obt-lbl">d</span></span>
+        <span class="obt-block"><span id="obt-hours">00</span><span class="obt-lbl">h</span></span>
+        <span class="obt-block"><span id="obt-mins">00</span><span class="obt-lbl">m</span></span>
+        <span class="obt-block"><span id="obt-secs">00</span><span class="obt-lbl">s</span></span>
+      </span>
+    </span>
+    <a class="offer-bar-cta" href="https://book.stripe.com/dRm3cvbFg3vE80idvMaMU03" target="_blank">Reservar 100€ →</a>
+  </div>
+</div>
 
 <!-- Floating WhatsApp -->
 <a class="whatsapp-float" href="https://wa.me/34621060659?text=Hola%2C%20soy%20cliente%20de%20Bilboinform%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20oferta%20de%20la%20web%20por%20500%E2%82%AC." target="_blank" aria-label="Contactar por WhatsApp">
@@ -1194,7 +1470,7 @@
           <div class="hero-code-text">Introduce este código al reservar para activar el precio de cliente Bilboinform.</div>
           <div class="hero-code-limit">
             <span class="limit-pulse"></span>
-            Válido solo para las <strong>10 primeras reservas</strong>
+            <strong>500€</strong> las 10 primeras reservas · <strong>800€</strong> después, hasta el 31 de julio
           </div>
         </div>
       </div>
@@ -1452,11 +1728,37 @@
       <h2>Un descuento que <em>solo tiene sentido dentro del acuerdo</em></h2>
       <p class="lead" style="margin:0 auto;text-align:center">El precio de mercado de esta web es 1.200€. Como cliente Bilboinform, la tienes por 500€. Sin condiciones raras.</p>
 
-      <div class="scarcity-banner">
-        <div class="scarcity-icon">⚡</div>
-        <div class="scarcity-text">
-          Este precio solo aplica a las <strong>10 primeras reservas</strong>.<br>
-          Una vez agotadas las plazas, el código <strong>BILBO500</strong> deja de estar activo.
+      <!-- Countdown + pricing tiers -->
+      <div class="countdown-wrap">
+        <div class="countdown-label">La oferta termina el <strong>31 de julio de 2026</strong></div>
+        <div class="countdown-timer" id="countdown">
+          <div class="cd-block"><div class="cd-num" id="cd-days">00</div><div class="cd-lbl">días</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><div class="cd-num" id="cd-hours">00</div><div class="cd-lbl">horas</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><div class="cd-num" id="cd-mins">00</div><div class="cd-lbl">min</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><div class="cd-num" id="cd-secs">00</div><div class="cd-lbl">seg</div></div>
+        </div>
+
+        <div class="tiers">
+          <div class="tier tier-best">
+            <div class="tier-badge">Los más rápidos</div>
+            <div class="tier-price">500€</div>
+            <div class="tier-desc">Para las <strong>10 primeras reservas</strong>.<br>Premiamos a los más decididos.</div>
+          </div>
+          <div class="tier">
+            <div class="tier-price">800€</div>
+            <div class="tier-desc">De la <strong>reserva 11 en adelante</strong>,<br>hasta el <strong>31 de julio de 2026</strong>.</div>
+          </div>
+          <div class="tier tier-normal">
+            <div class="tier-price"><span class="tier-strike">1.200€</span></div>
+            <div class="tier-desc">Precio público general<br>(fuera del acuerdo)</div>
+          </div>
+        </div>
+
+        <div class="tiers-reason">
+          🏆 Premiamos a los <strong>más rápidos y comprometidos</strong> con su negocio. Cuanto antes reserves, mejor precio.
         </div>
       </div>
     </div>
@@ -1778,7 +2080,7 @@
           <div class="faq-plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--orange-lt)" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </div>
         <div class="faq-a">
-          <div class="faq-a-inner">Porque nace de un acuerdo directo entre <strong>Bilboinform</strong> y <strong>Lidera tu Negocio</strong>. Bilboinform quería que sus clientes pudieran tener una web profesional sin tener que asumir el coste completo de mercado. El precio de <em>500€</em> solo tiene sentido dentro de este acuerdo — al público el mismo trabajo tiene un precio de 1.200€. Además, es una <strong>oferta limitada a las 10 primeras reservas</strong>.</div>
+          <div class="faq-a-inner">Porque nace de un acuerdo directo entre <strong>Bilboinform</strong> y <strong>Lidera tu Negocio</strong>. Los clientes de Bilboinform tienen <em>siempre</em> un precio especial (800€ frente a los 1.200€ del precio público). Y como lanzamiento, las <strong>10 primeras reservas</strong> acceden a un precio aún mejor: <em>500€</em>. La oferta especial termina el <strong>31 de julio de 2026</strong>.</div>
         </div>
       </div>
 
@@ -1831,11 +2133,16 @@
 
       <div class="faq-item reveal">
         <div class="faq-q">
-          <span class="faq-q-text">¿Qué pasa cuando se acaben las 10 plazas?</span>
+          <span class="faq-q-text">¿Qué pasa cuando se acaben las 10 plazas o llegue el 31 de julio?</span>
           <div class="faq-plus"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--orange-lt)" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </div>
         <div class="faq-a">
-          <div class="faq-a-inner">El código <strong>BILBO500</strong> deja de estar activo. La web seguirá disponible, pero al precio de mercado (1.200€). Por eso te recomendamos reservar cuanto antes si te interesa aprovechar esta oferta.</div>
+          <div class="faq-a-inner">
+            La oferta funciona en <strong>dos fases</strong>:<br><br>
+            <strong>1.</strong> Las <em>10 primeras reservas</em> tienen la web por <strong>500€</strong>. Es nuestra forma de premiar a los más rápidos y decididos.<br>
+            <strong>2.</strong> A partir de la <em>reserva número 11</em>, y hasta el <strong>31 de julio de 2026</strong>, el precio pasa a ser <strong>800€</strong> (también exclusivo para clientes Bilboinform).<br><br>
+            A partir del 1 de agosto de 2026 se aplica el precio público de <em>1.200€</em>. Por eso te recomendamos reservar cuanto antes: cuanto más rápido decidas, mejor precio consigues.
+          </div>
         </div>
       </div>
 
@@ -1906,6 +2213,70 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); waveObs.unobserve(e.target); } });
   }, { threshold: 0.25 });
   document.querySelectorAll('.steps-row').forEach(el => waveObs.observe(el));
+
+  /* Countdown to 31 July 2026 23:59:59 (local) */
+  (function() {
+    const deadline = new Date('2026-07-31T23:59:59').getTime();
+    // Main countdown (price section)
+    const $days  = document.getElementById('cd-days');
+    const $hours = document.getElementById('cd-hours');
+    const $mins  = document.getElementById('cd-mins');
+    const $secs  = document.getElementById('cd-secs');
+    // Offer bar countdown (top)
+    const $obtDays  = document.getElementById('obt-days');
+    const $obtHours = document.getElementById('obt-hours');
+    const $obtMins  = document.getElementById('obt-mins');
+    const $obtSecs  = document.getElementById('obt-secs');
+    if (!$days && !$obtDays) return;
+
+    const pad = n => String(n).padStart(2, '0');
+
+    function updateBlock(el, val, animClass) {
+      if (!el) return;
+      if (el.textContent !== val) {
+        el.textContent = val;
+        el.classList.remove(animClass);
+        void el.offsetWidth;
+        el.classList.add(animClass);
+      }
+    }
+    function updateBarBlock(el, val) {
+      if (!el) return;
+      if (el.textContent !== val) {
+        el.textContent = val;
+        const parent = el.parentElement;
+        parent.classList.remove('obt-tick');
+        void parent.offsetWidth;
+        parent.classList.add('obt-tick');
+      }
+    }
+
+    function tick() {
+      const now = Date.now();
+      const diff = deadline - now;
+      if (diff <= 0) {
+        [$days, $hours, $mins, $secs, $obtDays, $obtHours, $obtMins, $obtSecs]
+          .forEach(el => { if (el) el.textContent = '00'; });
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      const pd = pad(d), ph = pad(h), pm = pad(m), ps = pad(s);
+
+      updateBlock($days,  pd, 'cd-tick');
+      updateBlock($hours, ph, 'cd-tick');
+      updateBlock($mins,  pm, 'cd-tick');
+      updateBlock($secs,  ps, 'cd-tick');
+      updateBarBlock($obtDays,  pd);
+      updateBarBlock($obtHours, ph);
+      updateBarBlock($obtMins,  pm);
+      updateBarBlock($obtSecs,  ps);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 
 </body>
