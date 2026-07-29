@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rumbo Norte Maquinarias · Concesionaria oficial · Santa Fe, Córdoba y Entre Ríos</title>
+<meta name="description" content="Tractores, sembradoras y pulverizadoras con repuestos en stock propio y un técnico en tu campo en menos de 24 horas. 28 años en la zona núcleo.">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #ffffff;
+  --s1:       #f7f5ff;
+  --s2:       #f0ecff;
+  --s3:       #ede8ff;
+  --purple:   #3c2b86;
+  --purple2:  #4f3aad;
+  --purple-light: #ede8ff;
+  --pink:     #e61978;
+  --pink2:    #ff3a8e;
+  --text:     #0f0b22;
+  --text2:    #3d3660;
+  --muted:    #7a6ea0;
+  --border:   rgba(60,43,134,0.12);
+  --border2:  rgba(60,43,134,0.08);
+  --wa:       #25D366;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:24px}
+.nav-logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;letter-spacing:.01em;color:var(--purple);text-decoration:none}
+.nav-logo span{color:var(--pink)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--purple)}
+.nav-cta{background:var(--pink);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;padding:10px 22px;border-radius:8px;text-decoration:none;transition:background .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--pink2)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--purple)}
+@media(max-width:768px){.nav-links{display:none}.nav-toggle{display:flex}}
+
+/* ── HERO ── */
+.hero{background:var(--s1);padding:80px 5% 64px;position:relative;overflow:hidden;margin-top:60px}
+.hero::before{content:'';position:absolute;top:-40%;right:-10%;width:55%;height:120%;background:radial-gradient(ellipse,rgba(60,43,134,0.07) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-20%;left:30%;width:40%;height:80%;background:radial-gradient(ellipse,rgba(230,25,120,0.05) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center;position:relative;z-index:1}
+.hero-tag{font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.hero-tag::before{content:'';display:block;width:24px;height:2px;background:var(--pink);border-radius:1px}
+.hero h1{font-family:'Outfit',sans-serif;font-size:clamp(42px,5.5vw,72px);font-weight:900;line-height:1.04;letter-spacing:-.02em;margin-bottom:22px;color:var(--text)}
+.hero h1 em{font-style:normal;color:var(--pink)}
+.hero-sub{font-size:16px;line-height:1.75;color:var(--muted);max-width:480px;margin-bottom:34px}
+.hero-sub strong{color:var(--text2);font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn-wa{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;padding:13px 24px;border-radius:10px;text-decoration:none;transition:all .2s;box-shadow:0 4px 16px rgba(37,211,102,0.25)}
+.btn-wa:hover{background:#20bc58;transform:translateY(-2px)}
+.btn-ghost{font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:var(--purple);text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:13px 0;transition:gap .2s}
+.btn-ghost:hover{gap:12px}
+
+/* Hero card */
+.hero-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 8px 40px rgba(60,43,134,0.08);position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--pink))}
+.hero-card-label{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.hero-stat{padding:16px 0;border-bottom:1px solid var(--border2)}
+.hero-stat:last-child{border-bottom:none;padding-bottom:0}
+.hero-stat:first-of-type{padding-top:0}
+.hero-stat-num{font-family:'Outfit',sans-serif;font-size:38px;font-weight:900;color:var(--purple);line-height:1}
+.hero-stat-label{font-size:13px;color:var(--muted);margin-top:3px}
+.hero-stat-sub{font-size:11px;color:var(--muted);opacity:.7;margin-top:1px}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-card{display:none}}
+
+/* ── TRUST STRIP ── */
+.trust{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 5%}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.trust-item{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1 1 100px}
+.trust-num{font-family:'Outfit',sans-serif;font-size:30px;font-weight:900;color:var(--purple);line-height:1}
+.trust-label{font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;letter-spacing:.05em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+
+/* ── SECTIONS ── */
+section{padding:72px 5%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-tag::after{content:'';flex:1;height:1px;background:var(--border)}
+h2{font-family:'Outfit',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:900;line-height:1.07;letter-spacing:-.02em;margin-bottom:14px;color:var(--text)}
+h2 em{font-style:normal;color:var(--pink)}
+.section-lead{font-size:15px;color:var(--muted);max-width:600px;line-height:1.8;margin-bottom:40px}
+
+/* ── PROBLEM ── */
+.problem{background:var(--s1)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:40px}
+.problem-block{background:#fff;padding:32px 36px}
+.problem-block:first-child{border-right:3px solid var(--purple-light)}
+.problem-block h3{font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.problem-block p{font-size:15px;line-height:1.8;color:var(--text2)}
+.problem-block p strong{color:var(--text)}
+.problem-block.solution h3{color:var(--pink)}
+.problem-block.solution p strong{color:var(--purple)}
+@media(max-width:700px){.problem-grid{grid-template-columns:1fr}.problem-block:first-child{border-right:none;border-bottom:3px solid var(--purple-light)}}
+
+/* ── CATALOG ── */
+.catalog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:16px}
+.cat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:26px;transition:all .2s;box-shadow:0 2px 12px rgba(60,43,134,0.04)}
+.cat-card:hover{border-color:rgba(60,43,134,0.3);box-shadow:0 6px 24px rgba(60,43,134,0.1);transform:translateY(-2px)}
+.cat-icon{width:40px;height:40px;background:var(--purple-light);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.cat-card h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;color:var(--text)}
+.cat-card p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.cat-price{font-family:'Outfit',sans-serif;font-size:13px;color:var(--purple2);font-weight:600;margin-bottom:14px}
+.cat-btn{font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;color:var(--pink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
+.cat-btn:hover{gap:10px}
+.contratista-note{background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:18px 24px;display:flex;align-items:center;gap:16px}
+.contratista-note p{font-size:14px;color:var(--text2);flex:1}
+.contratista-note a{font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:var(--pink);text-decoration:none;white-space:nowrap}
+@media(max-width:700px){.catalog-grid{grid-template-columns:1fr}}
+
+/* ── FINANCING ── */
+.financing{background:var(--s1)}
+.fin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.fin-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:28px;border-top:3px solid transparent;transition:border-top-color .2s;box-shadow:0 2px 12px rgba(60,43,134,0.04)}
+.fin-card:hover{border-top-color:var(--purple)}
+.fin-num{font-family:'Outfit',sans-serif;font-size:42px;font-weight:900;color:var(--purple-light);line-height:1;margin-bottom:10px}
+.fin-card h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:var(--purple);margin-bottom:8px}
+.fin-card p{font-size:14px;color:var(--muted);line-height:1.7}
+.fin-card p strong{color:var(--text)}
+.fin-cta{background:#fff;border:1px solid var(--border);border-radius:12px;padding:28px;text-align:center;box-shadow:0 2px 12px rgba(60,43,134,0.04)}
+.fin-cta p{font-size:15px;color:var(--muted);margin-bottom:20px}
+@media(max-width:700px){.fin-grid{grid-template-columns:1fr}}
+
+/* ── POSVENTA ── */
+.posventa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px}
+.pos-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 2px 8px rgba(60,43,134,0.04);transition:border-color .2s}
+.pos-item:hover{border-color:rgba(60,43,134,0.25)}
+.pos-icon{width:36px;height:36px;background:var(--purple-light);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.pos-item h4{font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.pos-item p{font-size:14px;color:var(--muted);line-height:1.6}
+.pos-item p strong{color:var(--purple)}
+.pos-direct{background:linear-gradient(135deg,var(--purple),var(--purple2));border-radius:12px;padding:22px 28px;display:flex;align-items:center;gap:24px}
+.pos-direct-label{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:4px}
+.pos-direct-num{font-family:'Outfit',sans-serif;font-size:26px;font-weight:800;color:#fff}
+@media(max-width:700px){.posventa-grid{grid-template-columns:1fr}}
+
+/* ── COVERAGE ── */
+.coverage{background:var(--s1)}
+.coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.branch-list{display:flex;flex-direction:column;gap:8px}
+.branch{background:#fff;border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:0 10px 10px 0;padding:14px 18px;transition:border-left-color .2s;box-shadow:0 2px 8px rgba(60,43,134,0.04)}
+.branch:hover{border-left-color:var(--pink)}
+.branch h4{font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
+.branch p{font-size:13px;color:var(--muted)}
+.coverage-zones{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(60,43,134,0.04)}
+.coverage-zones h4{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.zone-tag{display:inline-block;background:var(--s2);border:1px solid var(--border);color:var(--purple2);font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;padding:4px 12px;border-radius:20px;margin:3px}
+.coverage-note{margin-top:16px;font-size:13px;color:var(--muted);font-style:italic;line-height:1.6}
+@media(max-width:700px){.coverage-grid{grid-template-columns:1fr}}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.testi{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(60,43,134,0.04);transition:box-shadow .2s}
+.testi:hover{box-shadow:0 6px 24px rgba(60,43,134,0.1)}
+.testi-quote{font-size:14px;line-height:1.8;color:var(--text2);margin-bottom:18px;padding-left:14px;border-left:2px solid var(--pink)}
+.testi-author{font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:var(--text)}
+.testi-detail{font-size:12px;color:var(--muted);margin-top:2px}
+@media(max-width:700px){.testi-grid{grid-template-columns:1fr}}
+
+/* ── PROCESS ── */
+.process{background:var(--s1)}
+.process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.step{background:#fff;border:1px solid var(--border);border-radius:12px;padding:28px;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(60,43,134,0.04)}
+.step::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--pink))}
+.step-num{font-family:'Outfit',sans-serif;font-size:48px;font-weight:900;color:var(--purple-light);line-height:1;margin-bottom:12px}
+.step h3{font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted);line-height:1.7}
+@media(max-width:700px){.process-steps{grid-template-columns:1fr}}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:8px;max-width:800px}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .2s;box-shadow:0 2px 8px rgba(60,43,134,0.04)}
+.faq-item.open{border-color:rgba(60,43,134,0.25);box-shadow:0 4px 16px rgba(60,43,134,0.08)}
+.faq-q{font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;color:var(--text);padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;user-select:none;transition:color .2s}
+.faq-q:hover{color:var(--purple)}
+.faq-q svg{flex-shrink:0;transition:transform .3s;color:var(--pink)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a-inner{padding:0 20px 18px;font-size:14px;color:var(--muted);line-height:1.8}
+.faq-item.open .faq-a{max-height:300px}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-item.open .faq-q{color:var(--purple)}
+
+/* ── CLOSING ── */
+.closing{background:var(--s1);border-top:1px solid var(--border)}
+.closing-inner{max-width:700px;margin:0 auto;text-align:center}
+.closing h2{margin-bottom:10px}
+.closing-sub{font-size:15px;color:var(--muted);margin-bottom:36px;line-height:1.7}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left;margin-bottom:12px}
+.form-grid.full{grid-template-columns:1fr}
+.form-field{display:flex;flex-direction:column;gap:5px}
+.form-field label{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.form-field input,.form-field select{background:#fff;border:1px solid var(--border);color:var(--text);padding:11px 15px;font-size:14px;font-family:'DM Sans',sans-serif;border-radius:8px;outline:none;transition:border-color .2s;-webkit-appearance:none;box-shadow:0 1px 4px rgba(60,43,134,0.06)}
+.form-field input:focus,.form-field select:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(60,43,134,0.08)}
+.form-field input::placeholder{color:var(--muted)}
+.form-field select option{color:var(--text)}
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;padding:15px;border:none;border-radius:10px;cursor:pointer;transition:opacity .2s,transform .2s;margin-top:4px;box-shadow:0 4px 16px rgba(230,25,120,0.25)}
+.btn-submit:hover{opacity:.9;transform:translateY(-1px)}
+.form-note{font-size:12px;color:var(--muted);margin-top:12px}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+
+/* ── FOOTER ── */
+footer{background:var(--purple);padding:48px 5%}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:#fff;margin-bottom:8px}
+.footer-logo span{color:var(--pink)}
+.footer-sub{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7}
+.footer-col h5{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.footer-col ul li{font-size:13px;color:rgba(255,255,255,0.55)}
+.footer-col ul li strong{color:rgba(255,255,255,0.85)}
+.footer-bottom{max-width:1200px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.12);display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.4)}
+@media(max-width:700px){.footer-inner{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:6px}}
+
+/* ── FLOATING WA ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:99;background:var(--wa);color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform .2s}
+.wa-float:hover{transform:scale(1.1)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag{animation:fadeUp .5s ease .1s both}
+.hero h1{animation:fadeUp .5s ease .2s both}
+.hero-sub{animation:fadeUp .5s ease .32s both}
+.hero-actions{animation:fadeUp .5s ease .44s both}
+.hero-card{animation:fadeUp .5s ease .28s both}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Rumbo Norte <span>Maquinarias</span></a>
+    <ul class="nav-links">
+      <li><a href="#equipos">Equipos</a></li>
+      <li><a href="#financiacion">Financiación</a></li>
+      <li><a href="#posventa">Posventa</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="https://wa.me/5400000000000" class="nav-cta">Pedir cotización</a>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Concesionaria oficial · Santa Fe, Córdoba y Entre Ríos</div>
+      <h1>La máquina la<br>vende cualquiera.<br>El respaldo, <em>no.</em></h1>
+      <p class="hero-sub">Tractores, sembradoras y pulverizadoras con <strong>repuestos en stock propio</strong> y un técnico en tu campo en menos de <strong>24 horas</strong>.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5400000000000" class="btn-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedir cotización
+        </a>
+        <a href="#equipos" class="btn-ghost">
+          Ver equipos ↓
+        </a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Por qué trabajar con nosotros</div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1.200</div>
+        <div class="hero-stat-label">repuestos críticos en depósito propio</div>
+        <div class="hero-stat-sub">Marcos Juárez, Córdoba</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">&lt; 24 hs</div>
+        <div class="hero-stat-label">tiempo de respuesta técnica en campo</div>
+        <div class="hero-stat-sub">durante toda la campaña</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">9</div>
+        <div class="hero-stat-label">técnicos propios con camioneta equipada</div>
+        <div class="hero-stat-sub">no tercerizamos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-num">28</div><div class="trust-label">años en la zona núcleo</div></div>
+    <div class="trust-item"><div class="trust-num">3</div><div class="trust-label">sucursales propias</div></div>
+    <div class="trust-item"><div class="trust-num">1.400</div><div class="trust-label">equipos entregados</div></div>
+    <div class="trust-item"><div class="trust-num">9</div><div class="trust-label">técnicos propios</div></div>
+    <div class="trust-item"><div class="trust-num">Lun–Lun</div><div class="trust-label">guardia de campaña</div></div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="section-inner">
+    <div class="section-tag">El costo real</div>
+    <h2>Entre que levantás el trigo y sembrás<br>la de segunda, <em>no hay una semana de sobra.</em></h2>
+    <div class="problem-grid">
+      <div class="problem-block">
+        <h3>El problema no es la distancia</h3>
+        <p>Concesionarias hay en cada pueblo. El problema es que cuando se te para la sembradora en octubre, <strong>el repuesto está pedido a fábrica</strong> y el técnico tiene diez órdenes antes que la tuya.</p>
+      </div>
+      <div class="problem-block solution">
+        <h3>Así trabajamos nosotros</h3>
+        <p>Al revés: <strong>1.200 repuestos críticos en depósito propio</strong> en Marcos Juárez y <strong>guardia de servicio activa durante toda la campaña</strong>. Lo que no está, en 48 horas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="equipos">
+  <div class="section-inner">
+    <div class="section-tag">Catálogo por necesidad</div>
+    <h2>¿Qué necesitás <em>resolver esta campaña?</em></h2>
+    <div class="catalog-grid">
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3c2b86" stroke-width="1.5"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M5 15V9l4-6h8l4 6v6"/><path d="M9 3v6H5"/></svg></div>
+        <h3>Sembrar en menos días</h3>
+        <p>Sembradoras de 16 a 40 surcos, dosificación variable y monitor de semilla. Para quien no puede perder una ventana de siembra.</p>
+        <div class="cat-price">Desde USD 00.000</div>
+        <a href="https://wa.me/5400000000000" class="cat-btn">Pedir ficha y precio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3c2b86" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
+        <h3>Cubrir más hectáreas por día</h3>
+        <p>Pulverizadoras autopropulsadas de 2.500 a 4.000 litros, botalón de 30 metros, corte por sección.</p>
+        <div class="cat-price">Desde USD 00.000</div>
+        <a href="https://wa.me/5400000000000" class="cat-btn">Pedir ficha y precio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3c2b86" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Reemplazar un tractor que ya no da</h3>
+        <p>De 90 a 300 HP, con y sin piloto automático. Tomamos tu usado como parte de pago, tasado en tu campo sin cargo.</p>
+        <div class="cat-price">Desde USD 00.000</div>
+        <a href="https://wa.me/5400000000000" class="cat-btn">Pedir ficha y precio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3c2b86" stroke-width="1.5"><path d="M12 22V12M12 12L5 7M12 12l7-5M5 7V2M19 7V2M5 7l7 5M19 7l-7 5"/></svg></div>
+        <h3>Levantar la cosecha sin sobresaltos</h3>
+        <p>Cosechadoras clase 5 a 8, plataformas maiceras, sojeras y de trigo. Con el respaldo que necesitás en temporada.</p>
+        <div class="cat-price">Desde USD 00.000</div>
+        <a href="https://wa.me/5400000000000" class="cat-btn">Pedir ficha y precio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="contratista-note">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e61978" stroke-width="2" style="flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <p>¿Sos contratista? Tenemos condiciones y planes de service pensados para equipos que trabajan todo el año.</p>
+      <a href="https://wa.me/5400000000000">Ver plan contratista →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCING -->
+<section class="financing" id="financiacion">
+  <div class="section-inner">
+    <div class="section-tag">Financiación</div>
+    <h2>Cómo <em>se paga</em></h2>
+    <p class="section-lead">Casi nadie compra una máquina al contado. Estas son las tres formas en que se compra acá.</p>
+    <div class="fin-grid">
+      <div class="fin-card"><div class="fin-num">01</div><h3>Canje por granos</h3><p>Fijás el equipo hoy y lo pagás en <strong>soja, maíz o trigo</strong> a cosecha. Sin exposición al tipo de cambio.</p></div>
+      <div class="fin-card"><div class="fin-num">02</div><h3>Leasing bancario</h3><p>Hasta <strong>60 meses</strong>. Presentamos la carpeta nosotros; vos firmás.</p></div>
+      <div class="fin-card"><div class="fin-num">03</div><h3>Plan canje</h3><p>Entregás tu <strong>usado tasado</strong> y financiás la diferencia. Tasación en tu campo, sin cargo.</p></div>
+    </div>
+    <div class="fin-cta">
+      <p>Contanos qué equipo estás mirando y te armamos las tres alternativas con números, para que compares.</p>
+      <a href="https://wa.me/5400000000000" class="btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quiero ver mis opciones de pago
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- POSVENTA -->
+<section id="posventa">
+  <div class="section-inner">
+    <div class="section-tag">Posventa</div>
+    <h2>La parte que se nota <em>cuando algo sale mal</em></h2>
+    <p class="section-lead">No tercerizamos nada. Repuestos, técnicos y guardia son nuestros.</p>
+    <div class="posventa-grid">
+      <div class="pos-item"><div class="pos-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3c2b86" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div><div><h4>Repuestos en stock, acá</h4><p><strong>1.200 ítems críticos</strong> en depósito propio. Lo que no está, en 48 horas.</p></div></div>
+      <div class="pos-item"><div class="pos-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3c2b86" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><h4>Técnicos propios</h4><p><strong>9 técnicos</strong> con camioneta equipada. No tercerizamos.</p></div></div>
+      <div class="pos-item"><div class="pos-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3c2b86" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div><div><h4>Guardia de campaña</h4><p>De <strong>noviembre a junio</strong>, servicio de lunes a lunes.</p></div></div>
+      <div class="pos-item"><div class="pos-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3c2b86" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 10.5 19.79 19.79 0 01.5 1.82 2 2 0 012.5 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><h4>Diagnóstico remoto</h4><p>Muchas fallas se resuelven <strong>por teléfono</strong> con el técnico mirando la consola.</p></div></div>
+    </div>
+    <div class="pos-direct">
+      <div><div class="pos-direct-label">Número directo de posventa</div><div class="pos-direct-num">000 000-0000</div></div>
+      <a href="tel:0000000000" style="margin-left:auto;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);text-decoration:none">Llamar ahora →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section class="coverage">
+  <div class="section-inner">
+    <div class="section-tag">Cobertura</div>
+    <h2>Dónde <em>llegamos</em></h2>
+    <div class="coverage-grid">
+      <div class="branch-list">
+        <div class="branch"><h4>Cañada de Gómez</h4><p>Santa Fe</p></div>
+        <div class="branch"><h4>Marcos Juárez</h4><p>Córdoba — Casa central · Depósito de repuestos</p></div>
+        <div class="branch"><h4>Nogoyá</h4><p>Entre Ríos</p></div>
+      </div>
+      <div class="coverage-zones">
+        <h4>Zona de servicio técnico</h4>
+        <span class="zone-tag">Centro y sur de Santa Fe</span>
+        <span class="zone-tag">Sudeste de Córdoba</span>
+        <span class="zone-tag">Entre Ríos</span>
+        <span class="zone-tag">Norte de Buenos Aires</span>
+        <p class="coverage-note">Si tu campo está fuera de esa zona, escribinos igual: coordinamos con la red.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-inner">
+    <div class="section-tag">Productores de la zona</div>
+    <h2>Lo que dicen quienes <em>ya trabajaron con nosotros</em></h2>
+    <div class="testi-grid">
+      <div class="testi"><p class="testi-quote">Se me rompió el cabezal un sábado a la tarde y el lunes a la mañana estaba cosechando. Eso no me lo dio nunca otro concesionario.</p><div class="testi-author">⟨Nombre⟩</div><div class="testi-detail">1.800 ha de soja y maíz · Bell Ville, Córdoba</div></div>
+      <div class="testi"><p class="testi-quote">Entregué el tractor viejo como parte de pago y el resto lo pagué en soja. Nunca vi el dólar de por medio.</p><div class="testi-author">⟨Nombre⟩</div><div class="testi-detail">900 ha · Victoria, Entre Ríos</div></div>
+      <div class="testi"><p class="testi-quote">Trabajo con tres equipos todo el año. Me arman el service en fecha y me avisan ellos, no tengo que estar encima.</p><div class="testi-author">⟨Nombre⟩</div><div class="testi-detail">Contratista · Venado Tuerto, Santa Fe</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="section-inner">
+    <div class="section-tag">Cómo es comprar acá</div>
+    <h2>Tres pasos, <em>sin vueltas</em></h2>
+    <div class="process-steps">
+      <div class="step"><div class="step-num">01</div><h3>Nos contás qué necesitás</h3><p>Por WhatsApp o teléfono. Hectáreas, cultivo y qué te está limitando hoy.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Te armamos la propuesta</h3><p>Equipo recomendado, precio final y las tres formas de pago, por escrito.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Entregamos y capacitamos</h3><p>Llevamos la máquina a tu campo y un técnico la deja andando con tu gente.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="section-inner">
+    <div class="section-tag">Preguntas frecuentes</div>
+    <h2><em>Preguntas</em> que nos hacen seguido</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">¿Toman usados de otras marcas?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">Sí. Tasamos en tu campo, sin cargo. Traé lo que tengas: lo valuamos y lo aplicamos al precio del equipo nuevo.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿Cuánto tarda la entrega?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">Lo que está en stock, 7 días. A pedido de fábrica, 60 a 90 días. Siempre te lo decimos antes para que puedas planificar la campaña.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿La garantía cubre el trabajo con contratista?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">Sí, siempre que los services se hagan en fecha. Nosotros te avisamos cuándo toca.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿Venden repuestos sueltos a quien no compró acá?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">Sí. Mostrador abierto a todos, 1.200 ítems en depósito.</div></div></div>
+      <div class="faq-item"><div class="faq-q">¿Financian con el equipo como única garantía?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">En leasing, en general sí. Depende del monto y del banco. Presentamos la carpeta nosotros.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing" id="contacto">
+  <div class="section-inner closing-inner">
+    <div class="section-tag" style="justify-content:center">Cotización sin compromiso</div>
+    <h2>Decinos qué máquina <em>estás mirando</em></h2>
+    <p class="closing-sub">Te mandamos ficha técnica, precio final y las formas de pago. Sin vueltas y sin que te llame nadie a la hora de la siesta.</p>
+    <form onsubmit="return false">
+      <div class="form-grid">
+        <div class="form-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+        <div class="form-field"><label>WhatsApp</label><input type="tel" placeholder="Tu número"></div>
+        <div class="form-field"><label>Localidad</label><input type="text" placeholder="Dónde estás"></div>
+        <div class="form-field"><label>Hectáreas que trabajás</label><input type="text" placeholder="Ej: 800 ha"></div>
+      </div>
+      <div class="form-grid full">
+        <div class="form-field"><label>¿Qué equipo te interesa?</label>
+          <select><option value="" disabled selected>Seleccioná una opción</option><option>Sembradora</option><option>Pulverizadora autopropulsada</option><option>Tractor</option><option>Cosechadora</option><option>Repuestos</option><option>Otro / no sé todavía</option></select>
+        </div>
+      </div>
+      <button type="submit" class="btn-submit">Pedir mi cotización</button>
+      <p class="form-note">Respondemos en el día, de lunes a sábado.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-logo">Rumbo Norte <span>Maquinarias</span></div><div class="footer-sub">Concesionaria oficial ⟨Marca A⟩ y ⟨Marca B⟩<br>28 años en la zona núcleo.</div></div>
+    <div class="footer-col"><h5>Sucursales</h5><ul><li><strong>Cañada de Gómez</strong> · Santa Fe</li><li><strong>Marcos Juárez</strong> · Córdoba</li><li><strong>Nogoyá</strong> · Entre Ríos</li></ul></div>
+    <div class="footer-col"><h5>Contacto</h5><ul><li>WhatsApp: ⟨000 000-0000⟩</li><li>Posventa: ⟨000 000-0000⟩</li><li>⟨mail@rumbonorte.com.ar⟩</li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Rumbo Norte Maquinarias</span><span>Marcos Juárez, Córdoba, Argentina</span></div>
+</footer>
+
+<a href="https://wa.me/5400000000000" class="wa-float">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement,isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+document.getElementById('navToggle').addEventListener('click',()=>{
+  const l=document.querySelector('.nav-links');
+  if(l.style.display==='flex'){l.style.display='none';}
+  else{l.style.cssText='display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:rgba(255,255,255,0.98);padding:20px 5%;gap:16px;border-bottom:1px solid rgba(60,43,134,0.1);box-shadow:0 8px 24px rgba(60,43,134,0.08)';}
+});
+</script>
+</body>
+</html>
