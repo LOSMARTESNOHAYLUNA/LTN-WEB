@@ -3,501 +3,939 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rumbo Norte Maquinarias · Concesionaria oficial · Santa Fe, Córdoba y Entre Ríos</title>
-<meta name="description" content="Tractores, sembradoras y pulverizadoras con repuestos en stock propio y un técnico en tu campo en menos de 24 horas. 28 años en la zona núcleo.">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Rumbo Norte Maquinarias — Cosechadoras, Sembradoras y Tractores</title>
+<meta name="description" content="Maquinaria agrícola con financiamiento propio. Cosechadoras, sembradoras y tractores para la zona núcleo. Más de 1.200 máquinas entregadas.">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --bg:     #0d0e09;
-  --s1:     #161810;
-  --s2:     #1f2215;
-  --s3:     #272b1a;
-  --green:  #3d5c1e;
-  --green2: #4e7526;
-  --gold:   #c8900a;
-  --gold2:  #e5a70f;
-  --text:   #f0e8d0;
-  --muted:  #8a8a6a;
-  --border: rgba(200,144,10,0.2);
-  --bsoft:  rgba(200,144,10,0.08);
-  --wa:     #25D366;
+/* ────── TOKENS ────── */
+:root{
+  --bg:      #111008;
+  --olive:   #1C2410;
+  --yellow:  #D4A017;
+  --yellow2: #E8B420;
+  --text:    #F0EDE6;
+  --muted:   #8A8474;
+  --dark2:   #1a1a12;
+  --dark3:   #222218;
+  --border:  rgba(212,160,23,0.25);
+  --border2: #222;
+  --mono:    'Courier New', monospace;
 }
+
+/* ────── RESET ────── */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;line-height:1.6;overflow-x:hidden}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Barlow Condensed',sans-serif;
+  overflow-x:hidden;
+  cursor:default;
+}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,14,9,0.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,144,10,0.15);padding:0 5%}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:24px}
-.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:19px;letter-spacing:.04em;text-transform:uppercase;color:var(--text);text-decoration:none}
-.nav-logo span{color:var(--gold)}
+/* ────── GRAIN TEXTURE (CSS noise) ────── */
+.grain{position:relative}
+.grain::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:overlay;
+}
+
+/* ────── NAV ────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:0 5%;
+  background:rgba(17,16,8,0.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(212,160,23,0.15);
+}
+.nav-inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:58px;gap:24px;
+}
+.nav-logo{
+  font-family:'Roboto Slab',serif;
+  font-weight:900;font-size:18px;letter-spacing:-.01em;
+  color:var(--text);text-decoration:none;
+}
+.nav-logo b{color:var(--yellow)}
 .nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
-.nav-links a:hover{color:var(--gold)}
-.nav-cta{background:var(--gold);color:#0d0e09;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;border-radius:3px;text-decoration:none;transition:background .2s;white-space:nowrap}
-.nav-cta:hover{background:var(--gold2)}
+.nav-links a{
+  font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--yellow)}
+.nav-cta{
+  background:var(--yellow);color:#111008;
+  font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:10px 22px;text-decoration:none;transition:background .2s;
+}
+.nav-cta:hover{background:var(--yellow2)}
 .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--text)}
 @media(max-width:768px){.nav-links{display:none}.nav-toggle{display:flex}}
 
-/* HERO */
-.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:flex-end;padding-bottom:72px;margin-top:60px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=1800&q=80') center/cover no-repeat;filter:brightness(0.45)}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,14,9,0.95) 0%,rgba(13,14,9,0.4) 50%,rgba(13,14,9,0.2) 100%)}
-.hero-inner{max-width:1200px;margin:0 auto;width:100%;padding:0 5%;position:relative;z-index:1;display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:flex-end}
-.hero-tag{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.hero-tag::before{content:'';width:28px;height:2px;background:var(--gold);border-radius:1px;flex-shrink:0}
-.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,7vw,96px);font-weight:900;line-height:.98;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:22px}
-.hero h1 em{font-style:normal;color:var(--gold);display:block}
-.hero-sub{font-size:16px;line-height:1.75;color:rgba(240,232,208,0.75);max-width:560px;margin-bottom:36px}
+/* ────── SECTION COUNTER ────── */
+.sec-num{
+  position:absolute;top:28px;right:5%;
+  font-size:11px;font-weight:700;letter-spacing:.2em;
+  color:var(--yellow);opacity:.35;
+  font-family:'Barlow Condensed',sans-serif;
+}
+
+/* ────── HERO ────── */
+.hero{
+  position:relative;
+  height:100vh;min-height:640px;
+  display:flex;align-items:flex-end;
+  padding-bottom:80px;
+  margin-top:58px;
+  cursor:crosshair;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.pexels.com/photos/2255019/pexels-photo-2255019.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+  filter:brightness(0.6) contrast(1.1);
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(17,16,8,0.88) 0%, rgba(17,16,8,0.6) 45%, rgba(17,16,8,0.1) 100%);
+}
+/* grain over hero */
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:2;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;mix-blend-mode:overlay;
+}
+
+/* Badge top-right */
+.hero-badge{
+  position:absolute;top:24px;right:5%;z-index:10;
+  border:1px solid var(--yellow);
+  padding:12px 20px;
+  background:rgba(17,16,8,0.7);
+  backdrop-filter:blur(6px);
+  animation:fadeDown .7s ease .8s both;
+}
+.hb-num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:32px;font-weight:900;color:var(--yellow);line-height:1;
+}
+.hb-label{font-size:12px;color:rgba(240,237,230,.65);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+
+.hero-content{
+  position:relative;z-index:5;
+  max-width:1280px;width:100%;margin:0 auto;padding:0 5%;
+}
+.hero-eyebrow{
+  font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:16px;display:flex;align-items:center;gap:12px;
+  animation:fadeUp .6s ease .2s both;
+}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--yellow)}
+.hero h1{
+  font-family:'Roboto Slab',serif;
+  font-size:clamp(58px,8vw,100px);
+  font-weight:900;line-height:.95;
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+  margin-bottom:28px;
+  animation:fadeUp .6s ease .35s both;
+}
+.hero h1 .line1{color:var(--text);display:block}
+.hero h1 .line2{color:var(--yellow);display:block}
+.hero-sub{
+  font-size:17px;line-height:1.65;
+  color:rgba(240,237,230,.72);
+  max-width:480px;
+  margin-bottom:36px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:400;
+  animation:fadeUp .6s ease .48s both;
+}
 .hero-sub strong{color:var(--text)}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.btn-wa{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;padding:14px 26px;border-radius:3px;text-decoration:none;transition:all .2s}
-.btn-wa:hover{background:#1eb857;transform:translateY(-2px)}
-.btn-scroll{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,208,0.6);text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:14px 0;transition:color .2s}
-.btn-scroll:hover{color:var(--gold)}
+.hero-actions{
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+  animation:fadeUp .6s ease .6s both;
+}
+.btn-primary{
+  background:var(--yellow);color:#111008;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:15px;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:16px 32px;
+  text-decoration:none;
+  border:2px solid var(--yellow);
+  transition:background .2s,color .2s;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.btn-primary:hover{background:transparent;color:var(--yellow)}
+.btn-secondary{
+  color:rgba(240,237,230,.7);
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  transition:color .2s;
+}
+.btn-secondary:hover{color:var(--yellow)}
 
-/* Hero stats card */
-.hero-card{background:rgba(22,24,16,0.9);border:1px solid var(--border);backdrop-filter:blur(8px);padding:24px;border-top:3px solid var(--gold)}
-.hero-card-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.hero-stat{padding:12px 0;border-bottom:1px solid var(--bsoft)}
-.hero-stat:last-child{border-bottom:none;padding-bottom:0}
-.hero-stat:first-of-type{padding-top:0}
-.hs-num{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:900;color:var(--gold);line-height:1}
-.hs-label{font-size:12px;color:var(--muted);margin-top:2px}
-.hs-sub{font-size:11px;color:var(--muted);opacity:.6;margin-top:1px}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-card{display:none}}
-@media(max-width:600px){.hero{height:auto;min-height:100svh;padding-bottom:56px}}
+/* Scroll indicator */
+.scroll-ind{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  z-index:5;display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.scroll-ind span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,237,230,.35)}
+.scroll-arrow{
+  width:20px;height:20px;
+  border-right:1px solid rgba(212,160,23,.5);
+  border-bottom:1px solid rgba(212,160,23,.5);
+  transform:rotate(45deg);
+  animation:bounce 1.6s ease infinite;
+}
 
-/* TRUST STRIP */
-.trust{background:var(--green);border-top:1px solid rgba(0,0,0,0.3);border-bottom:1px solid rgba(0,0,0,0.3);padding:20px 5%}
-.trust-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.ti{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1 1 100px;gap:2px}
-.ti-num{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;color:#fff;line-height:1}
-.ti-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.65)}
+/* ────── STATS BAR ────── */
+.stats{
+  background:var(--olive);
+  border-top:1px solid rgba(212,160,23,.2);
+  border-bottom:1px solid rgba(212,160,23,.2);
+  padding:36px 5%;cursor:crosshair;
+  position:relative;
+}
+.stats-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.stat-item{
+  padding:0 32px;
+  border-right:1px solid rgba(212,160,23,.15);
+  text-align:left;
+}
+.stat-item:first-child{padding-left:0}
+.stat-item:last-child{border-right:none}
+.stat-num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(48px,5vw,72px);
+  font-weight:900;color:var(--yellow);
+  line-height:1;letter-spacing:-.02em;display:block;
+}
+.stat-label{
+  font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(240,237,230,.55);margin-top:6px;display:block;
+}
+@media(max-width:700px){
+  .stats-inner{grid-template-columns:1fr 1fr;gap:24px}
+  .stat-item{border-right:none;padding-left:0}
+}
 
-/* SECTIONS */
-section{padding:80px 5%}
-.si{max-width:1200px;margin:0 auto}
-.stag{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.stag::after{content:'';flex:1;height:1px;background:var(--border)}
-h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:900;line-height:1.04;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:14px}
-h2 em{font-style:normal;color:var(--gold)}
-.slead{font-size:15px;color:var(--muted);max-width:600px;line-height:1.8;margin-bottom:44px}
+/* ────── SECCIONES GENERALES ────── */
+.section{padding:96px 5%;position:relative}
+.si{max-width:1280px;margin:0 auto}
+.section-divider{
+  display:flex;align-items:center;gap:12px;margin-bottom:16px;
+}
+.section-divider::before{content:'';display:block;width:40px;height:1px;background:var(--yellow)}
+.section-tag{
+  font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);
+}
+h2.big{
+  font-family:'Roboto Slab',serif;
+  font-size:clamp(36px,5vw,60px);
+  font-weight:900;line-height:1.02;
+  letter-spacing:-.02em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+h2.big em{font-style:normal;color:var(--yellow)}
 
-/* PROBLEM */
-.problem{background:var(--s1)}
-.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:44px}
-.prob-block{background:var(--s2);padding:36px}
-.prob-block:first-child{border-right:2px solid var(--green)}
-.prob-block h3{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
-.prob-block p{font-size:15px;line-height:1.8;color:var(--muted)}
-.prob-block p strong{color:var(--text)}
-.prob-sol h3{color:var(--gold2)}
-.prob-sol p strong{color:var(--gold)}
-@media(max-width:700px){.prob-grid{grid-template-columns:1fr}.prob-block:first-child{border-right:none;border-bottom:2px solid var(--green)}}
+/* ────── QUÉ RESOLVEMOS (asimétrico) ────── */
+.resolve{background:var(--dark2);cursor:crosshair}
+.resolve-grid{
+  display:grid;grid-template-columns:58% 42%;
+  gap:0;align-items:stretch;
+  margin-top:52px;min-height:480px;
+}
+.resolve-img-wrap{
+  position:relative;overflow:hidden;
+  clip-path:polygon(0 0, 95% 0, 85% 100%, 0 100%);
+}
+.resolve-img-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(0.75) contrast(1.1);
+  display:block;
+}
+.resolve-content{
+  padding:48px 40px 48px 60px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.problem-item{margin-bottom:40px}
+.problem-item:last-child{margin-bottom:0}
+.prob-num{
+  font-size:11px;font-weight:700;letter-spacing:.18em;
+  color:var(--yellow);margin-bottom:8px;display:block;
+}
+.prob-title{
+  font-family:'Roboto Slab',serif;
+  font-size:20px;font-weight:700;margin-bottom:6px;color:var(--text);
+}
+.prob-desc{font-size:14px;line-height:1.65;color:var(--muted);font-weight:400}
+@media(max-width:900px){
+  .resolve-grid{grid-template-columns:1fr}
+  .resolve-img-wrap{clip-path:none;min-height:300px}
+  .resolve-content{padding:36px 24px}
+}
 
-/* CATALOG */
-.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:16px}
-.cat-card{position:relative;overflow:hidden;min-height:260px;display:flex;align-items:flex-end}
-.cat-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease;filter:brightness(0.55)}
-.cat-card:hover .cat-img{transform:scale(1.04)}
-.cat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,14,9,0.92) 0%,rgba(13,14,9,0.3) 60%,transparent 100%)}
-.cat-body{position:relative;z-index:1;padding:24px;width:100%}
-.cat-card h3{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
-.cat-card p{font-size:13px;color:rgba(240,232,208,0.7);line-height:1.6;margin-bottom:10px}
-.cat-price{font-family:'Barlow Condensed',sans-serif;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.08em;margin-bottom:12px}
-.cat-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--gold);padding:6px 14px;transition:all .2s}
-.cat-btn:hover{background:var(--gold);color:#0d0e09}
-.cont-note{background:var(--green);padding:18px 24px;display:flex;align-items:center;gap:16px}
-.cont-note p{font-size:14px;color:rgba(255,255,255,0.85);flex:1;font-style:italic}
-.cont-note a{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;text-decoration:none;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,0.4)}
-@media(max-width:700px){.cat-grid{grid-template-columns:1fr}.cat-card{min-height:220px}}
+/* ────── MÁQUINAS GRID ────── */
+.machines{background:var(--bg)}
+.machines-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:52px}
+.mach-card{
+  position:relative;overflow:hidden;min-height:280px;
+  display:flex;align-items:flex-end;cursor:crosshair;
+}
+.mach-img{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  filter:brightness(0.5) contrast(1.1);
+  transition:transform .6s ease,filter .4s;
+}
+.mach-card:hover .mach-img{transform:scale(1.04);filter:brightness(0.6) contrast(1.1)}
+.mach-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(17,16,8,0.92) 0%,rgba(17,16,8,0.2) 60%,transparent 100%);
+}
+.mach-body{
+  position:relative;z-index:2;
+  padding:24px;width:100%;
+  border-top:1px solid rgba(212,160,23,0);
+  transition:border-color .3s;
+}
+.mach-card:hover .mach-body{border-top-color:var(--yellow)}
+.mach-tag{
+  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:6px;
+}
+.mach-name{
+  font-family:'Roboto Slab',serif;
+  font-size:24px;font-weight:800;text-transform:uppercase;margin-bottom:4px;
+}
+.mach-desc{font-size:13px;color:rgba(240,237,230,.65);margin-bottom:14px;line-height:1.5;font-weight:400}
+.mach-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--yellow);text-decoration:none;
+  border:1px solid rgba(212,160,23,.35);
+  padding:7px 16px;
+  transition:all .2s;
+}
+.mach-btn:hover{background:var(--yellow);color:#111008;border-color:var(--yellow)}
+@media(max-width:700px){.machines-grid{grid-template-columns:1fr}.mach-card{min-height:240px}}
 
-/* FINANCING */
-.financing{background:var(--s1)}
-.fin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:20px}
-.fin-card{background:var(--s2);padding:28px;border-top:3px solid var(--bsoft);transition:border-top-color .2s}
-.fin-card:hover{border-top-color:var(--gold)}
-.fin-n{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;color:rgba(200,144,10,0.12);line-height:1;margin-bottom:10px}
-.fin-card h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gold);margin-bottom:8px}
-.fin-card p{font-size:14px;color:var(--muted);line-height:1.7}
-.fin-card p strong{color:var(--text)}
-.fin-cta{background:var(--s2);padding:28px;text-align:center}
-.fin-cta p{font-size:15px;color:var(--muted);margin-bottom:20px;font-style:italic}
+/* ────── FINANCIAMIENTO ────── */
+.financing{background:var(--olive);cursor:crosshair}
+.fin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
+.fin-card{
+  background:var(--dark3);
+  border:1px solid var(--border2);
+  padding:32px;
+  transition:border-color .25s,transform .25s;
+  position:relative;overflow:hidden;
+}
+.fin-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--yellow);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.fin-card:hover{border-color:var(--yellow);transform:translateY(-3px)}
+.fin-card:hover::before{transform:scaleX(1)}
+.fin-header{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:16px;padding-bottom:14px;
+  border-bottom:1px solid rgba(212,160,23,.15);
+}
+.fin-main{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(36px,4vw,52px);font-weight:900;
+  color:var(--text);line-height:1;margin-bottom:6px;
+}
+.fin-sub{font-size:14px;color:var(--muted);font-weight:400;margin-bottom:20px;line-height:1.6}
+.fin-details{list-style:none;display:flex;flex-direction:column;gap:8px}
+.fin-details li{
+  font-size:13px;color:rgba(240,237,230,.65);
+  display:flex;align-items:flex-start;gap:8px;font-weight:400;line-height:1.5;
+}
+.fin-details li::before{content:'—';color:var(--yellow);flex-shrink:0;margin-top:0}
 @media(max-width:700px){.fin-grid{grid-template-columns:1fr}}
 
-/* POSVENTA */
-.pos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:28px}
-.pos-item{background:var(--s1);padding:24px;display:flex;gap:16px;align-items:flex-start}
-.pos-icon{width:36px;height:36px;background:var(--green);flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.pos-item h4{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
-.pos-item p{font-size:14px;color:var(--muted);line-height:1.7}
-.pos-item p strong{color:var(--gold)}
-.pos-phone{background:var(--s1);border-left:4px solid var(--gold);padding:20px 24px;display:flex;align-items:center;gap:24px}
-.pos-phone-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.pos-phone-num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);letter-spacing:.02em}
-@media(max-width:700px){.pos-grid{grid-template-columns:1fr}}
+/* ────── SOPORTE (fondo con foto 15% opacity) ────── */
+.support{
+  position:relative;cursor:crosshair;
+  padding:96px 5%;
+}
+.support-photobg{
+  position:absolute;inset:0;
+  background:url('https://images.pexels.com/photos/1595108/pexels-photo-1595108.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+  opacity:.12;
+  filter:contrast(1.3);
+}
+.support-solidbg{
+  position:absolute;inset:0;
+  background:var(--dark2);
+  z-index:-1;
+}
+.support-grid{
+  max-width:1280px;margin:0 auto;
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:64px;align-items:center;
+}
+.support-left{}
+.support-items{display:flex;flex-direction:column;gap:28px;margin-top:44px}
+.sup-item{display:flex;gap:20px;align-items:flex-start}
+.sup-num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:.12em;
+  color:var(--yellow);opacity:.6;flex-shrink:0;padding-top:3px;
+}
+.sup-title{
+  font-family:'Roboto Slab',serif;
+  font-size:17px;font-weight:700;margin-bottom:4px;
+}
+.sup-desc{font-size:14px;color:var(--muted);line-height:1.65;font-weight:400}
+.sup-desc strong{color:var(--yellow)}
+.support-right{text-align:right}
+.phone-label{
+  font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;text-align:right;
+}
+.phone-num{
+  font-family:var(--mono);
+  font-size:clamp(32px,4.5vw,56px);
+  font-weight:700;color:var(--yellow);
+  letter-spacing:.04em;line-height:1;display:block;
+  border-bottom:1px solid var(--yellow);padding-bottom:16px;
+  margin-bottom:20px;
+}
+.phone-sub{font-size:13px;color:var(--muted);text-align:right;line-height:1.7;font-weight:400}
+@media(max-width:800px){
+  .support-grid{grid-template-columns:1fr;gap:44px}
+  .support-right{text-align:left}
+  .phone-label,.phone-sub{text-align:left}
+}
 
-/* COVERAGE */
-.coverage{background:var(--s1)}
-.cov-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.branch-list{display:flex;flex-direction:column;gap:2px}
-.branch{background:var(--s2);padding:16px 20px;border-left:3px solid var(--green);transition:border-left-color .2s}
-.branch:hover{border-left-color:var(--gold)}
-.branch h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
-.branch p{font-size:13px;color:var(--muted)}
-.cov-zones{background:var(--s2);padding:24px}
-.cov-zones h4{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-.ztag{display:inline-block;background:rgba(200,144,10,0.1);border:1px solid var(--border);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;padding:4px 12px;margin:3px}
-.cov-note{margin-top:18px;font-size:13px;font-style:italic;color:var(--muted);line-height:1.6}
-@media(max-width:700px){.cov-grid{grid-template-columns:1fr}}
-
-/* TESTIMONIALS */
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.testi{background:var(--s1);padding:26px;border-top:2px solid var(--bsoft);transition:border-top-color .2s}
-.testi:hover{border-top-color:var(--gold)}
-.testi-q{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:18px;padding-left:14px;border-left:2px solid var(--gold)}
-.testi-a{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-.testi-d{font-size:12px;color:var(--muted);margin-top:3px}
+/* ────── TESTIMONIOS ────── */
+.testi{background:var(--bg)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
+.testi-card{
+  background:var(--dark3);
+  border-top:1px solid rgba(212,160,23,.2);
+  padding:32px;
+  transition:border-top-color .25s;
+}
+.testi-card:hover{border-top-color:var(--yellow)}
+.testi-q{
+  font-family:'Roboto Slab',serif;
+  font-size:15px;line-height:1.7;color:rgba(240,237,230,.8);
+  margin-bottom:24px;font-weight:400;
+  padding-left:16px;border-left:2px solid var(--yellow);
+  font-style:italic;
+}
+.testi-author{
+  font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text);
+}
+.testi-detail{font-size:12px;color:var(--muted);margin-top:3px;font-weight:400}
 @media(max-width:700px){.testi-grid{grid-template-columns:1fr}}
 
-/* PROCESS */
-.process{background:var(--s1)}
-.proc-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.step{background:var(--s2);padding:28px;position:relative;overflow:hidden}
-.step::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s}
-.step:hover::after{height:100%}
-.step-n{font-family:'Barlow Condensed',sans-serif;font-size:56px;font-weight:900;color:rgba(200,144,10,0.1);line-height:1;margin-bottom:14px}
-.step h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
-.step p{font-size:14px;color:var(--muted);line-height:1.7}
-@media(max-width:700px){.proc-steps{grid-template-columns:1fr}}
+/* ────── FORMULARIO ────── */
+.quote-form{background:#0a0a06;padding:96px 5%;cursor:crosshair}
+.form-wrap{max-width:760px;margin:0 auto}
+.form-wrap h2{margin-bottom:8px}
+.form-sub{font-size:15px;color:var(--muted);margin-bottom:48px;line-height:1.6;font-weight:400;font-family:'Barlow Condensed',sans-serif}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-row.full{grid-template-columns:1fr}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld label{
+  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(240,237,230,.45);
+}
+.fld input,.fld select,.fld textarea{
+  background:#111008;
+  border:1px solid #2a2a1e;
+  color:var(--text);
+  padding:14px 16px;
+  font-size:15px;
+  font-family:'Barlow Condensed',sans-serif;
+  outline:none;
+  transition:border-color .2s;
+  -webkit-appearance:none;
+  border-radius:0 !important;
+}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--yellow)}
+.fld input::placeholder,.fld textarea::placeholder{color:#444}
+.fld select option{background:#111008}
+.fld textarea{resize:vertical;min-height:100px}
+.btn-quote{
+  width:100%;
+  background:var(--yellow);color:#111008;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:18px;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:20px;border:none;cursor:pointer;
+  margin-top:16px;
+  transition:background .2s;
+}
+.btn-quote:hover{background:var(--yellow2)}
+.form-note{font-size:12px;color:rgba(240,237,230,.3);margin-top:14px;letter-spacing:.06em;text-align:center;font-weight:400}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
 
-/* FAQ */
-.faq-list{display:flex;flex-direction:column;gap:2px;max-width:800px}
-.faq-item{background:var(--s1);overflow:hidden}
-.faq-q{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text);padding:18px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .2s;user-select:none;gap:16px}
-.faq-q:hover,.faq-item.open .faq-q{color:var(--gold)}
-.faq-q svg{flex-shrink:0;transition:transform .3s;color:var(--gold)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
-.faq-a-inner{padding:0 22px 18px;font-size:14px;color:var(--muted);line-height:1.8}
-.faq-item.open .faq-a{max-height:300px}
-.faq-item.open .faq-q svg{transform:rotate(45deg)}
+/* ────── FOOTER ────── */
+footer{
+  background:var(--olive);
+  border-top:1px solid rgba(212,160,23,.15);
+  padding:44px 5%;
+}
+.footer-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;
+}
+.f-logo{
+  font-family:'Roboto Slab',serif;font-weight:900;font-size:19px;
+  text-transform:uppercase;letter-spacing:-.01em;
+  color:var(--text);margin-bottom:8px;
+}
+.f-logo b{color:var(--yellow)}
+.f-desc{font-size:13px;color:rgba(240,237,230,.45);line-height:1.7;font-weight:400}
+.fc h5{
+  font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(240,237,230,.35);margin-bottom:14px;
+}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.fc ul li{font-size:13px;color:rgba(240,237,230,.45);font-weight:400}
+.fc ul li strong{color:rgba(240,237,230,.75)}
+.footer-bottom{
+  max-width:1280px;margin:28px auto 0;padding-top:20px;
+  border-top:1px solid rgba(212,160,23,.1);
+  display:flex;justify-content:space-between;
+  font-size:11px;color:rgba(240,237,230,.25);letter-spacing:.06em;
+}
+@media(max-width:700px){.footer-inner{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:6px}}
 
-/* CLOSING */
-.closing{background:var(--s1);border-top:1px solid var(--border)}
-.closing-inner{max-width:700px;margin:0 auto;text-align:center}
-.closing h2{margin-bottom:10px}
-.closing-sub{font-size:15px;color:var(--muted);margin-bottom:36px;line-height:1.7;font-style:italic}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left;margin-bottom:10px}
-.form-grid.full{grid-template-columns:1fr}
-.fld{display:flex;flex-direction:column;gap:5px}
-.fld label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.fld input,.fld select{background:var(--s2);border:1px solid rgba(200,144,10,0.15);color:var(--text);padding:12px 14px;font-size:14px;font-family:'Barlow',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none}
-.fld input:focus,.fld select:focus{border-color:var(--gold)}
-.fld input::placeholder{color:var(--muted)}
-.fld select option{background:var(--s2)}
-.btn-sub{width:100%;background:var(--gold);color:#0d0e09;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;letter-spacing:.1em;text-transform:uppercase;padding:16px;border:none;cursor:pointer;transition:background .2s;margin-top:6px}
-.btn-sub:hover{background:var(--gold2)}
-.f-note{font-size:12px;color:var(--muted);margin-top:12px;font-style:italic}
-@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+/* ────── WA FLOAT ────── */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:99;
+  background:#25D366;color:#fff;
+  width:54px;height:54px;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  transition:transform .2s;
+}
+.wa-float:hover{transform:scale(1.08)}
 
-/* FOOTER */
-footer{background:var(--s2);border-top:1px solid var(--border);padding:44px 5%}
-.fi{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
-.f-logo{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:8px}
-.f-logo span{color:var(--gold)}
-.f-sub{font-size:13px;color:var(--muted);line-height:1.7}
-.fc h5{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
-.fc ul{list-style:none;display:flex;flex-direction:column;gap:6px}
-.fc ul li{font-size:13px;color:var(--muted)}
-.fc ul li strong{color:var(--text)}
-.fb{max-width:1200px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(200,144,10,0.1);display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
-@media(max-width:700px){.fi{grid-template-columns:1fr}.fb{flex-direction:column;gap:6px}}
-
-/* WA FLOAT */
-.wa-float{position:fixed;bottom:28px;right:28px;z-index:99;background:var(--wa);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .2s}
-.wa-float:hover{transform:scale(1.1)}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hero-tag,.hero h1,.hero-sub,.hero-actions{animation:fadeUp .6s ease both}
-.hero-tag{animation-delay:.15s}.hero h1{animation-delay:.28s}.hero-sub{animation-delay:.42s}.hero-actions{animation-delay:.56s}
-.hero-card{animation:fadeUp .6s ease .35s both}
+/* ────── ANIMATIONS ────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:rotate(45deg) translate(0,0)}50%{transform:rotate(45deg) translate(4px,4px)}}
 </style>
 </head>
 <body>
 
+<!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">Rumbo Norte <span>Maquinarias</span></a>
+    <a href="#" class="nav-logo">Rumbo Norte <b>Maquinarias</b></a>
     <ul class="nav-links">
-      <li><a href="#equipos">Equipos</a></li>
-      <li><a href="#financiacion">Financiación</a></li>
-      <li><a href="#posventa">Posventa</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#maquinas">Máquinas</a></li>
+      <li><a href="#financiamiento">Financiamiento</a></li>
+      <li><a href="#soporte">Soporte</a></li>
+      <li><a href="#cotizacion">Cotizá</a></li>
     </ul>
-    <a href="https://wa.me/5493462420800" class="nav-cta">Pedir cotización</a>
+    <a href="#cotizacion" class="nav-cta">Pedir cotización</a>
     <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
-<!-- HERO con imagen de fondo -->
-<section class="hero">
-  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=1800&q=80')"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-tag">Concesionaria oficial · Santa Fe, Córdoba y Entre Ríos</div>
-      <h1>La máquina la vende<br>cualquiera.<br><em>El respaldo, no.</em></h1>
-      <p class="hero-sub">Tractores, sembradoras y pulverizadoras con <strong>repuestos en stock propio</strong> y un técnico en tu campo en menos de <strong>24 horas</strong>.</p>
-      <div class="hero-actions">
-        <a href="https://wa.me/5493462420800" class="btn-wa">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Pedir cotización
-        </a>
-        <a href="#equipos" class="btn-scroll">Ver equipos ↓</a>
-      </div>
+<!-- ─── 01 · HERO ─── -->
+<section class="hero grain">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-badge">
+    <div class="hb-num">+1.200</div>
+    <div class="hb-label">máquinas entregadas</div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Concesionaria oficial · Zona núcleo · Argentina</div>
+    <h1>
+      <span class="line1">La máquina la</span>
+      <span class="line2">vende cualquiera.</span>
+      <span class="line1" style="font-size:0.62em;margin-top:6px">El respaldo, no.</span>
+    </h1>
+    <p class="hero-sub">
+      Cosechadoras, sembradoras y tractores con <strong>financiamiento propio</strong>
+      y un técnico en tu campo en menos de <strong>24 horas</strong>.
+    </p>
+    <div class="hero-actions">
+      <a href="#cotizacion" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Pedí tu cotización
+      </a>
+      <a href="#maquinas" class="btn-secondary">Ver equipos ↓</a>
     </div>
-    <div class="hero-card">
-      <div class="hero-card-label">Por qué elegirnos</div>
-      <div class="hero-stat"><div class="hs-num">1.200</div><div class="hs-label">repuestos en depósito propio</div><div class="hs-sub">Marcos Juárez, Córdoba</div></div>
-      <div class="hero-stat"><div class="hs-num">&lt; 24 hs</div><div class="hs-label">respuesta técnica en campo</div><div class="hs-sub">durante toda la campaña</div></div>
-      <div class="hero-stat"><div class="hs-num">9</div><div class="hs-label">técnicos propios con camioneta</div><div class="hs-sub">no tercerizamos</div></div>
+  </div>
+
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ─── 02 · STATS ─── -->
+<section class="stats grain">
+  <div class="sec-num">02</div>
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">28</span>
+      <span class="stat-label">años en la zona núcleo</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1.200</span>
+      <span class="stat-label">equipos entregados</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">9</span>
+      <span class="stat-label">técnicos propios en campo</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">&lt; 24 hs</span>
+      <span class="stat-label">respuesta técnica garantizada</span>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
-<div class="trust">
-  <div class="trust-inner">
-    <div class="ti"><div class="ti-num">28</div><div class="ti-label">años en la zona núcleo</div></div>
-    <div class="ti"><div class="ti-num">3</div><div class="ti-label">sucursales propias</div></div>
-    <div class="ti"><div class="ti-num">1.400</div><div class="ti-label">equipos entregados</div></div>
-    <div class="ti"><div class="ti-num">9</div><div class="ti-label">técnicos propios</div></div>
-    <div class="ti"><div class="ti-num">Lun–Lun</div><div class="ti-label">guardia de campaña</div></div>
+<!-- ─── 03 · QUÉ RESOLVEMOS ─── -->
+<section class="resolve section grain">
+  <div class="sec-num">03</div>
+  <div class="si">
+    <div class="section-divider"><span class="section-tag">Qué resolvemos</span></div>
+    <h2 class="big">El problema no es<br><em>la distancia.</em></h2>
+  </div>
+  <div class="si" style="margin-top:0">
+    <div class="resolve-grid">
+      <div class="resolve-img-wrap">
+        <img src="https://images.pexels.com/photos/1084540/pexels-photo-1084540.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Tractor trabajando en campo">
+      </div>
+      <div class="resolve-content">
+        <div class="problem-item">
+          <span class="prob-num">01 — PROBLEMA</span>
+          <div class="prob-title">El repuesto llega tarde</div>
+          <p class="prob-desc">Se para la sembradora en octubre y el repuesto está pedido a fábrica. El costo de esperar es la campaña.</p>
+        </div>
+        <div class="problem-item">
+          <span class="prob-num">02 — PROBLEMA</span>
+          <div class="prob-title">El técnico no aparece</div>
+          <p class="prob-desc">Tiene diez órdenes antes que la tuya. No tercerizan el servicio: lo subcontratan y se lavan las manos.</p>
+        </div>
+        <div class="problem-item">
+          <span class="prob-num">03 — PROBLEMA</span>
+          <div class="prob-title">El financiamiento no cierra</div>
+          <p class="prob-desc">Tasas en pesos, cuotas en dólares, condiciones que cambian. Nadie te explica cuánto pagás de verdad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 · MÁQUINAS ─── -->
+<section class="section" id="maquinas" style="padding-bottom:0">
+  <div class="si">
+    <div class="sec-num">04</div>
+    <div class="section-divider"><span class="section-tag">Equipos disponibles</span></div>
+    <h2 class="big">¿Qué necesitás<br><em>resolver esta campaña?</em></h2>
+  </div>
+</section>
+<div class="machines">
+  <div class="machines-grid" style="max-width:100%">
+    <div class="mach-card">
+      <div class="mach-img" style="background-image:url('https://images.pexels.com/photos/2255015/pexels-photo-2255015.jpeg?auto=compress&cs=tinysrgb&w=900')"></div>
+      <div class="mach-overlay"></div>
+      <div class="mach-body">
+        <div class="mach-tag">Cosechadoras</div>
+        <div class="mach-name">Clase 5 a 8</div>
+        <p class="mach-desc">Plataformas maiceras, sojeras y trigueras. Con servicio propio durante toda la cosecha.</p>
+        <a href="#cotizacion" class="mach-btn">Pedir ficha técnica →</a>
+      </div>
+    </div>
+    <div class="mach-card">
+      <div class="mach-img" style="background-image:url('https://images.pexels.com/photos/592677/pexels-photo-592677.jpeg?auto=compress&cs=tinysrgb&w=900')"></div>
+      <div class="mach-overlay"></div>
+      <div class="mach-body">
+        <div class="mach-tag">Sembradoras</div>
+        <div class="mach-name">16 a 40 surcos</div>
+        <p class="mach-desc">Dosificación variable, monitor de semilla. Para no perder una ventana de siembra.</p>
+        <a href="#cotizacion" class="mach-btn">Pedir ficha técnica →</a>
+      </div>
+    </div>
+    <div class="mach-card">
+      <div class="mach-img" style="background-image:url('https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=900')"></div>
+      <div class="mach-overlay"></div>
+      <div class="mach-body">
+        <div class="mach-tag">Tractores</div>
+        <div class="mach-name">90 a 300 HP</div>
+        <p class="mach-desc">Con y sin piloto automático. Tomamos tu usado como parte de pago, tasado en tu campo.</p>
+        <a href="#cotizacion" class="mach-btn">Pedir ficha técnica →</a>
+      </div>
+    </div>
+    <div class="mach-card">
+      <div class="mach-img" style="background-image:url('https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=900')"></div>
+      <div class="mach-overlay"></div>
+      <div class="mach-body">
+        <div class="mach-tag">Pulverizadoras</div>
+        <div class="mach-name">2.500 a 4.000 L</div>
+        <p class="mach-desc">Autopropulsadas, botalón de 30 m, corte por sección. Más hectáreas por día, menos solapamiento.</p>
+        <a href="#cotizacion" class="mach-btn">Pedir ficha técnica →</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- PROBLEM -->
-<section class="problem">
+<!-- ─── 05 · FINANCIAMIENTO ─── -->
+<section class="section financing grain" id="financiamiento">
+  <div class="sec-num">05</div>
   <div class="si">
-    <div class="stag">El costo real</div>
-    <h2>Entre que levantás el trigo y sembrás la de segunda,<br><em>no hay una semana de sobra.</em></h2>
-    <div class="prob-grid">
-      <div class="prob-block">
-        <h3>El problema no es la distancia</h3>
-        <p>Concesionarias hay en cada pueblo. El problema es que cuando se te para la sembradora en octubre, <strong>el repuesto está pedido a fábrica</strong> y el técnico tiene diez órdenes antes que la tuya.</p>
-      </div>
-      <div class="prob-block prob-sol">
-        <h3>Así trabajamos nosotros</h3>
-        <p>Al revés: <strong>1.200 repuestos críticos en depósito propio</strong> en Marcos Juárez y <strong>guardia de servicio activa durante toda la campaña</strong>. Lo que no está, en 48 horas.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CATALOG con fotos -->
-<section id="equipos" style="padding:0">
-  <div class="si" style="max-width:100%;padding:0">
-    <div style="padding:80px 5% 40px"><div class="stag" style="max-width:1200px;margin:0 auto">Catálogo por necesidad</div><h2 style="max-width:1200px;margin:0 auto 0">¿Qué necesitás <em>resolver esta campaña?</em></h2></div>
-    <div class="cat-grid">
-      <div class="cat-card">
-        <div class="cat-img" style="background-image:url('https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?w=900&q=75')"></div>
-        <div class="cat-body">
-          <h3>Sembrar en menos días</h3>
-          <p>16 a 40 surcos, dosificación variable, monitor de semilla</p>
-          <div class="cat-price">Desde USD 00.000</div>
-          <a href="https://wa.me/5493462420800" class="cat-btn">Pedir ficha →</a>
-        </div>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img" style="background-image:url('https://images.unsplash.com/photo-1560493676-04071c5f467b?w=900&q=75')"></div>
-        <div class="cat-body">
-          <h3>Cubrir más hectáreas por día</h3>
-          <p>Pulverizadoras 2.500–4.000 l, botalón 30 m, corte por sección</p>
-          <div class="cat-price">Desde USD 00.000</div>
-          <a href="https://wa.me/5493462420800" class="cat-btn">Pedir ficha →</a>
-        </div>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img" style="background-image:url('https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=900&q=75')"></div>
-        <div class="cat-body">
-          <h3>Reemplazar un tractor que ya no da</h3>
-          <p>90 a 300 HP, con y sin piloto. Tomamos tu usado como parte de pago</p>
-          <div class="cat-price">Desde USD 00.000</div>
-          <a href="https://wa.me/5493462420800" class="cat-btn">Pedir ficha →</a>
-        </div>
-      </div>
-      <div class="cat-card">
-        <div class="cat-img" style="background-image:url('https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?w=900&q=75')"></div>
-        <div class="cat-body">
-          <h3>Levantar la cosecha sin sobresaltos</h3>
-          <p>Cosechadoras clase 5 a 8, plataformas maiceras, sojeras y de trigo</p>
-          <div class="cat-price">Desde USD 00.000</div>
-          <a href="https://wa.me/5493462420800" class="cat-btn">Pedir ficha →</a>
-        </div>
-      </div>
-    </div>
-    <div class="cont-note" style="max-width:100%">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <p>¿Sos contratista? Tenemos condiciones y planes de service pensados para equipos que trabajan todo el año.</p>
-      <a href="https://wa.me/5493462420800">Ver plan contratista →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FINANCING -->
-<section class="financing" id="financiacion">
-  <div class="si">
-    <div class="stag">Financiación</div>
-    <h2>Cómo <em>se paga</em></h2>
-    <p class="slead">Casi nadie compra una máquina al contado. Estas son las tres formas en que se compra acá.</p>
+    <div class="section-divider"><span class="section-tag">Financiamiento</span></div>
+    <h2 class="big">Cómo se paga<br><em>de verdad.</em></h2>
     <div class="fin-grid">
-      <div class="fin-card"><div class="fin-n">01</div><h3>Canje por granos</h3><p>Fijás el equipo hoy y lo pagás en <strong>soja, maíz o trigo</strong> a cosecha. Sin exposición al tipo de cambio.</p></div>
-      <div class="fin-card"><div class="fin-n">02</div><h3>Leasing bancario</h3><p>Hasta <strong>60 meses</strong>. Presentamos la carpeta nosotros; vos firmás.</p></div>
-      <div class="fin-card"><div class="fin-n">03</div><h3>Plan canje</h3><p>Entregás tu <strong>usado tasado</strong> y financiás la diferencia. Tasación en tu campo, sin cargo.</p></div>
+      <div class="fin-card">
+        <div class="fin-header">01 — Canje por granos</div>
+        <div class="fin-main">Soja / Maíz</div>
+        <p class="fin-sub">Fijás el equipo hoy. Pagás a cosecha. Sin exposición al tipo de cambio.</p>
+        <ul class="fin-details">
+          <li>Precio fijado en el contrato de compra</li>
+          <li>Entrega a cosecha de trigo, soja o maíz</li>
+          <li>Sin cuotas, sin tasas intermedias</li>
+        </ul>
+      </div>
+      <div class="fin-card">
+        <div class="fin-header">02 — Leasing bancario</div>
+        <div class="fin-main">Hasta 60 m.</div>
+        <p class="fin-sub">Presentamos la carpeta nosotros. Vos firmás.</p>
+        <ul class="fin-details">
+          <li>Gestionamos el trámite bancario completo</li>
+          <li>Cuotas en pesos o dólares según banco</li>
+          <li>El equipo como única garantía (según monto)</li>
+        </ul>
+      </div>
+      <div class="fin-card">
+        <div class="fin-header">03 — Plan canje de usado</div>
+        <div class="fin-main">Tasamos acá</div>
+        <p class="fin-sub">Entregás tu máquina a precio justo y financiás la diferencia.</p>
+        <ul class="fin-details">
+          <li>Tasación sin cargo en tu campo</li>
+          <li>Aceptamos todas las marcas</li>
+          <li>La diferencia se financia con cualquier opción</li>
+        </ul>
+      </div>
     </div>
-    <div class="fin-cta">
-      <p>Contanos qué equipo estás mirando y te armamos las tres alternativas con números, para que compares.</p>
-      <a href="https://wa.me/5493462420800" class="btn-wa">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Quiero ver mis opciones de pago
+  </div>
+</section>
+
+<!-- ─── 06 · SOPORTE ─── -->
+<section class="support" id="soporte">
+  <div class="sec-num">06</div>
+  <div class="support-solidbg"></div>
+  <div class="support-photobg"></div>
+  <div class="support-grid">
+    <div class="support-left">
+      <div class="section-divider"><span class="section-tag">Soporte y respaldo</span></div>
+      <h2 class="big">La parte que<br><em>importa en campaña.</em></h2>
+      <div class="support-items">
+        <div class="sup-item">
+          <span class="sup-num">01</span>
+          <div>
+            <div class="sup-title">1.200 repuestos en stock</div>
+            <p class="sup-desc">Depósito propio en Marcos Juárez. Lo que no está, en <strong>48 horas</strong>. No pedido a fábrica.</p>
+          </div>
+        </div>
+        <div class="sup-item">
+          <span class="sup-num">02</span>
+          <div>
+            <div class="sup-title">Técnicos propios — no tercerizados</div>
+            <p class="sup-desc"><strong>9 técnicos</strong> con camioneta equipada. Los mismos que conocen tus equipos.</p>
+          </div>
+        </div>
+        <div class="sup-item">
+          <span class="sup-num">03</span>
+          <div>
+            <div class="sup-title">Guardia lunes a lunes en campaña</div>
+            <p class="sup-desc">De noviembre a junio, <strong>todos los días</strong>. Porque la máquina no falla solo en días hábiles.</p>
+          </div>
+        </div>
+        <div class="sup-item">
+          <span class="sup-num">04</span>
+          <div>
+            <div class="sup-title">Diagnóstico remoto por teléfono</div>
+            <p class="sup-desc">Muchas fallas se resuelven <strong>sin visita</strong>. El técnico mira la consola con vos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="support-right">
+      <div class="phone-label">Línea directa de posventa</div>
+      <span class="phone-num">(03462)<br>42-0900</span>
+      <p class="phone-sub">Lunes a sábado, 7 a 20 hs.<br>Guardia de emergencia en campaña:<br>domingos y feriados.</p>
+      <a href="https://wa.me/5493462420900" style="display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:#25D366;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:12px 22px;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity=.85" onmouseout="this.style.opacity=1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escribir por WhatsApp
       </a>
     </div>
   </div>
 </section>
 
-<!-- POSVENTA -->
-<section id="posventa">
+<!-- ─── 07 · TESTIMONIOS ─── -->
+<section class="testi section">
+  <div class="sec-num">07</div>
   <div class="si">
-    <div class="stag">Posventa</div>
-    <h2>La parte que se nota <em>cuando algo sale mal</em></h2>
-    <p class="slead">No tercerizamos nada. Repuestos, técnicos y guardia son nuestros.</p>
-    <div class="pos-grid">
-      <div class="pos-item"><div class="pos-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div><div><h4>Repuestos en stock, acá</h4><p><strong>1.200 ítems críticos</strong> en depósito propio. Lo que no está, en 48 horas.</p></div></div>
-      <div class="pos-item"><div class="pos-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><h4>Técnicos propios</h4><p><strong>9 técnicos</strong> con camioneta equipada. No tercerizamos.</p></div></div>
-      <div class="pos-item"><div class="pos-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div><div><h4>Guardia de campaña</h4><p>De <strong>noviembre a junio</strong>, lunes a lunes.</p></div></div>
-      <div class="pos-item"><div class="pos-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 10.5 19.79 19.79 0 01.5 1.82 2 2 0 012.5 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><h4>Diagnóstico remoto</h4><p>Muchas fallas se resuelven <strong>por teléfono</strong> con el técnico en la consola.</p></div></div>
-    </div>
-    <div class="pos-phone">
-      <div><div class="pos-phone-label">Línea directa de posventa</div><div class="pos-phone-num">(03462) 42-0900</div></div>
-      <a href="tel:+543462420900" style="margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-decoration:none">Llamar →</a>
-    </div>
-  </div>
-</section>
-
-<!-- COVERAGE -->
-<section class="coverage">
-  <div class="si">
-    <div class="stag">Cobertura</div>
-    <h2>Dónde <em>llegamos</em></h2>
-    <div class="cov-grid">
-      <div class="branch-list">
-        <div class="branch"><h4>Cañada de Gómez</h4><p>Santa Fe</p></div>
-        <div class="branch"><h4>Marcos Juárez</h4><p>Córdoba — Casa central · Depósito de repuestos</p></div>
-        <div class="branch"><h4>Nogoyá</h4><p>Entre Ríos</p></div>
-      </div>
-      <div class="cov-zones">
-        <h4>Zona de servicio técnico</h4>
-        <span class="ztag">Centro y sur de Santa Fe</span>
-        <span class="ztag">Sudeste de Córdoba</span>
-        <span class="ztag">Entre Ríos</span>
-        <span class="ztag">Norte de Buenos Aires</span>
-        <p class="cov-note">Si tu campo está fuera de esa zona, escribinos igual: coordinamos con la red.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section>
-  <div class="si">
-    <div class="stag">Productores de la zona</div>
-    <h2>Lo que dicen quienes <em>ya trabajaron con nosotros</em></h2>
+    <div class="section-divider"><span class="section-tag">Productores que ya trabajaron con nosotros</span></div>
+    <h2 class="big">Sin fotos.<br><em>Solo números.</em></h2>
     <div class="testi-grid">
-      <div class="testi"><p class="testi-q">Se me rompió el cabezal un sábado a la tarde y el lunes a la mañana estaba cosechando. Eso no me lo dio nunca otro concesionario.</p><div class="testi-a">⟨Nombre⟩</div><div class="testi-d">1.800 ha de soja y maíz · Bell Ville, Córdoba</div></div>
-      <div class="testi"><p class="testi-q">Entregué el tractor viejo como parte de pago y el resto lo pagué en soja. Nunca vi el dólar de por medio.</p><div class="testi-a">⟨Nombre⟩</div><div class="testi-d">900 ha · Victoria, Entre Ríos</div></div>
-      <div class="testi"><p class="testi-q">Trabajo con tres equipos todo el año. Me arman el service en fecha y me avisan ellos, no tengo que estar encima.</p><div class="testi-a">⟨Nombre⟩</div><div class="testi-d">Contratista · Venado Tuerto, Santa Fe</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="process">
-  <div class="si">
-    <div class="stag">Cómo es comprar acá</div>
-    <h2>Tres pasos, <em>sin vueltas</em></h2>
-    <div class="proc-steps">
-      <div class="step"><div class="step-n">01</div><h3>Nos contás qué necesitás</h3><p>Por WhatsApp o teléfono. Hectáreas, cultivo y qué te está limitando hoy.</p></div>
-      <div class="step"><div class="step-n">02</div><h3>Te armamos la propuesta</h3><p>Equipo recomendado, precio final y las tres formas de pago, por escrito.</p></div>
-      <div class="step"><div class="step-n">03</div><h3>Entregamos y capacitamos</h3><p>Llevamos la máquina a tu campo y un técnico la deja andando con tu gente.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section style="background:var(--s1)">
-  <div class="si">
-    <div class="stag">Preguntas frecuentes</div>
-    <h2><em>Preguntas</em> que nos hacen seguido</h2>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">¿Toman usados de otras marcas?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">Sí. Tasamos en tu campo, sin cargo. Traé lo que tengas: lo valuamos y lo aplicamos al precio del equipo nuevo.</div></div></div>
-      <div class="faq-item"><div class="faq-q">¿Cuánto tarda la entrega?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">Lo que está en stock, 7 días. A pedido de fábrica, 60 a 90 días.</div></div></div>
-      <div class="faq-item"><div class="faq-q">¿La garantía cubre el trabajo con contratista?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">Sí, siempre que los services se hagan en fecha. Nosotros te avisamos cuándo toca.</div></div></div>
-      <div class="faq-item"><div class="faq-q">¿Venden repuestos a quien no compró acá?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">Sí. Mostrador abierto a todos, 1.200 ítems en depósito.</div></div></div>
-      <div class="faq-item"><div class="faq-q">¿Financian con el equipo como única garantía?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="faq-a"><div class="faq-a-inner">En leasing, en general sí. Depende del monto y del banco. Presentamos la carpeta nosotros.</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CLOSING -->
-<section class="closing" id="contacto">
-  <div class="si closing-inner">
-    <div class="stag" style="justify-content:center">Cotización sin compromiso</div>
-    <h2>Decinos qué máquina <em>estás mirando</em></h2>
-    <p class="closing-sub">Te mandamos ficha técnica, precio final y las formas de pago. Sin vueltas y sin que te llame nadie a la hora de la siesta.</p>
-    <form onsubmit="return false">
-      <div class="form-grid">
-        <div class="fld"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
-        <div class="fld"><label>WhatsApp</label><input type="tel" placeholder="Tu número"></div>
-        <div class="fld"><label>Localidad</label><input type="text" placeholder="Dónde estás"></div>
-        <div class="fld"><label>Hectáreas que trabajás</label><input type="text" placeholder="Ej: 800 ha"></div>
+      <div class="testi-card">
+        <p class="testi-q">Se me rompió el cabezal un sábado a la tarde y el lunes a la mañana estaba cosechando. Eso no me lo dio nunca otro concesionario.</p>
+        <div class="testi-author">⟨Nombre disponible al contratar⟩</div>
+        <div class="testi-detail">1.800 ha de soja y maíz · Bell Ville, Córdoba</div>
       </div>
-      <div class="form-grid full">
+      <div class="testi-card">
+        <p class="testi-q">Entregué el tractor viejo como parte de pago y el resto lo pagué en soja. Nunca vi el dólar de por medio. Así tiene que ser.</p>
+        <div class="testi-author">⟨Nombre disponible al contratar⟩</div>
+        <div class="testi-detail">900 ha · Victoria, Entre Ríos</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-q">Trabajo con tres equipos todo el año. Me arman el service en fecha y me avisan ellos. No tengo que estar encima de nadie.</p>
+        <div class="testi-author">⟨Nombre disponible al contratar⟩</div>
+        <div class="testi-detail">Contratista · Venado Tuerto, Santa Fe</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 08 · FORMULARIO ─── -->
+<section class="quote-form" id="cotizacion">
+  <div class="sec-num">08</div>
+  <div class="form-wrap">
+    <div class="section-divider"><span class="section-tag">Cotización sin compromiso</span></div>
+    <h2 class="big">PEDÍ TU<br><em>COTIZACIÓN.</em></h2>
+    <p class="form-sub">Ficha técnica, precio final y las tres formas de pago en menos de 24 horas. Sin que te llame nadie a la hora de la siesta.</p>
+    <form onsubmit="return false">
+      <div class="form-row">
+        <div class="fld"><label>Nombre y apellido</label><input type="text" placeholder="Tu nombre"></div>
+        <div class="fld"><label>WhatsApp</label><input type="tel" placeholder="+54 9 351 000-0000"></div>
+      </div>
+      <div class="form-row">
+        <div class="fld"><label>Localidad / provincia</label><input type="text" placeholder="Dónde estás"></div>
+        <div class="fld"><label>Hectáreas que trabajás</label><input type="text" placeholder="Ej: 1.200 ha"></div>
+      </div>
+      <div class="form-row full">
         <div class="fld"><label>¿Qué equipo te interesa?</label>
-          <select><option value="" disabled selected>Seleccioná una opción</option><option>Sembradora</option><option>Pulverizadora autopropulsada</option><option>Tractor</option><option>Cosechadora</option><option>Repuestos</option><option>Otro / no sé todavía</option></select>
+          <select>
+            <option value="" disabled selected>Seleccioná una opción</option>
+            <option>Cosechadora</option>
+            <option>Sembradora</option>
+            <option>Tractor</option>
+            <option>Pulverizadora autopropulsada</option>
+            <option>Más de un equipo</option>
+            <option>No sé todavía, quiero asesoramiento</option>
+          </select>
         </div>
       </div>
-      <button type="submit" class="btn-sub">Pedir mi cotización</button>
-      <p class="f-note">Respondemos en el día, de lunes a sábado.</p>
+      <div class="form-row full">
+        <div class="fld"><label>¿Cómo preferís financiarlo? (opcional)</label>
+          <select>
+            <option value="" disabled selected>Seleccioná si ya sabés</option>
+            <option>Canje por granos</option>
+            <option>Leasing bancario</option>
+            <option>Plan canje de usado</option>
+            <option>Todavía no lo sé</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="fld"><label>Algo más que quieras aclarar</label><textarea placeholder="Modelo en mente, estado del equipo actual, urgencia..."></textarea></div>
+      </div>
+      <button type="submit" class="btn-quote">PEDÍ TU COTIZACIÓN</button>
+      <p class="form-note">Respondemos en el día · Lunes a sábado · Sin llamados no solicitados</p>
     </form>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="fi">
-    <div><div class="f-logo">Rumbo Norte <span>Maquinarias</span></div><div class="f-sub">Concesionaria oficial ⟨Marca A⟩ y ⟨Marca B⟩<br>28 años en la zona núcleo.</div></div>
-    <div class="fc"><h5>Sucursales</h5><ul><li><strong>Cañada de Gómez</strong> · Santa Fe</li><li><strong>Marcos Juárez</strong> · Córdoba</li><li><strong>Nogoyá</strong> · Entre Ríos</li></ul></div>
-    <div class="fc"><h5>Contacto</h5><ul><li>WhatsApp: (03462) 42-0800</li><li>Posventa: (03462) 42-0900</li><li>info@rumbonortemaquinarias.com.ar</li></ul></div>
+  <div class="footer-inner">
+    <div>
+      <div class="f-logo">Rumbo Norte <b>Maquinarias</b></div>
+      <p class="f-desc">Concesionaria oficial ⟨Marca A⟩ y ⟨Marca B⟩.<br>28 años en la zona núcleo de Argentina.</p>
+    </div>
+    <div class="fc">
+      <h5>Sucursales</h5>
+      <ul>
+        <li><strong>Cañada de Gómez</strong> · Santa Fe</li>
+        <li><strong>Marcos Juárez</strong> · Córdoba (casa central)</li>
+        <li><strong>Nogoyá</strong> · Entre Ríos</li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h5>Contacto</h5>
+      <ul>
+        <li>WhatsApp: (03462) 42-0800</li>
+        <li>Posventa: (03462) 42-0900</li>
+        <li>info@rumbonortemaquinarias.com.ar</li>
+      </ul>
+    </div>
   </div>
-  <div class="fb"><span>© 2025 Rumbo Norte Maquinarias</span><span>Marcos Juárez, Córdoba, Argentina</span></div>
+  <div class="footer-bottom">
+    <span>© 2025 Rumbo Norte Maquinarias S.A.</span>
+    <span>Marcos Juárez, Córdoba, Argentina</span>
+  </div>
 </footer>
 
-<a href="https://wa.me/5493462420800" class="wa-float">
+<!-- WA FLOAT -->
+<a href="https://wa.me/5493462420800" class="wa-float" title="Escribir por WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
+/* FAQ */
 document.querySelectorAll('.faq-q').forEach(q=>{
   q.addEventListener('click',()=>{
-    const item=q.parentElement,open=item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-    if(!open)item.classList.add('open');
+    const i=q.parentElement,o=i.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));
+    if(!o)i.classList.add('open');
   });
 });
+/* Nav toggle */
 document.getElementById('navToggle').addEventListener('click',()=>{
   const l=document.querySelector('.nav-links');
-  l.style.display===('flex')?l.style.display='none':(l.style.cssText='display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:#0d0e09;padding:20px 5%;gap:16px;border-bottom:1px solid rgba(200,144,10,0.15)');
+  l.style.display===('flex')
+    ?l.style.display='none'
+    :(l.style.cssText='display:flex;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:#0d0d08;padding:20px 5%;gap:16px;border-bottom:1px solid rgba(212,160,23,0.15)');
+});
+/* Animate stats on scroll */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.animation='fadeUp .5s ease both';
+    }
+  });
+},{threshold:.2});
+document.querySelectorAll('.stat-item').forEach((el,i)=>{
+  el.style.opacity='0';
+  el.style.animationDelay=`${i*.1}s`;
+  obs.observe(el);
 });
 </script>
 </body>
