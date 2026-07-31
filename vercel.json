@@ -1,21 +1,25 @@
 {
   "rewrites": [
-    { "source": "/servicios",              "destination": "/servicios/index.html" },
-    { "source": "/servicios/consultoria",  "destination": "/servicios/consultoria/index.html" },
-    { "source": "/servicios/implementacion", "destination": "/servicios/implementacion/index.html" },
-    { "source": "/precios",                "destination": "/precios/index.html" },
-    { "source": "/casos",                  "destination": "/casos/index.html" },
-    { "source": "/ia-tools",               "destination": "/ia-tools/index.html" },
-    { "source": "/nosotras",               "destination": "/nosotras/index.html" },
-    { "source": "/auditoria",              "destination": "/auditoria/index.html" },
-    { "source": "/aviso-legal",            "destination": "/aviso-legal/index.html" },
-    { "source": "/privacidad",             "destination": "/privacidad/index.html" },
-    { "source": "/cookies",                "destination": "/cookies/index.html" },
-    { "source": "/agente-voz",            "destination": "/agente-voz/index.html" }
+    { "source": "/servicios",               "destination": "/servicios/index.html" },
+    { "source": "/servicios/consultoria",   "destination": "/servicios/consultoria/index.html" },
+    { "source": "/servicios/implementacion","destination": "/servicios/implementacion/index.html" },
+    { "source": "/precios",                 "destination": "/precios/index.html" },
+    { "source": "/casos",                   "destination": "/casos/index.html" },
+    { "source": "/ia-tools",                "destination": "/ia-tools/index.html" },
+    { "source": "/nosotras",                "destination": "/nosotras/index.html" },
+    { "source": "/auditoria",               "destination": "/auditoria/index.html" },
+    { "source": "/aviso-legal",             "destination": "/aviso-legal/index.html" },
+    { "source": "/privacidad",              "destination": "/privacidad/index.html" },
+    { "source": "/cookies",                 "destination": "/cookies/index.html" },
+    { "source": "/gracias",                 "destination": "/gracias/index.html" },
+    { "source": "/bilboinform",             "destination": "/bilboinform/index.html" },
+    { "source": "/agro",                    "destination": "/agro/index.html" },
+    { "source": "/diseno-web",              "destination": "/diseno-web/index.html" },
+    { "source": "/agente-voz",             "destination": "/agente-voz/index.html" }
   ],
   "redirects": [
-    { "source": "/calculadora",            "destination": "https://saas.lideratunegocio.com/calculadora", "permanent": false },
-    { "source": "/auditoria-gratuita",     "destination": "/auditoria/", "permanent": true },
+    { "source": "/calculadora",             "destination": "https://saas.lideratunegocio.com/calculadora", "permanent": false },
+    { "source": "/auditoria-gratuita",      "destination": "/auditoria/", "permanent": true },
     { "source": "/contacto",               "destination": "/auditoria/", "permanent": true }
   ],
   "headers": [
