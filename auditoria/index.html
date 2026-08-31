@@ -47,26 +47,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 6%;height:66px;dis
 .mm a{font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;color:var(--text);text-decoration:none;transition:color .2s;}
 .mm a:hover{color:var(--accent);}
 .mm-cta{background:var(--accent)!important;color:#fff!important;padding:13px 30px!important;border-radius:10px!important;}
-
-/* Dropdown servicios */
-.nav-links li{position:relative;}
-.nav-links li:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
-.nav-dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);background:rgba(9,6,26,.97);border:1px solid rgba(230,25,120,.15);border-radius:12px;padding:8px;min-width:220px;opacity:0;visibility:hidden;transition:all .2s ease;z-index:300;backdrop-filter:blur(16px);}
-.nav-dropdown::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:rgba(230,25,120,.15);border-top:none;}
-.nav-dropdown a{display:block;padding:10px 14px;font-size:13px;color:var(--text-muted);text-decoration:none;border-radius:8px;transition:all .18s;white-space:nowrap;}
-.nav-dropdown a:hover{background:rgba(230,25,120,.08);color:var(--text);}
-.nav-dropdown a::after{display:none!important;}
-/* Activo */
-.nav-links a.active{color:var(--text)!important;}
-.nav-links a.active::after{width:100%!important;}
-.mm a.active{color:var(--accent)!important;}
 @media(max-width:900px){.nav-ham{display:flex;}.nav-links,.nav-cta{display:none;}}
 
 .container{max-width:var(--max-w);margin:0 auto;padding:0 6%;position:relative;z-index:1;}
 section{position:relative;}
 .sl{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
 .sl::before{content:'';display:block;width:20px;height:1.5px;background:var(--accent);}
-.reveal{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
 .rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
 
 /* HERO */
@@ -77,7 +65,7 @@ section{position:relative;}
 .h-tag{display:inline-flex;align-items:center;gap:9px;background:rgba(230,25,120,.07);border:1px solid rgba(230,25,120,.2);border-radius:40px;padding:7px 18px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-light);margin-bottom:28px;}
 .h-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-h1.ht{font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(38px,5.5vw,68px);line-height:1.0;letter-spacing:-.04em;margin-bottom:22px;}
+h1.ht{font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(32px,4.5vw,58px);line-height:1.05;letter-spacing:-.04em;margin-bottom:22px;max-width:520px;}
 h1.ht em{font-style:normal;color:var(--accent);}
 .h-sub{font-size:clamp(17px,2vw,20px);color:var(--text-soft);line-height:1.78;margin-bottom:36px;}
 .h-nota{font-size:13px;color:var(--text-muted);margin-top:14px;}
@@ -103,7 +91,7 @@ h1.ht em{font-style:normal;color:var(--accent);}
 .inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
 .inc-card{background:var(--light-surface);border:1px solid var(--light-border);border-radius:18px;padding:32px 28px;transition:all .25s;}
 .inc-card:hover{border-color:rgba(230,25,120,.3);transform:translateY(-4px);box-shadow:0 16px 40px rgba(60,43,134,.1);}
-.inc-icon{font-size:32px;margin-bottom:16px;display:block;}
+.inc-icon{display:block;margin-bottom:16px;line-height:1;}
 .inc-card h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--light-text);margin-bottom:10px;}
 .inc-card p{font-size:15px;color:var(--light-text-muted);line-height:1.75;}
 @media(max-width:760px){.inc-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto;}}
@@ -166,39 +154,10 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 </head>
 <body>
 
-<nav id="nav">
+<nav id="nav" style="justify-content:space-between;">
   <a href="/" class="nav-logo"><img src="/img/LOGO-LTN-06-HORIZONTAL-BLANCO.svg" alt="Lidera tu Negocio" height="34" loading="lazy"></a>
-  <ul class="nav-links">
-    <li>
-      <a href="/servicios/">Servicios</a>
-      <div class="nav-dropdown">
-        <a href="/servicios/consultoria/">Consultoría de procesos</a>
-        <a href="/servicios/implementacion/">Implementación y automatización</a>
-        <a href="/ia-tools/">IA Tools — Apps a medida</a>
-        <a href="/webapps/">Web Apps — Ver demos</a>
-      </div>
-    </li>
-    <li><a href="/precios/">Precios</a></li>
-    <li><a href="/nosotras/">Quién somos</a></li>
-    <li><a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" style="color:var(--accent-light)!important;">Mide tus fugas →</a></li>
-  </ul>
-  <a href="/auditoria/" class="nav-cta active" style="background:var(--accent2);">Auditoría gratuita →</a>
-  <button class="nav-ham" onclick="omm()" aria-label="Menú"><span></span><span></span><span></span></button>
+  <a href="https://api.leadconnectorhq.com/widget/bookings/carla-sheila-ltn" target="_blank" rel="noopener" class="nav-cta">Reservar Auditoría gratuita →</a>
 </nav>
-<div class="mm" id="mm">
-  <button class="mm-x" onclick="cmm()">×</button>
-  <a href="/" onclick="cmm()">Inicio</a>
-  <a href="/servicios/" onclick="cmm()">Servicios</a>
-  <a href="/servicios/consultoria/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ Consultoría</a>
-  <a href="/servicios/implementacion/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ Implementación</a>
-  <a href="/ia-tools/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ IA Tools</a>
-  <a href="/webapps/" onclick="cmm()" style="font-size:16px;opacity:.7;padding-left:16px;">↳ Web Apps</a>
-  <a href="/precios/" onclick="cmm()">Precios</a>
-  <a href="/webapps/" onclick="cmm()">Web Apps</a>
-  <a href="/nosotras/" onclick="cmm()">Quién somos</a>
-  <a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener" onclick="cmm()" style="color:var(--accent-light)!important;">Mide tus fugas →</a>
-  <a href="/auditoria/" class="mm-cta" onclick="cmm()">Auditoría gratuita →</a>
-</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -206,10 +165,10 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
   <div class="container">
     <div class="hero-inner">
       <div class="reveal">
-        <div class="h-tag"><div class="h-dot"></div>Sesión gratuita · Sin compromiso</div>
+        <div class="h-tag"><div class="h-dot"></div>Sesión gratuita · 40 minutos</div>
         <h1 class="ht">40 minutos para saber<br>exactamente dónde<br>pierdes <em>clientes</em>.</h1>
-        <p class="h-sub">Analizamos tu proceso comercial, identificamos los puntos donde se escapan oportunidades y te decimos qué tendría más impacto resolver primero. Gratis. Sin venderte nada.</p>
-        <p class="h-nota">📍 Sesión por videollamada · España y Latinoamérica</p>
+        <p class="h-sub">Analizamos tu proceso comercial, identificamos los puntos donde se escapan oportunidades y te decimos qué tendría más impacto resolver primero. No es una presentación de nuestros servicios: los 40 minutos son sobre tu negocio.</p>
+        <p class="h-nota">Sesión por videollamada</p>
       </div>
       <div class="reveal rd2">
         <div class="booking-card">
@@ -231,6 +190,10 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
               <div class="bc-check"><svg viewBox="0 0 10 8"><path d="M1 4l2.5 2.5L9 1" stroke="#e61978" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
               <p>Qué cambio tendría más impacto en tu conversión de forma inmediata</p>
             </div>
+            <div class="bc-item">
+              <div class="bc-check"><svg viewBox="0 0 10 8"><path d="M1 4l2.5 2.5L9 1" stroke="#e61978" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <p><strong style="color:var(--text);">Te enviamos por escrito el mapa de tu proceso y las tres fugas principales</strong>, sigas o no trabajando con nosotras.</p>
+            </div>
           </div>
           <div class="bc-dur">
             <div class="dur-badge">40 min</div>
@@ -245,6 +208,49 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
   </div>
 </section>
 
+<!-- PRUEBA SOCIAL -->
+<section style="padding:72px 0;background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);">
+  <div class="container">
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,72px);align-items:center;">
+
+      <!-- Caras -->
+      <div>
+        <div class="sl">Quiénes hacen la sesión</div>
+        <div style="display:flex;gap:20px;margin-top:8px;">
+          <div style="text-align:center;">
+            <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:2px solid rgba(230,25,120,.3);margin:0 auto 10px;">
+              <img src="/img/team/carla-sola.webp" alt="Carla Vallejos" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </div>
+            <div style="font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:var(--text);">Carla Vallejos</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Procesos comerciales</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:2px solid rgba(230,25,120,.3);margin:0 auto 10px;">
+              <img src="/img/team/sheila-sola.webp" alt="Sheila Aguilar" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </div>
+            <div style="font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;color:var(--text);">Sheila Aguilar</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">IA y automatización</div>
+          </div>
+        </div>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.7;margin-top:20px;">No hay comerciales ni intermediarios. La sesión la hacemos nosotras.</p>
+      </div>
+
+      <!-- Clientes y caso -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:22px 24px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Con quienes trabajamos</div>
+          <p style="font-size:15px;color:var(--text-soft);line-height:1.7;margin:0;">Trabajamos con <strong style="color:var(--text);">Medio Ambiente Castro</strong> (recogida de residuos de tintorerías en Madrid) y <strong style="color:var(--text);">Recoambiente</strong> (gestión de residuos para hoteles).</p>
+        </div>
+        <div style="background:rgba(230,25,120,.05);border:1px solid rgba(230,25,120,.15);border-radius:14px;padding:22px 24px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Un ejemplo real</div>
+          <p style="font-size:15px;color:var(--text-soft);line-height:1.75;margin:0;">Medio Ambiente Castro organizaba sus rutas por orden de llegada de las llamadas. Montamos un sistema que agrupa las recogidas por código postal: mejoró el gasto de combustible y la cantidad de recogidas por día.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- QUÉ INCLUYE -->
 <section id="incluye">
   <div class="container">
@@ -254,17 +260,17 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
     </div>
     <div class="inc-grid">
       <div class="inc-card reveal rd1">
-        <span class="inc-icon">🗺️</span>
+        <span class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e61978" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></svg></span>
         <h3>Mapa de tu embudo real</h3>
         <p>Cómo funciona tu proceso comercial hoy, con los puntos exactos donde se están perdiendo oportunidades.</p>
       </div>
       <div class="inc-card reveal rd2">
-        <span class="inc-icon">🎯</span>
+        <span class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e61978" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
         <h3>Las 3 fugas principales</h3>
         <p>Los tres puntos concretos donde más clientes se escapan y cuánto impacto económico tiene cada uno.</p>
       </div>
       <div class="inc-card reveal rd3">
-        <span class="inc-icon">⚡</span>
+        <span class="inc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e61978" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
         <h3>Prioridad de acción</h3>
         <p>Qué deberías resolver primero, qué herramienta o proceso lo resolvería y cuánto tiempo llevaría implementarlo.</p>
       </div>
@@ -302,7 +308,16 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
           <h4>⏰ "Hacemos cosas a mano que podrían automatizarse"</h4>
           <p>Tareas repetitivas que consumen tiempo del equipo sin necesidad.</p>
         </div>
+        <div class="pq-card">
+          <h4>📄 "Mando presupuestos y no sé cuántos se cierran."</h4>
+          <p>Sale la oferta, y después nadie sabe qué pasó con ella.</p>
+        </div>
       </div>
+    </div>
+  </div>
+  <div class="container" style="margin-top:32px;">
+    <div style="max-width:540px;margin-left:auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px 24px;">
+      <p style="font-size:15px;color:var(--text-muted);line-height:1.7;"><strong style="color:var(--text);">No es para ti si</strong> todavía no tienes clientes, o si lo que buscas es que hagamos la web.</p>
     </div>
   </div>
 </section>
@@ -315,6 +330,14 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
       <h2 style="font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(26px,3.5vw,44px);line-height:1.1;letter-spacing:-.025em;color:var(--light-text);">Lo que suelen <em style="font-style:normal;color:var(--accent);">preguntarnos</em></h2>
     </div>
     <div class="faq-grid">
+      <div class="faq-item reveal rd1">
+        <h4>¿Por qué me habéis escrito si no os conozco?</h4>
+        <p>Revisamos empresas de servicios B2B en Madrid y su entorno, y escribimos solo cuando vemos algo concreto en cómo os entran las consultas. No enviamos correos masivos: cada uno se escribe mirando el caso.</p>
+      </div>
+      <div class="faq-item reveal rd2">
+        <h4>¿De dónde habéis sacado mis datos?</h4>
+        <p>De fuentes públicas: vuestra web y vuestra ficha de Google. Si prefieres que no volvamos a escribirte, respóndenos y te sacamos de la lista al momento.</p>
+      </div>
       <div class="faq-item reveal rd1">
         <h4>¿Es realmente gratuita?</h4>
         <p>Sí, sin condiciones. No hay ningún compromiso de contratación posterior. Si ves valor en lo que proponemos y decides seguir, genial — pero la sesión es gratuita independientemente.</p>
@@ -333,7 +356,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
       </div>
       <div class="faq-item reveal rd1">
         <h4>¿Lo hacéis por videollamada o en persona?</h4>
-        <p>Por videollamada. Trabajamos con empresas de España y Latinoamérica, así que el formato remoto nos permite llegar a todos con el mismo nivel de servicio.</p>
+        <p>Por videollamada. El formato remoto nos permite trabajar con empresas de cualquier punto de España con el mismo nivel de servicio.</p>
       </div>
       <div class="faq-item reveal rd2">
         <h4>¿Qué pasa si después quiero contratar?</h4>
@@ -349,7 +372,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
   <div class="container">
     <div class="ci reveal">
       <h2>40 minutos pueden cambiarte<br>la visión de tu <em>negocio</em>.</h2>
-      <p>Sin compromiso.<br><strong>Solo claridad sobre lo que está fallando y cómo arreglarlo.</strong></p>
+      <p><strong>Solo claridad sobre lo que está fallando y cómo arreglarlo.</strong></p>
       <a href="https://api.leadconnectorhq.com/widget/bookings/carla-sheila-ltn" target="_blank" rel="noopener" class="btn-booking" style="max-width:420px;margin:0 auto;display:block;">
         Reservar mi Auditoría gratuita →
       </a>
@@ -366,10 +389,10 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
     </div>
     <div class="fc"><h4>Servicios</h4><a href="/servicios/">Consultoría comercial</a><a href="/servicios/#implementacion">Implementación</a><a href="/ia-tools/">IA Tools</a><a href="/precios/">Precios</a></div>
     <div class="fc"><h4>Empresa</h4><a href="/nosotras/">Quién somos</a><a href="/auditoria/">Auditoría gratuita</a><a href="https://saas.lideratunegocio.com/calculadora/" target="_blank" rel="noopener">Mide tus fugas</a></div>
-    <div class="fc"><h4>Contacto</h4><a href="/cdn-cgi/l/email-protection#543d3a323b14383d3031263520213a31333b373d3b7a373b39"><span class="__cf_email__" data-cfemail="7d14131b123d111419180f1c090813181a121e1412531e1210">[email&#160;protected]</span></a><a href="https://api.whatsapp.com/send?phone=34614160803" target="_blank" rel="noopener">+34 614 160 803</a><a href="https://es.linkedin.com/company/lidera-tu-negocio" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/lidera_tu_negocio" target="_blank" rel="noopener">Instagram</a><span style="display:block;font-size:10px;color:var(--text-muted);margin-bottom:9px;margin-top:14px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.7;">Oficinas</span><span style="display:block;font-size:13px;color:var(--text-muted);margin-bottom:6px;">📍 Madrid, España</span><span style="display:block;font-size:13px;color:var(--text-muted);margin-bottom:9px;">📍 Buenos Aires, Argentina</span></div>
+    <div class="fc"><h4>Contacto</h4><a href="/cdn-cgi/l/email-protection#543d3a323b14383d3031263520213a31333b373d3b7a373b39"><span class="__cf_email__" data-cfemail="7d14131b123d111419180f1c090813181a121e1412531e1210">[email&#160;protected]</span></a><a href="https://api.whatsapp.com/send?phone=34614160803" target="_blank" rel="noopener">+34 614 160 803</a><a href="https://es.linkedin.com/company/lidera-tu-negocio" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/lidera_tu_negocio" target="_blank" rel="noopener">Instagram</a></div>
   </div>
   <div class="fbot">
-    <span class="fcop">© 2025 Lidera tu Negocio® — Todos los derechos reservados</span>
+    <span class="fcop">© 2026 Lidera tu Negocio® — Todos los derechos reservados</span>
     <div class="fleg"><a href="/aviso-legal/">Aviso legal</a><a href="/privacidad/">Privacidad</a><a href="/cookies/">Cookies</a></div>
   </div>
 </footer>
@@ -377,22 +400,7 @@ footer{border-top:1px solid var(--border2);padding:56px 6% 36px;position:relativ
 <div id="cookieBanner"><h3>🍪 Usamos cookies</h3><p>Para mejorar tu experiencia. <a href="/cookies/">Política de cookies</a></p><div class="ckw"><button class="cka" onclick="ackC()">Aceptar</button><button class="ckr" onclick="rejC()">Solo necesarias</button></div></div>
 <button class="ckf" id="ckf" onclick="shCK()" title="Cookies">🍪</button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
-
-/* Marcar enlace activo */
-(function(){
-  var path = window.location.pathname.replace(/\/$/, '') || '/';
-  document.querySelectorAll('.nav-links a, .mm a').forEach(function(a){
-    var href = a.getAttribute('href');
-    if(!href || href.startsWith('http')) return;
-    var h = href.replace(/\/$/, '') || '/';
-    if(h === path || (h !== '' && h !== '/' && path.startsWith(h))){
-      a.classList.add('active');
-    }
-  });
-})();
-
 function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
 function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
 var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.12});
@@ -402,22 +410,627 @@ function rejC(){localStorage.setItem('cookies','rejected');hCK();}
 function hCK(){document.getElementById('cookieBanner').classList.remove('show');document.getElementById('ckf').classList.add('show');}
 function shCK(){document.getElementById('cookieBanner').classList.add('show');document.getElementById('ckf').classList.remove('show');}
 (function(){if(!localStorage.getItem('cookies'))document.getElementById('cookieBanner').classList.add('show');else document.getElementById('ckf').classList.add('show');})();
-
-/* Marcar enlace activo */
-(function(){
-  var path = window.location.pathname.replace(/\/$/, '') || '/';
-  document.querySelectorAll('.nav-links a, .mm a').forEach(function(a){
-    var href = a.getAttribute('href');
-    if(!href || href.startsWith('http')) return;
-    var h = href.replace(/\/$/, '') || '/';
-    if(h === path || (h !== '' && h !== '/' && path.startsWith(h))){
-      a.classList.add('active');
-    }
-  });
-})();
-
-function omm(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
-function cmm(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
 </script>
-</body>
-</html>
+
+
+<!-- START WIDGET -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET SCOPED ── */
+#ltn-widget * {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── VARIABLES ── */
+#ltn-widget {
+  --bg:        #1a0f2e;
+  --surface:   #221442;
+  --surface2:  #2d1a52;
+  --surface3:  #3a2060;
+  --accent:    #ee46bc;
+  --text:      #f5f0ff;
+  --text-muted:#a08abf;
+  --border:    rgba(238,70,188,0.18);
+  --radius:    16px;
+  --w:         370px;
+  --h:         540px;
+}
+
+/* ── LAUNCHER BUTTON ── */
+#ltn-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9998;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ee46bc, #3e2b86);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(238,70,188,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+  outline: none;
+}
+#ltn-launcher:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 32px rgba(238,70,188,0.6);
+}
+#ltn-launcher svg {
+  width: 26px; height: 26px;
+  fill: #fff;
+  transition: transform 0.25s ease, opacity 0.2s;
+  position: absolute;
+}
+#ltn-launcher .icon-chat  { opacity: 1;  transform: scale(1) rotate(0deg); }
+#ltn-launcher .icon-close { opacity: 0;  transform: scale(0.5) rotate(45deg); }
+#ltn-launcher.open .icon-chat  { opacity: 0;  transform: scale(0.5) rotate(-45deg); }
+#ltn-launcher.open .icon-close { opacity: 1;  transform: scale(1) rotate(0deg); }
+
+/* Notification badge */
+#ltn-badge {
+  position: absolute;
+  top: -2px; right: -2px;
+  width: 18px; height: 18px;
+  background: #ff4f4f;
+  border-radius: 50%;
+  border: 2px solid white;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: badge-pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  transition: opacity 0.2s;
+}
+#ltn-badge.hidden { opacity: 0; pointer-events: none; }
+
+/* ── CHAT PANEL ── */
+#ltn-panel {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  z-index: 9999;
+  width: var(--w);
+  height: var(--h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform-origin: bottom right;
+  transform: scale(0.85) translateY(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
+}
+#ltn-panel.open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ambient glows */
+#ltn-panel::before {
+  content: '';
+  position: absolute;
+  top: -20%; left: -20%;
+  width: 60%; height: 60%;
+  background: radial-gradient(ellipse, rgba(238,70,188,0.07) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+#ltn-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -10%; right: -10%;
+  width: 50%; height: 50%;
+  background: radial-gradient(ellipse, rgba(62,43,134,0.15) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── PANEL HEADER ── */
+.ltn-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.ltn-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ee46bc, #3e2b86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.ltn-header-info { flex: 1; }
+.ltn-header-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.ltn-header-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+.ltn-dot {
+  width: 7px; height: 7px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(74,222,128,0.7);
+  animation: ltn-pulse 2s infinite;
+}
+.ltn-powered {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* ── CHAT BODY ── */
+.ltn-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
+}
+.ltn-body::-webkit-scrollbar { width: 3px; }
+.ltn-body::-webkit-scrollbar-track { background: transparent; }
+.ltn-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── BUBBLES ── */
+.ltn-bubble {
+  max-width: 84%;
+  padding: 11px 14px;
+  border-radius: 13px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  animation: ltn-pop 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+  color: var(--text);
+}
+.ltn-bubble.bot {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.ltn-bubble.user {
+  background: linear-gradient(135deg, #482b66, #3e2b86);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.ltn-bubble strong { color: var(--accent); font-weight: 600; }
+.ltn-bubble ul { margin: 6px 0 2px 16px; }
+.ltn-bubble li { margin-bottom: 4px; }
+
+/* typing */
+.ltn-typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  animation: ltn-pop 0.3s ease both;
+}
+.ltn-typing span {
+  width: 6px; height: 6px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  animation: ltn-bounce 1.2s infinite;
+}
+.ltn-typing span:nth-child(2) { animation-delay: 0.2s; }
+.ltn-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+/* quick replies */
+.ltn-qr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 2px 0;
+  animation: ltn-fade 0.3s ease both;
+}
+.ltn-qr-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 7px 12px;
+  border-radius: 18px;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.16s;
+  white-space: nowrap;
+}
+.ltn-qr-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(238,70,188,0.07);
+}
+
+/* CTA block */
+.ltn-cta {
+  background: linear-gradient(135deg, rgba(238,70,188,0.08), rgba(62,43,134,0.15));
+  border: 1px solid rgba(238,70,188,0.28);
+  border-radius: 11px;
+  padding: 14px;
+  animation: ltn-pop 0.4s ease both;
+  align-self: stretch;
+  max-width: 100%;
+}
+.ltn-cta p {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.ltn-cta p strong { color: var(--text); }
+.ltn-cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.16s;
+}
+.ltn-cta-btn:hover { background: #f568cc; transform: translateY(-1px); }
+
+/* ── INPUT AREA ── */
+.ltn-input-area {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.ltn-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  resize: none;
+  max-height: 100px;
+  line-height: 1.45;
+  transition: border-color 0.16s;
+}
+.ltn-input:focus { border-color: var(--accent); }
+.ltn-input::placeholder { color: var(--text-muted); }
+.ltn-send {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: flex-end;
+  transition: all 0.16s;
+}
+.ltn-send:hover { background: #f568cc; transform: scale(1.06); }
+.ltn-send:disabled { background: var(--surface3); cursor: not-allowed; transform: none; }
+
+/* ── FOOTER ── */
+.ltn-footer {
+  text-align: center;
+  padding: 6px 0 10px;
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  background: var(--surface);
+}
+.ltn-footer a { color: var(--accent); text-decoration: none; }
+
+/* ── KEYFRAMES ── */
+@keyframes ltn-pop    { from { opacity:0; transform:scale(0.92) translateY(6px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes ltn-fade   { from { opacity:0; } to { opacity:1; } }
+@keyframes ltn-bounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-5px); } }
+@keyframes ltn-pulse  { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+@keyframes badge-pop  { from { transform:scale(0); } to { transform:scale(1); } }
+
+/* ── MOBILE ── */
+@media (max-width: 420px) {
+  #ltn-panel {
+    --w: 100vw;
+    right: 0; left: 0;
+    bottom: 84px;
+    border-radius: 16px 16px 0 0;
+    transform-origin: bottom center;
+  }
+  #ltn-launcher { right: 16px; bottom: 16px; }
+}
+</style>
+
+<!-- LAUNCHER -->
+<button id="ltn-launcher" aria-label="Abrir chat de consulta">
+  <span id="ltn-badge">1</span>
+  <!-- Chat icon -->
+  <svg class="icon-chat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+  </svg>
+  <!-- Close icon -->
+  <svg class="icon-close" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+  </svg>
+</button>
+
+<!-- PANEL -->
+<div id="ltn-panel" role="dialog" aria-label="Chat Lidera tu Negocio">
+  <div class="ltn-header">
+    <div class="ltn-avatar">✦</div>
+    <div class="ltn-header-info">
+      <div class="ltn-header-name">Asistente LTN</div>
+      <div class="ltn-header-sub">
+        <span class="ltn-dot"></span>
+        <span>Consultor de procesos y automatización</span>
+      </div>
+    </div>
+    <span class="ltn-powered">Lidera tu Negocio</span>
+  </div>
+
+  <div class="ltn-body" id="ltn-body"></div>
+
+  <div class="ltn-input-area">
+    <textarea class="ltn-input" id="ltn-input" placeholder="Escribe tu pregunta..." rows="1"></textarea>
+    <button class="ltn-send" id="ltn-send">➤</button>
+  </div>
+
+  <div class="ltn-footer">
+    ¿Prefieres hablar? <a href="https://api.leadconnectorhq.com/widget/bookings/carla-sheila-ltn" target="_blank">Agenda aquí →</a>
+  </div>
+</div>
+
+<script>
+(function () {
+
+/* ── KNOWLEDGE BASE ── */
+const SYSTEM_PROMPT = `Eres el asistente consultor de **Lidera tu Negocio (LTN)**, una consultoría española especializada en optimización de procesos comerciales y automatización para PYMEs de 4 a 25 empleados.
+
+## TU ROL
+Actúas como un consultor experto que:
+1. Escucha la situación real del negocio del visitante
+2. Hace preguntas inteligentes para entender el problema de fondo
+3. Propone ideas concretas y aplicables de lo que se podría hacer
+4. Invita de forma natural (nunca forzada) a agendar una sesión con el equipo de LTN
+
+## SERVICIOS DE LTN
+
+**Diagnóstico y optimización comercial:** Analizamos el embudo de ventas completo, identificamos dónde se pierden leads y cuantificamos el impacto económico.
+
+**Implementación de CRM (CRM):** Configuramos el CRM adaptado al proceso real de la empresa, formación del equipo, pipelines y automatizaciones de primer contacto.
+
+**Automatización de seguimiento de leads:** Secuencias automáticas: primer contacto en <15 minutos, recordatorios, reactivación de leads fríos. CRM + WhatsApp + email.
+
+**Agentes de IA y bots de WhatsApp:** Bots que responden leads 24/7, califican y agendan reuniones automáticamente. Integrados con CRM.
+
+**Apps y herramientas a medida:** Aplicaciones web para procesos internos o externos: calculadoras, dashboards, trackers de tiempo, portales de cliente.
+
+**Dashboards de ventas:** Paneles en tiempo real con pipeline, tasas de conversión por etapa/comercial, ROI por fuente.
+
+**Automatización de WhatsApp (plataforma propia):** Infraestructura propia integrada con CRM para negocios donde WhatsApp es el canal principal.
+
+**Auditoría de Conversión de Leads (gratuita, 40 min):** Analizamos el proceso actual, identificamos los 3 puntos de mayor fuga y proponemos la solución concreta.
+
+## CLIENTES TÍPICOS
+- Fundadores/directores de PYMEs (4-25 personas) cuyo proceso comercial está en su cabeza, sin documentar
+- Directores comerciales con CRM que nadie usa y equipo sin metodología común
+- Sectores: inmobiliaria, clínicas, formación, asesorías, agencias, distribución, e-commerce B2B, ingeniería
+
+## CASOS DE USO QUE RESOLVEMOS
+- "Nadie llama al lead hasta el día siguiente" → Automatización de primer contacto
+- "Cada comercial hace el seguimiento a su manera" → CRM con protocolo documentado
+- "No sé cuántos leads perdí el mes pasado" → Dashboard de conversión
+- "El CRM lo tenemos pero nadie lo usa" → Implementación adaptada + formación
+- "Necesito un bot por WhatsApp fuera de horario" → Agente IA integrado
+- "Hacemos cosas en Excel que podrían automatizarse" → App a medida
+- "Mis comerciales olvidan los leads fríos" → Secuencia automática de reactivación
+
+## CONTACTO
+- Email: info@lideratunegocio.com | Teléfono: 614 160 803
+- Auditoría gratuita: https://api.leadconnectorhq.com/widget/bookings/carla-sheila-ltn
+
+## INSTRUCCIONES
+
+**TONO:** Directo, cercano, de igual a igual. Nunca corporativo ni vendedor. Máximo 160 palabras por respuesta.
+
+**FORMATO:** Responde en español. Usa HTML básico: <strong>, <br>, <ul><li>. Sin markdown con asteriscos.
+
+**CTA:** No propongas la auditoría en los primeros 1-2 mensajes. Cuando hayas entendido el problema y propuesto ideas, incluye al final de tu respuesta el texto exacto: [MOSTRAR_CTA]. Solo una vez por conversación.
+
+**NO:** No inventes datos ni precios. No des respuestas genéricas. No seas insistente.`;
+
+/* ── ESTADO ── */
+const history = [];
+let isLoading = false;
+let ctaShown  = false;
+let chatInited = false;
+
+const INITIAL_QR = [
+  '¿Qué podéis hacer por mi empresa?',
+  'Perdemos leads sin saber por qué',
+  'Quiero un bot de WhatsApp',
+  'Necesito un dashboard de ventas',
+  'Tengo un proceso que quiero automatizar',
+  '¿Qué tipo de apps hacéis?',
+];
+
+/* ── ELEMENTOS ── */
+const launcher = document.getElementById('ltn-launcher');
+const panel    = document.getElementById('ltn-panel');
+const body     = document.getElementById('ltn-body');
+const input    = document.getElementById('ltn-input');
+const sendBtn  = document.getElementById('ltn-send');
+const badge    = document.getElementById('ltn-badge');
+
+/* ── TOGGLE ── */
+launcher.addEventListener('click', () => {
+  const isOpen = panel.classList.toggle('open');
+  launcher.classList.toggle('open', isOpen);
+  badge.classList.add('hidden');
+  if (isOpen && !chatInited) { chatInited = true; initChat(); }
+  if (isOpen) setTimeout(() => input.focus(), 300);
+});
+
+/* ── HELPERS ── */
+function scrollBottom() {
+  setTimeout(() => { body.scrollTop = body.scrollHeight; }, 80);
+}
+
+function addBubble(html, type, delay = 0) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const b = document.createElement('div');
+      b.className = 'ltn-bubble ' + type;
+      b.innerHTML = html;
+      body.appendChild(b);
+      scrollBottom();
+      resolve(b);
+    }, delay);
+  });
+}
+
+function showTyping() {
+  const t = document.createElement('div');
+  t.className = 'ltn-typing'; t.id = 'ltn-typing';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  body.appendChild(t); scrollBottom();
+}
+function removeTyping() {
+  const el = document.getElementById('ltn-typing');
+  if (el) el.remove();
+}
+
+function showQR(options) {
+  const qr = document.createElement('div');
+  qr.className = 'ltn-qr'; qr.id = 'ltn-qr';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'ltn-qr-btn';
+    btn.textContent = opt;
+    btn.onclick = () => { qr.remove(); sendMessage(opt); };
+    qr.appendChild(btn);
+  });
+  body.appendChild(qr); scrollBottom();
+}
+
+function showCTA() {
+  if (ctaShown) return; ctaShown = true;
+  const cta = document.createElement('div');
+  cta.className = 'ltn-cta';
+  cta.innerHTML = `
+    <p>Si quieres que analicemos tu caso en profundidad, te propongo una <strong>Auditoría gratuita de 40 minutos</strong> donde identificamos qué está fallando y qué haríamos para resolverlo.</p>
+    <a class="ltn-cta-btn" href="https://api.leadconnectorhq.com/widget/bookings/carla-sheila-ltn" target="_blank">Agendar Auditoría Gratuita →</a>
+  `;
+  body.appendChild(cta); scrollBottom();
+}
+
+function setLoading(val) {
+  isLoading = val;
+  sendBtn.disabled = val;
+  input.disabled = val;
+}
+
+function escapeHTML(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── AUTO-RESIZE ── */
+input.addEventListener('input', () => {
+  input.style.height = 'auto';
+  input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+});
+
+/* ── SEND ── */
+async function sendMessage(text) {
+  if (!text.trim() || isLoading) return;
+  input.value = ''; input.style.height = 'auto';
+  const qr = document.getElementById('ltn-qr');
+  if (qr) qr.remove();
+
+  await addBubble(escapeHTML(text), 'user');
+  history.push({ role: 'user', content: text });
+  setLoading(true); showTyping();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history })
+    });
+    const data = await res.json();
+    let reply = data?.reply || 'Ha habido un error. Escríbenos a <strong>info@lideratunegocio.com</strong>.';
+
+    let shouldCTA = false;
+    if (reply.includes('[MOSTRAR_CTA]')) {
+      shouldCTA = true;
+      reply = reply.replace('[MOSTRAR_CTA]', '').trim();
+    }
+
+    history.push({ role: 'assistant', content: reply });
+    removeTyping();
+
+    const formatted = reply
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+    await addBubble(formatted, 'bot');
+
+    if (shouldCTA) setTimeout(showCTA, 400);
+
+  } catch (e) {
+    removeTyping();
+    await addBubble('Error de conexión. Escríbenos a <strong>info@lideratunegocio.com</strong> o llámanos al <strong>+34 614 160 803</strong>.', 'bot');
+  }
+
+  setLoading(false);
+}
+
+sendBtn.addEventListener('click', () => sendMessage(input.value.trim()));
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !
