@@ -28,7 +28,7 @@ lideratunegocio.com/
 │   ├── casos/
 │   │   └── medioambiente-castro-caso-real.jpg     (imagen caso — mín. 1200×800px)
 │   ├── og/
-│   │   ├── og-home.jpg          (1200×630px)
+│   │   ├── og-home.jpg          (1200×630px).
 │   │   ├── og-servicios.jpg     (1200×630px)
 │   │   ├── og-precios.jpg       (1200×630px)
 │   │   ├── og-casos.jpg         (1200×630px)
