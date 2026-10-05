@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agente de Voz con IA — Lidera tu Negocio</title>
+<meta name="description" content="Tu negocio recibe llamadas que nadie atiende. Implementamos un asistente de voz con IA que atiende, agenda y registra cada llamada. 24/7. Sin coste de personal.">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f4ff;
+  --bg2:#ede8ff;
+  --bg3:#e4dcff;
+  --card:#ffffff;
+  --card2:#f3efff;
+  --purple:#3c2b86;
+  --purple-mid:#4e3a9e;
+  --pink:#e61978;
+  --pink-hi:#f52d88;
+  --text:#1a0e3c;
+  --muted:#5a4e7a;
+  --dim:#9580c0;
+  --border:rgba(60,43,134,0.14);
+  --border2:rgba(60,43,134,0.3);
+  --r:12px;
+  --r-lg:18px;
+  --font-d:'Outfit',sans-serif;
+  --font-b:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── UTILS ── */
+.container{max-width:1100px;margin:0 auto;padding:0 28px}
+h1,h2,h3,h4{font-family:var(--font-d);line-height:1.08;font-weight:800}
+.pink{color:var(--pink)}
+.muted{color:var(--muted)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:16px 0;
+  background:rgba(247,244,255,.94);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 1px 24px rgba(60,43,134,.08);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{
+  font-family:var(--font-d);font-size:14px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text);text-decoration:none;
+}
+.nav-logo b{color:var(--pink);font-weight:900}
+.nav-cta{
+  background:var(--pink);color:#fff;
+  padding:10px 22px;border-radius:8px;
+  font-family:var(--font-d);font-size:13px;font-weight:700;
+  text-decoration:none;letter-spacing:.02em;
+  transition:background .18s,transform .18s;
+  white-space:nowrap;
+}
+.nav-cta:hover{background:var(--pink-hi);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:140px 0 96px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 65% 55% at 75% 35%, rgba(60,43,134,.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 45% at 15% 80%, rgba(230,25,120,.06) 0%, transparent 65%);
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(230,25,120,.1);border:1px solid rgba(230,25,120,.28);
+  color:var(--pink);font-family:var(--font-d);font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;padding:7px 16px;
+  border-radius:100px;margin-bottom:32px;
+}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--pink);border-radius:50%}
+.hero h1{
+  font-size:clamp(40px,7.5vw,76px);font-weight:900;
+  letter-spacing:-.03em;margin-bottom:28px;
+  max-width:800px;
+}
+.hero-lead{
+  font-size:clamp(16px,2.2vw,20px);color:var(--muted);
+  line-height:1.65;max-width:520px;margin-bottom:44px;
+}
+.btn-p{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--pink);color:#fff;
+  padding:16px 30px;border-radius:10px;
+  font-family:var(--font-d);font-size:16px;font-weight:700;
+  text-decoration:none;transition:all .2s;border:none;cursor:pointer;
+  letter-spacing:.01em;
+}
+.btn-p:hover{background:var(--pink-hi);transform:translateY(-2px);box-shadow:0 14px 36px rgba(230,25,120,.3)}
+.btn-g{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--muted);
+  padding:16px 24px;border-radius:10px;
+  font-family:var(--font-d);font-size:15px;font-weight:500;
+  text-decoration:none;border:1px solid rgba(60,43,134,.2);
+  transition:all .18s;cursor:pointer;
+}
+.btn-g:hover{border-color:rgba(60,43,134,.45);color:var(--purple)}
+.hero-btns{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:72px}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--border);border-radius:var(--r);overflow:hidden;
+  max-width:600px;
+}
+.hero-stat{
+  background:var(--card);padding:22px 26px;
+  border-right:1px solid var(--border);
+}
+.hero-stat:last-child{border-right:none}
+.stat-n{
+  font-family:var(--font-d);font-size:36px;font-weight:900;
+  color:var(--pink);line-height:1;margin-bottom:5px;
+}
+.stat-l{font-size:13px;color:var(--muted);line-height:1.4}
+
+/* ── PAIN ── */
+.section{padding:96px 0}
+.eyebrow{
+  font-family:var(--font-d);font-size:11px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--pink);
+  margin-bottom:18px;
+}
+.section-h{font-size:clamp(28px,4.5vw,46px);font-weight:800;letter-spacing:-.022em;margin-bottom:16px}
+.section-lead{font-size:18px;color:var(--muted);max-width:560px;line-height:1.65;margin-bottom:60px}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.pain-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:34px;
+  transition:border-color .2s,transform .2s;
+}
+.pain-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.pain-ico{
+  width:50px;height:50px;background:rgba(230,25,120,.1);
+  border-radius:13px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:22px;
+}
+.pain-ico svg{width:22px;height:22px;stroke:var(--pink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pain-card h3{font-size:19px;font-weight:700;margin-bottom:12px;line-height:1.25}
+.pain-card p{font-size:15px;color:var(--muted);line-height:1.7}
+.pain-tag{
+  display:inline-block;margin-top:18px;
+  background:rgba(185,28,28,.08);border-radius:6px;
+  padding:5px 12px;font-size:13px;color:#b91c1c;font-weight:500;font-family:var(--font-d);
+}
+
+/* ── SECTORS ── */
+.sectors-wrap{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sector-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.tab{
+  padding:10px 22px;border-radius:8px;
+  font-family:var(--font-d);font-size:14px;font-weight:600;
+  cursor:pointer;border:1px solid var(--border);
+  background:transparent;color:var(--muted);
+  transition:all .18s;
+}
+.tab.on,.tab:hover{background:var(--purple);border-color:var(--purple);color:#fff}
+.sc{display:none}
+.sc.on{display:grid}
+.sc-grid{grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.sc-block{
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:32px;
+}
+.sc-label{
+  font-family:var(--font-d);font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;
+}
+.sc-before .sc-label{color:#c0392b}
+.sc-after .sc-label{color:#16a34a}
+.sc-block h3{font-size:18px;font-weight:700;margin-bottom:16px;line-height:1.3}
+.sc-story{
+  font-size:15px;color:var(--muted);line-height:1.72;
+  font-style:italic;border-left:2px solid;padding-left:16px;margin-bottom:22px;
+}
+.sc-before .sc-story{border-color:rgba(192,57,43,.25)}
+.sc-after .sc-story{border-color:rgba(22,163,74,.25)}
+.sc-result{
+  font-size:13.5px;font-weight:600;padding:10px 16px;border-radius:8px;
+  font-family:var(--font-d);letter-spacing:.01em;
+}
+.sc-before .sc-result{background:rgba(192,57,43,.08);color:#c0392b}
+.sc-after .sc-result{background:rgba(22,163,74,.1);color:#16a34a}
+
+/* ── COST COMPARISON ── */
+.cost-wrap{
+  background:linear-gradient(160deg,#ede8ff 0%,#e4dcff 50%,#ede8ff 100%);
+  border-top:1px solid var(--border);position:relative;overflow:hidden;
+}
+.cost-wrap::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 55% 60% at 25% 60%, rgba(230,25,120,.05) 0%, transparent 70%);
+}
+.cost-intro{text-align:center;max-width:640px;margin:0 auto 64px}
+.cost-intro .section-lead{margin:16px auto 0;text-align:center}
+.cost-cols{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center;position:relative;z-index:1}
+.cost-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:42px 38px;
+}
+.cost-card.old{border-color:rgba(192,57,43,.25)}
+.cost-card.nuevo{
+  border-color:rgba(230,25,120,.4);background:rgba(60,43,134,.06);
+  position:relative;
+}
+.cost-card.nuevo::before{
+  content:'RECOMENDADO';
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--pink);color:#fff;
+  font-family:var(--font-d);font-size:9px;font-weight:800;letter-spacing:.22em;
+  padding:4px 14px;border-radius:100px;white-space:nowrap;
+}
+.cost-lbl{
+  font-family:var(--font-d);font-size:11px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px;
+}
+.cost-card.old .cost-lbl{color:#c0392b}
+.cost-card.nuevo .cost-lbl{color:var(--pink)}
+.cost-num{
+  font-family:var(--font-d);font-size:clamp(48px,5vw,62px);
+  font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:4px;
+}
+.cost-card.old .cost-num{color:#c0392b}
+.cost-card.nuevo .cost-num{color:var(--purple)}
+.cost-per{font-size:14px;color:var(--muted);margin-bottom:32px;font-weight:500}
+.cost-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+.cost-list li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:14.5px;color:var(--muted);line-height:1.5;
+}
+.cost-list li::before{
+  content:'';flex-shrink:0;width:5px;height:5px;border-radius:50%;
+  background:currentColor;opacity:.4;margin-top:8px;
+}
+.cost-divider{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center}
+.cost-annual-l{font-size:13px;color:var(--muted)}
+.cost-annual-n{font-family:var(--font-d);font-size:22px;font-weight:800}
+.cost-card.old .cost-annual-n{color:#c0392b}
+.cost-card.nuevo .cost-annual-n{color:var(--pink)}
+.vs-col{text-align:center}
+.vs-txt{font-family:var(--font-d);font-size:30px;font-weight:900;color:var(--dim)}
+.cost-saving{
+  margin-top:52px;text-align:center;
+  background:rgba(230,25,120,.08);
+  border:1px solid rgba(230,25,120,.22);
+  border-radius:var(--r-lg);padding:36px;position:relative;z-index:1;
+}
+.saving-lbl{
+  font-family:var(--font-d);font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;
+}
+.saving-n{
+  font-family:var(--font-d);font-size:clamp(52px,7vw,80px);
+  font-weight:900;color:var(--pink);letter-spacing:-.03em;line-height:1;
+}
+.saving-sub{font-size:17px;color:var(--muted);margin-top:10px}
+.saving-note{
+  font-size:13px;color:var(--dim);margin-top:20px;
+  max-width:480px;margin-left:auto;margin-right:auto;line-height:1.55;
+}
+
+/* ── HOW IT WORKS ── */
+.how-inner{text-align:center;max-width:640px;margin:0 auto 72px}
+.how-inner .section-lead{margin:16px auto 0;text-align:center}
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  position:relative;
+}
+.steps::before{
+  content:'';position:absolute;
+  top:32px;left:calc(16.7% + 20px);right:calc(16.7% + 20px);
+  height:1px;
+  background:linear-gradient(90deg, rgba(60,43,134,.6), rgba(230,25,120,.6), rgba(60,43,134,.6));
+}
+.step{text-align:center;position:relative;z-index:1;padding:0 12px}
+.step-dot{
+  width:64px;height:64px;border-radius:50%;
+  background:var(--purple);border:2px solid var(--purple-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-d);font-size:20px;font-weight:900;color:#fff;
+  margin:0 auto 24px;
+}
+.step h3{font-size:18px;font-weight:700;margin-bottom:10px}
+.step p{font-size:15px;color:var(--muted);line-height:1.65}
+.feat-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:14px;margin-top:56px;
+}
+.feat{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:18px 20px;
+}
+.feat-check{
+  width:24px;height:24px;flex-shrink:0;
+  background:rgba(230,25,120,.1);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.feat-check svg{width:11px;height:11px;stroke:var(--pink);stroke-width:2.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.feat p{font-size:14.5px;color:var(--muted);line-height:1.5}
+
+/* ── FORM ── */
+.form-wrap{background:var(--bg2);border-top:1px solid var(--border)}
+.form-center{max-width:620px;margin:0 auto;text-align:center}
+.form-h{font-size:clamp(28px,5vw,44px);font-weight:900;letter-spacing:-.025em;margin-bottom:14px}
+.form-lead{font-size:17px;color:var(--muted);line-height:1.65;margin-bottom:52px}
+.form-inner{display:grid;gap:14px;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{display:flex;flex-direction:column;gap:7px}
+.fld label{font-family:var(--font-d);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fld input,.fld select{
+  background:var(--card);border:1px solid rgba(60,43,134,.18);
+  color:var(--text);padding:13px 16px;border-radius:8px;
+  font-size:15px;font-family:var(--font-b);outline:none;
+  transition:border-color .18s;width:100%;
+  -webkit-appearance:none;appearance:none;
+}
+.fld input:focus,.fld select:focus{border-color:var(--pink)}
+.fld input::placeholder{color:var(--dim)}
+.fld select option{background:var(--card);color:var(--text)}
+.fld select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238b7fa8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:40px;
+}
+.form-btn{
+  background:var(--pink);color:#fff;padding:17px;
+  border-radius:10px;font-family:var(--font-d);font-size:17px;font-weight:700;
+  border:none;cursor:pointer;width:100%;
+  transition:all .2s;margin-top:6px;letter-spacing:.01em;
+}
+.form-btn:hover{background:var(--pink-hi);transform:translateY(-2px);box-shadow:0 14px 36px rgba(230,25,120,.3)}
+.form-note{font-size:13px;color:var(--dim);text-align:center;margin-top:12px}
+.form-ok{
+  display:none;text-align:center;padding:48px 32px;
+  background:var(--card);border:1px solid rgba(22,163,74,.25);border-radius:var(--r-lg);
+}
+.form-ok h3{font-family:var(--font-d);font-size:26px;font-weight:800;color:#16a34a;margin-bottom:12px}
+.form-ok p{color:var(--muted);font-size:16px;line-height:1.65}
+
+/* ── FOOTER ── */
+footer{padding:36px 0;border-top:1px solid var(--border);text-align:center}
+footer p{font-size:13.5px;color:var(--dim)}
+footer a{color:var(--pink);text-decoration:none}
+footer a:hover{color:var(--pink-hi)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:800px){
+  .cost-cols{grid-template-columns:1fr}
+  .vs-col{display:none}
+  .cost-card.nuevo::before{font-size:8px}
+  .sc-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:40px}
+  .steps::before{display:none}
+  .feat-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr}
+  .hero-stat{border-right:none;border-bottom:1px solid var(--border)}
+  .hero-stat:last-child{border-bottom:none}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .btn-p,.btn-g{width:100%;justify-content:center}
+  .cost-num{font-size:42px}
+  .saving-n{font-size:48px}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="https://lideratunegocio.com" class="nav-logo">Lidera<b>.</b>tu negocio</a>
+      <a href="#formulario" class="nav-cta">Solicitar consultoría gratuita</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="reveal">
+      <div class="hero-badge">Agente de Voz con IA</div>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <h1>Tu teléfono suena.<br>Nadie contesta.<br><span class="pink">Tus clientes no esperan.</span></h1>
+    </div>
+    <div class="reveal" style="transition-delay:.2s">
+      <p class="hero-lead">Cada llamada sin respuesta es un cliente que llama a la competencia. Implementamos un asistente de voz con IA que atiende, agenda y registra cada llamada. Las 24 horas. Los 7 días.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.3s">
+      <div class="hero-btns">
+        <a href="#formulario" class="btn-p">Solicitar consultoría gratuita <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#como-funciona" class="btn-g">Ver cómo funciona</a>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.4s">
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-n">67%</div>
+          <div class="stat-l">de clientes no vuelven a llamar si no les contestan</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-n">24/7</div>
+          <div class="stat-l">disponibilidad sin coste de personal adicional</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-n">−88%</div>
+          <div class="stat-l">de coste frente a una persona dedicada al teléfono</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">El problema real</div>
+      <h2 class="section-h">Un teléfono sin respuesta<br>es un negocio que sangra clientes</h2>
+      <p class="section-lead">No es falta de ganas. Es un problema de sistema. Tu equipo no puede estar en dos sitios a la vez, y mientras atiende, el teléfono sigue sonando solo.</p>
+    </div>
+    <div class="pain-grid">
+
+      <div class="pain-card reveal">
+        <div class="pain-ico">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6A16 16 0 0 0 12 12.69"/>
+            <line x1="23" y1="1" x2="1" y2="23"/>
+          </svg>
+        </div>
+        <h3>Tu recepcionista no puede estar en dos sitios a la vez</h3>
+        <p>Cuando hay alguien en el mostrador, en la cabina o en la sala de espera, el teléfono suena y nadie lo coge. Eso ocurre decenas de veces al día en cualquier centro con personal limitado.</p>
+        <span class="pain-tag">Ocurre en horario de mayor actividad</span>
+      </div>
+
+      <div class="pain-card reveal">
+        <div class="pain-ico">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>El cliente que llama a las 7 de la tarde ya no llama mañana</h3>
+        <p>La mayoría de llamadas entran fuera de horario o en picos de ocupación. Si nadie coge, el cliente no espera. Busca la siguiente opción en Google. Y esa opción ya tiene sistema.</p>
+        <span class="pain-tag">El 67% no deja mensaje ni vuelve a intentarlo</span>
+      </div>
+
+      <div class="pain-card reveal">
+        <div class="pain-ico">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h3>"Nunca cogen el teléfono" — la queja más repetida en reseñas de Google</h3>
+        <p>Un cliente que llama tres veces sin respuesta no se queda callado. Deja una reseña. Y esa reseña la leen los siguientes clientes que buscan tu negocio. El daño es silencioso y acumulativo.</p>
+        <span class="pain-tag">Afecta directamente al posicionamiento en Google</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="section sectors-wrap">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Casos de uso</div>
+      <h2 class="section-h">El mismo problema.<br>En todos los sectores.</h2>
+      <p class="section-lead">Así viven este problema los negocios con alta carga de llamadas. Elige el tuyo.</p>
+    </div>
+
+    <div class="sector-tabs">
+      <button class="tab on" onclick="setSector('est',this)">Centro de estética</button>
+      <button class="tab" onclick="setSector('sal',this)">Centro de salud</button>
+      <button class="tab" onclick="setSector('ave',this)">Servicios de averías</button>
+    </div>
+
+    <!-- ESTÉTICA -->
+    <div id="sc-est" class="sc on">
+      <div class="sc-grid">
+        <div class="sc-block sc-before reveal">
+          <div class="sc-label">Sin sistema</div>
+          <h3>La recepcionista está en caja. Suena el teléfono. Nadie puede cogerlo.</h3>
+          <div class="sc-story">"Claudia lleva tres días queriendo pedir cita para una depilación completa. Ha llamado a las 11, a las 13 y a las 18. Nadie ha cogido el teléfono. Hoy por la noche ha reservado en el centro de al lado por Instagram. No sabe ni cuánto cuesta tu servicio."</div>
+          <div class="sc-result">Resultado: cita perdida · cliente perdido · posible reseña negativa</div>
+        </div>
+        <div class="sc-block sc-after reveal">
+          <div class="sc-label">Con el agente de voz</div>
+          <h3>El asistente coge la llamada en el primer tono. A cualquier hora.</h3>
+          <div class="sc-story">"Claudia llama a las 18:20. El asistente la atiende con el nombre de tu centro. Le pregunta qué tratamiento necesita y qué días le vienen bien. Le ofrece tres huecos. Claudia elige el martes a las 11. Recibe confirmación por WhatsApp. Tu agenda ya tiene la cita."</div>
+          <div class="sc-result">Resultado: cita agendada · cliente captado · cero intervención del equipo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SALUD -->
+    <div id="sc-sal" class="sc">
+      <div class="sc-grid">
+        <div class="sc-block sc-before reveal">
+          <div class="sc-label">Sin sistema</div>
+          <h3>Hora de comida. La consulta está cerrada. El paciente necesita una cita.</h3>
+          <div class="sc-story">"Mario tiene una contractura cervical desde hace cuatro días. Llama a la clínica a las 14:15. Contestador. Vuelve a llamar a las 17:00. Comunica. A las 17:30 ha pedido cita en otra clínica por su app. No vuelve a tu centro porque nunca consiguió hablar con nadie."</div>
+          <div class="sc-result">Resultado: paciente perdido · agenda infrautilizada · ingreso que no entra</div>
+        </div>
+        <div class="sc-block sc-after reveal">
+          <div class="sc-label">Con el agente de voz</div>
+          <h3>El asistente atiende aunque sea hora de comida o fuera de horario.</h3>
+          <div class="sc-story">"Mario llama a las 14:15. El asistente le atiende de inmediato. Le pregunta el motivo de consulta y su disponibilidad. Le asigna cita con el fisioterapeuta disponible. El profesional llega del descanso y encuentra la cita ya registrada en su agenda con el resumen de la llamada."</div>
+          <div class="sc-result">Resultado: paciente captado · cita asignada · profesional no interrumpido</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AVERÍAS -->
+    <div id="sc-ave" class="sc">
+      <div class="sc-grid">
+        <div class="sc-block sc-before reveal">
+          <div class="sc-label">Sin sistema</div>
+          <h3>El técnico está en obra. El teléfono suena. El trabajo se va con la competencia.</h3>
+          <div class="sc-story">"Una comunidad de vecinos tiene un problema eléctrico a las 10:30. Llaman a tu empresa. El técnico está en otro servicio y el teléfono lo tiene ocupado. Llaman tres veces más. A las 11 ya han llamado a otra empresa. El trabajo, el ingreso y el cliente se fueron."</div>
+          <div class="sc-result">Resultado: servicio perdido · ingreso que se fue · cliente que no vuelve</div>
+        </div>
+        <div class="sc-block sc-after reveal">
+          <div class="sc-label">Con el agente de voz</div>
+          <h3>El asistente registra el aviso y lo manda al técnico por email en segundos.</h3>
+          <div class="sc-story">"La comunidad llama a las 10:30. El asistente atiende. Recoge la dirección, el tipo de avería y el contacto. Confirma que el técnico se pondrá en contacto en menos de una hora. El técnico recibe el aviso en su móvil al instante y llama cuando puede. El cliente queda atendido."</div>
+          <div class="sc-result">Resultado: aviso registrado · cliente informado · técnico que gestiona cuando puede</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COST COMPARISON -->
+<section class="section cost-wrap">
+  <div class="container">
+    <div class="cost-intro reveal">
+      <div class="eyebrow" style="text-align:center">Comparativa de costes</div>
+      <h2 class="section-h" style="text-align:center">¿Cuánto te cuesta<br>tener a alguien solo para el teléfono?</h2>
+      <p class="section-lead" style="text-align:center">El coste real de mantener una persona dedicada a la atención telefónica frente a implementar un sistema de IA.</p>
+    </div>
+
+    <div class="cost-cols">
+      <div class="cost-card old reveal">
+        <div class="cost-lbl">Recepcionista telefónica</div>
+        <div class="cost-num">2.050€</div>
+        <div class="cost-per">al mes — coste total para la empresa</div>
+        <ul class="cost-list">
+          <li>Salario bruto base: 1.300–1.500€</li>
+          <li>Seguridad social (empleador): ~500€</li>
+          <li>Pagas extras prorrateadas: ~150€</li>
+          <li>Sustituciones en vacaciones y bajas: no incluido</li>
+          <li>No trabaja fuera de horario laboral</li>
+          <li>No puede atender dos llamadas a la vez</li>
+          <li>Los días de baja, el teléfono queda sin atender</li>
+        </ul>
+        <div class="cost-divider">
+          <span class="cost-annual-l">Coste anual estimado</span>
+          <span class="cost-annual-n">24.600€</span>
+        </div>
+      </div>
+
+      <div class="vs-col reveal">
+        <div class="vs-txt">vs</div>
+      </div>
+
+      <div class="cost-card nuevo reveal">
+        <div class="cost-lbl">Agente de Voz con IA</div>
+        <div class="cost-num">desde 250€</div>
+        <div class="cost-per">al mes — todo incluido</div>
+        <ul class="cost-list">
+          <li>Configuración e integración con tu agenda o CRM</li>
+          <li>Llamadas en horario de apertura + fuera de horario</li>
+          <li>Resumen automático por email de cada llamada</li>
+          <li>Confirmación de cita por WhatsApp al cliente</li>
+          <li>Disponible 24/7 sin coste adicional</li>
+          <li>Hasta 3 llamadas simultáneas</li>
+          <li>Sin bajas, sin vacaciones, sin ausencias</li>
+        </ul>
+        <div class="cost-divider">
+          <span class="cost-annual-l">Coste anual estimado</span>
+          <span class="cost-annual-n">desde 3.000€</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cost-saving reveal">
+      <div class="saving-lbl">Ahorro anual estimado</div>
+      <div class="saving-n">21.600€</div>
+      <div class="saving-sub">que puedes reinvertir en crecer, no en gestionar</div>
+      <div class="saving-note">Cálculo basado en el coste medio de una recepcionista a jornada completa en España en 2025, incluyendo salario bruto y coste de Seguridad Social del empleador. Los precios del servicio de IA parten de 250€/mes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div class="how-inner reveal">
+      <div class="eyebrow" style="text-align:center">Cómo funciona</div>
+      <h2 class="section-h" style="text-align:center">Tres pasos.<br>Cero complejidad para tu equipo.</h2>
+      <p class="section-lead" style="text-align:center">Tu equipo no tiene que cambiar nada de lo que ya hace. El sistema trabaja en segundo plano.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-dot">1</div>
+        <h3>El cliente llama</h3>
+        <p>La llamada llega al número de tu negocio. El asistente de voz atiende en el primer tono, con el nombre de tu empresa y una voz natural.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.1s">
+        <div class="step-dot">2</div>
+        <h3>El asistente gestiona</h3>
+        <p>Entiende el motivo de la llamada, responde preguntas frecuentes sobre precios, horarios o servicios, y agenda la cita directamente en tu calendario.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.2s">
+        <div class="step-dot">3</div>
+        <h3>Todo queda registrado</h3>
+        <p>Tu equipo recibe un resumen por email. El cliente recibe confirmación por WhatsApp. La cita está en tu agenda sin que nadie haya intervenido.</p>
+      </div>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat reveal"><div class="feat-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Integración con Google Calendar y tu sistema de citas actual</p></div>
+      <div class="feat reveal"><div class="feat-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Base de conocimiento personalizada con precios, servicios y horarios de tu negocio</p></div>
+      <div class="feat reveal"><div class="feat-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Confirmación automática por WhatsApp al cliente tras agendar</p></div>
+      <div class="feat reveal"><div class="feat-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Transcripción de cada llamada accesible desde panel de control</p></div>
+      <div class="feat reveal"><div class="feat-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Configurado desde cero con el nombre y la identidad de tu negocio</p></div>
+      <div class="feat reveal"><div class="feat-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><p>Cumple con la normativa europea de protección de datos (RGPD)</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="section form-wrap" id="formulario">
+  <div class="container">
+    <div class="form-center">
+      <div class="reveal">
+        <div class="eyebrow" style="text-align:center">Sin compromiso</div>
+        <h2 class="form-h">¿Tu negocio pierde llamadas?<br><span class="pink">Cuéntanoslo.</span></h2>
+        <p class="form-lead">Una consultoría gratuita de 40 minutos para ver si el sistema encaja con tu negocio. Sin venta agresiva. Sin compromiso.</p>
+      </div>
+
+      <div id="formBox" class="reveal">
+        <form class="form-inner" id="ltnForm" onsubmit="sendForm(event)">
+          <div class="form-row">
+            <div class="fld">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre" required>
+            </div>
+            <div class="fld">
+              <label>Negocio</label>
+              <input type="text" placeholder="Nombre del negocio" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="fld">
+              <label>Sector</label>
+              <select required>
+                <option value="" disabled selected>Selecciona tu sector</option>
+                <option>Centro de estética / Peluquería</option>
+                <option>Clínica o centro de salud</option>
+                <option>Servicios de averías o mantenimiento</option>
+                <option>Restaurante u hostelería</option>
+                <option>Otro servicio con alta carga de llamadas</option>
+              </select>
+            </div>
+            <div class="fld">
+              <label>Llamadas al día (aprox.)</label>
+              <select required>
+                <option value="" disabled selected>Selecciona un rango</option>
+                <option>Menos de 10 llamadas</option>
+                <option>Entre 10 y 30 llamadas</option>
+                <option>Entre 30 y 60 llamadas</option>
+                <option>Más de 60 llamadas</option>
+              </select>
+            </div>
+          </div>
+          <div class="fld">
+            <label>Email</label>
+            <input type="email" placeholder="tu@email.com" required>
+          </div>
+          <div class="fld">
+            <label>Teléfono (opcional)</label>
+            <input type="tel" placeholder="+34 600 000 000">
+          </div>
+          <button type="submit" class="form-btn">Solicitar consultoría gratuita →</button>
+          <p class="form-note">Te contactamos en menos de 24 horas. Sin compromiso.</p>
+        </form>
+
+        <div class="form-ok" id="formOk">
+          <h3>Solicitud recibida</h3>
+          <p>Te contactamos en menos de 24 horas para confirmar el horario de la consultoría. Revisa tu email.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Lidera tu Negocio &mdash; <a href="https://lideratunegocio.com">lideratunegocio.com</a> &middot; <a href="mailto:info@lideratunegocio.com">info@lideratunegocio.com</a> &middot; <a href="tel:+34614160803">+34 614 160 803</a></p>
+  </div>
+</footer>
+
+<script>
+/* ── Sector tabs ── */
+function setSector(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.sc').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  const el = document.getElementById('sc-' + id);
+  el.classList.add('on');
+  el.querySelectorAll('.reveal').forEach(r => {
+    r.classList.remove('in');
+    requestAnimationFrame(() => requestAnimationFrame(() => r.classList.add('in')));
+  });
+}
+
+/* ── Scroll reveal ── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── Form ── */
+function sendForm(e) {
+  e.preventDefault();
+  /* TODO: conectar con web3forms u otro backend
+     fetch('https://api.web3forms.com/submit', { method:'POST', ... }) */
+  document.getElementById('ltnForm').style.display = 'none';
+  document.getElementById('formOk').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
