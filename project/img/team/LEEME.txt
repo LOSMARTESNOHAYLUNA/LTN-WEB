@@ -1,7 +1,0 @@
-Sube aquí las fotos del equipo con estos nombres exactos:
-
-- carla-vallejos-lidera-tu-negocio.jpg   (mín. 800×1067px, formato 3:4)
-- sheila-aguilar-lidera-tu-negocio.jpg   (mín. 800×1067px, formato 3:4)
-
-Formato recomendado: JPG optimizado o WebP.
-Peso máximo recomendado: 300KB por imagen.

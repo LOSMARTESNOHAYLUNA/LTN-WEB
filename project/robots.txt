@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /gracias/
-Disallow: /api/
-Disallow: /admin/
-
-Sitemap: https://lideratunegocio.com/sitemap.xml
