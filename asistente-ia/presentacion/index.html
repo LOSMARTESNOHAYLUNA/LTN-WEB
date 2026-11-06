@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asistente IA Llamadas y WhatsApp</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+<style>
+  html,body{margin:0;height:100%;background:#0d0719;font-family:'Poppins',Arial,sans-serif;overflow:hidden}
+  *{box-sizing:border-box}
+  h1,h2,h3,p,ul,ol{margin:0}
+  ul,ol{padding-left:28px}
+  hr{border:0;margin:0}
+  table{border-collapse:separate;border-spacing:0;width:100%;overflow:hidden}
+  th,td{padding:0.35em 0.6em;vertical-align:top;border-bottom:1px solid rgba(255,255,255,0.12)}
+  tr:last-child td{border-bottom:0}
+  #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  #frame{position:relative;width:1920px;height:1080px;transform-origin:center center;flex:none}
+  section{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden}
+  section:not(.active){display:none!important}
+  section > *{position:relative}
+  section > [style*="position:absolute"]{position:absolute}
+  #nav{position:fixed;bottom:16px;right:20px;display:flex;gap:8px;align-items:center;z-index:10;font-size:14px;color:#c9b8e6}
+  #nav button{background:#2d1a52;color:#fff;border:1px solid rgba(238,70,188,0.4);border-radius:8px;padding:6px 12px;cursor:pointer;font-family:inherit}
+  #nav button:hover{background:#ee46bc;color:#1a0f2e}
+  @media print{
+    html,body{overflow:visible;background:#fff}
+    #stage{position:static;display:block}
+    #frame{width:1920px;height:auto;transform:none!important}
+    section{position:relative;page-break-after:always;break-after:page}
+    section:not(.active){display:flex!important}
+    #nav{display:none}
+    @page{size:1920px 1080px;margin:0}
+  }
+</style>
+</head>
+<body>
+<div id="stage"><div id="frame">
+<section id="cover" data-transition="fade" style="background:#1a0f2e;color:#ffffff;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<div style="position:absolute;left:0;top:0;width:1920px;height:1080px;background:radial-gradient(ellipse at 15% 10%, rgba(238,70,188,0.22) 0%, rgba(26,15,46,0) 55%)"></div>
+<div style="position:absolute;left:1180px;top:520px;width:900px;height:900px;background:radial-gradient(circle at 50% 50%, rgba(62,43,134,0.55) 0%, rgba(26,15,46,0) 65%)"></div>
+<div style="display:flex;align-items:center;gap:16px">
+<hr style="width:40px;border-top:2px solid #ee46bc">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Lidera tu Negocio</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:28px;max-width:1400px">
+<h1 style="font-size:112px;font-weight:800;line-height:1.05;letter-spacing:-3px">Asistente con IA para llamadas y <span style="color:#ee46bc">WhatsApp</span></h1>
+<p style="font-size:34px;font-weight:300;line-height:1.4;color:#ffffff;max-width:1200px">Atiende las llamadas y los mensajes de su empresa las 24 horas, pasa la llamada a una persona cuando el cliente lo pide y toma recado cuando nadie puede contestar.</p>
+<p style="font-size:28px;font-weight:600;line-height:1.4;color:#ffffff;max-width:1300px;background:rgba(238,70,188,0.14);border:1px solid rgba(238,70,188,0.4);border-radius:14px;padding:20px 28px">No es una plataforma que tengas que configurar tú. Somos personas reales: creamos tu asistente, lo montamos todo y estamos contigo después del alta.</p>
+</div>
+<div style="display:flex;gap:16px;align-items:center">
+<p style="font-size:24px;color:#ffffff">Propuesta de servicio</p>
+<p style="font-size:24px;color:#ffffff">·</p>
+<p style="font-size:24px;color:#ffffff">Octubre 2026</p>
+</div>
+
+</section>
+<section id="problema" data-transition="fade" style="background:#f8f5ff;color:#1a0f2e;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">El problema</p>
+<h2 style="font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1500px">Cada llamada sin atender es un cliente que llama a otra empresa</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:56px;height:56px;color:#ee46bc"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+<h3 style="font-size:36px;font-weight:600;line-height:1.2">Horario limitado</h3>
+<p style="font-size:28px;line-height:1.5;color:#4a3d66">Los clientes llaman y escriben a mediodía, por la tarde y el fin de semana. La empresa solo contesta en horario de oficina.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:56px;height:56px;color:#ee46bc"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/></svg>
+<h3 style="font-size:36px;font-weight:600;line-height:1.2">Llamadas perdidas</h3>
+<p style="font-size:28px;line-height:1.5;color:#4a3d66">Con el equipo ocupado, el teléfono suena y nadie contesta. El cliente no deja recado y no vuelve a llamar.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:56px;height:56px;color:#ee46bc"><path d="M4 5h16v11H9l-5 4V5z"/></svg>
+<h3 style="font-size:36px;font-weight:600;line-height:1.2">WhatsApp sin respuesta</h3>
+<p style="font-size:28px;line-height:1.5;color:#4a3d66">Las mismas preguntas de siempre llegan por mensaje y se quedan horas sin contestar, o interrumpen a quien está trabajando.</p>
+</div>
+</div>
+<div style="display:flex;gap:24px;align-items:center;background:#1a0f2e;border-radius:20px;padding:32px 40px;color:#ffffff">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:48px;height:48px;color:#ee46bc"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><path d="M15 15c2.5 0 5 2 5 5"/></svg>
+<p style="font-size:28px;line-height:1.45;color:#ffffff">Y montar una solución por cuenta propia exige tiempo, pruebas y conocimientos técnicos. Aquí el asistente llega creado, configurado y probado por personas, con acompañamiento después del alta.</p>
+</div>
+
+</section>
+<section id="que-hace" data-transition="fade" style="background:#1a0f2e;color:#ffffff;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">La solución</p>
+<h2 style="font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1500px">Un asistente que atiende las 24 horas y avisa a la empresa</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<div style="display:flex;gap:28px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:52px;height:52px;color:#ee46bc"><path d="M4 5h16v11H9l-5 4V5z"/></svg>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h3 style="font-size:34px;font-weight:600;line-height:1.2">Responde las preguntas habituales</h3>
+<p style="font-size:26px;line-height:1.5;color:#ffffff">Qué hace la empresa, dónde está, horario y lo que la empresa indique por escrito.</p>
+</div>
+</div>
+<div style="display:flex;gap:28px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:52px;height:52px;color:#ee46bc"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><path d="M15 15c2.5 0 5 2 5 5"/></svg>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h3 style="font-size:34px;font-weight:600;line-height:1.2">Pasa la llamada a una persona</h3>
+<p style="font-size:26px;line-height:1.5;color:#ffffff">En horario laboral, en cuanto el cliente lo pide.</p>
+</div>
+</div>
+<div style="display:flex;gap:28px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:52px;height:52px;color:#ee46bc"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h3 style="font-size:34px;font-weight:600;line-height:1.2">Toma recado a cualquier hora</h3>
+<p style="font-size:26px;line-height:1.5;color:#ffffff">Si nadie contesta o es fuera de horario. Todos los días del año.</p>
+</div>
+</div>
+<div style="display:flex;gap:28px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:52px;height:52px;color:#ee46bc"><path d="M3 11 21 3l-6 18-3-7-9-3z"/><path d="M12 14l9-11"/></svg>
+<div style="display:flex;flex-direction:column;gap:10px">
+<h3 style="font-size:34px;font-weight:600;line-height:1.2">Avisa por correo</h3>
+<p style="font-size:26px;line-height:1.5;color:#ffffff">Cada recado llega a la empresa para que una persona lo devuelva.</p>
+</div>
+</div>
+</div>
+
+</section>
+<section id="flujo-llamada" data-transition="fade" style="background:#f8f5ff;color:#1a0f2e;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Llamadas</p>
+<h2 style="font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1500px">Qué ocurre cuando suena el teléfono</h2>
+</div>
+<div style="display:flex;gap:20px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:36px">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">1</p>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Se presenta</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Como asistente digital de la empresa e informa de que es un sistema automático, según la normativa vigente desde agosto de 2026.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:36px">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">2</p>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Responde</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Preguntas básicas: qué hace la empresa, dónde está, horario y lo que la empresa haya indicado por escrito.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:36px">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">3</p>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Transfiere</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">En horario laboral pasa la llamada a una persona en cuanto el cliente lo pide, sin preguntas previas.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:36px">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">4</p>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Toma recado</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Si nadie contesta, vuelve con el cliente, anota nombre, teléfono y motivo, y avisa a la empresa por correo.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1a0f2e;border-radius:20px;padding:36px;color:#ffffff">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">24h</p>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Fuera de horario</h3>
+<p style="font-size:24px;line-height:1.5;color:#ffffff">Informa del horario de atención, toma nota y avisa por correo. Todos los días, también festivos.</p>
+</div>
+</div>
+<p style="font-size:26px;line-height:1.5;color:#4a3d66">Funciona con un número local nuevo o con el número que la empresa ya utiliza.</p>
+
+</section>
+<section id="whatsapp" data-transition="fade" style="background:#1a0f2e;color:#ffffff;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">WhatsApp · modalidad telefonía + WhatsApp</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1600px">El mismo asistente atiende los WhatsApp que llegan a la empresa</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div style="display:flex;gap:24px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:32px 36px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:44px;height:44px;color:#ee46bc"><path d="M4 5h16v11H9l-5 4V5z"/></svg>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Responde a los mensajes de los clientes</h3>
+<p style="font-size:25px;line-height:1.45;color:#ffffff">Las mismas preguntas que por teléfono, con la misma información, las 24 horas, a los mensajes de texto que llegan al WhatsApp Business.</p>
+</div>
+</div>
+<div style="display:flex;gap:24px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:32px 36px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:44px;height:44px;color:#ee46bc"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><path d="M15 15c2.5 0 5 2 5 5"/></svg>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Toma nota cuando hace falta una persona</h3>
+<p style="font-size:25px;line-height:1.45;color:#ffffff">Si el cliente pide hablar con alguien o la consulta no está en la información facilitada, anota la consulta, pide un contacto y avisa a la empresa.</p>
+</div>
+</div>
+<div style="display:flex;gap:24px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:32px 36px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:44px;height:44px;color:#ee46bc"><path d="M9 18h6M10 21h4"/><path d="M8 13a5.5 5.5 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3z"/></svg>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Si el cliente envía un audio, le pide que lo escriba</h3>
+<p style="font-size:25px;line-height:1.45;color:#ffffff">El asistente lee texto. Pide amablemente el mensaje por escrito y recuerda que puede usar el dictado por voz de WhatsApp. Imágenes y documentos se trasladan a una persona.</p>
+</div>
+</div>
+<div style="display:flex;gap:24px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:32px 36px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:44px;height:44px;color:#ee46bc"><path d="M4 12.5 10 18 20 6"/></svg>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">1.000 mensajes de servicio al mes sin coste de Meta</h3>
+<p style="font-size:25px;line-height:1.45;color:#ffffff">Cada número de empresa dispone de 1.000 mensajes de servicio entregados gratuitos al mes. Son respuestas dentro de la ventana de atención de 24 horas. Desde el mensaje 1.001, Meta cobra según el mercado del destinatario: tarifa de lista de 0,0166 € por mensaje para números de España (+34), antes de impuestos. El cupo se reinicia cada mes y no se acumula. Ver p. 14.</p>
+</div>
+</div>
+</div>
+<p style="font-size:26px;line-height:1.45;color:#ffffff">Un servicio para atender lo que llega: llamadas y mensajes de WhatsApp de los clientes. No es una herramienta de campañas ni de envíos.</p>
+
+</section>
+<section id="precios" data-transition="fade" style="background:#1a0f2e;color:#ffffff;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:24px">
+<div style="position:absolute;left:0;top:0;width:1920px;height:1080px;background:radial-gradient(ellipse at 85% 90%, rgba(62,43,134,0.5) 0%, rgba(26,15,46,0) 55%)"></div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Inversión · Puesta en marcha (pago único)</p>
+<h2 style="font-size:52px;font-weight:700;line-height:1.1;letter-spacing:-2px">Elige la modalidad y suma la cuota mensual</h2>
+<p style="font-size:24px;line-height:1.4;color:#ffffff">Servicio gestionado: el alta cubre la creación, configuración y pruebas del asistente por personas reales; la cuota, el servicio recurrente y el acompañamiento.</p>
+</div>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#2d1a52;border:1px solid rgba(238,70,188,0.25);border-radius:20px;padding:28px 36px">
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Solo telefonía: llamadas de voz</h3>
+<p style="font-size:88px;font-weight:800;line-height:1;color:#ffffff">490 €</p>
+<p style="font-size:24px;color:#ffffff">+ IVA · pago único · sin funciones de WhatsApp</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#2d1a52;border:1px solid rgba(238,70,188,0.25);border-radius:20px;padding:28px 36px">
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Llamadas de voz y WhatsApp</h3>
+<p style="font-size:88px;font-weight:800;line-height:1;color:#ffffff">690 €</p>
+<p style="font-size:24px;color:#ffffff">+ IVA · pago único · incluye conexión de WhatsApp Business</p>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:40px;background:#ee46bc;border-radius:20px;padding:24px 36px;color:#1a0f2e">
+<div style="flex:1;display:flex;flex-direction:column;gap:4px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#1a0f2e">Cuota mensual del servicio · común a las dos modalidades</p>
+<p style="font-size:24px;line-height:1.4;color:#1a0f2e">300 minutos de llamada incluidos, número y línea, servidor, avisos, soporte por correo y hasta 2 cambios al mes. Las funciones de WhatsApp solo se prestan con la modalidad telefonía + WhatsApp.</p>
+</div>
+<p style="font-size:72px;font-weight:800;line-height:1;color:#1a0f2e;white-space:nowrap">225 €<span style="color:#1a0f2e"> / mes</span></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Servicios añadidos</p>
+<div style="display:flex;align-items:center;gap:40px;background:#2d1a52;border:1px solid rgba(238,70,188,0.25);border-radius:20px;padding:24px 36px">
+<div style="flex:1;display:flex;flex-direction:column;gap:4px">
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Módulo de gestión de citas (agenda)</h3>
+<p style="font-size:24px;line-height:1.4;color:#ffffff">Se añade a la cuota mensual del servicio: 225 € + 75 € = <b>300 € / mes</b> + IVA</p>
+</div>
+<div style="display:flex;flex-direction:column;align-items:end;gap:2px">
+<p style="font-size:52px;font-weight:800;line-height:1;color:#ffffff;white-space:nowrap">250 €</p>
+<p style="font-size:24px;color:#ffffff;white-space:nowrap">+ IVA · puesta en marcha</p>
+</div>
+<div style="display:flex;flex-direction:column;align-items:end;gap:2px">
+<p style="font-size:52px;font-weight:800;line-height:1;color:#ffffff;white-space:nowrap">75 € / mes</p>
+<p style="font-size:24px;color:#ffffff;white-space:nowrap">+ IVA · añadido a la cuota</p>
+</div>
+</div>
+</div>
+
+</section>
+<section id="cuota" data-transition="fade" style="background:#f8f5ff;color:#1a0f2e;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Cuota mensual · 225 € + IVA</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1500px">Lo que gestionamos cada mes y lo que se factura aparte</h2>
+</div>
+<div style="display:flex;gap:28px;align-items:start">
+<div style="flex:3;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<div style="display:flex;gap:18px;align-items:center;background:#ffffff;border:1px solid #e3dcf2;border-radius:16px;padding:22px 28px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:36px;height:36px;color:#ee46bc"><path d="M4 12.5 10 18 20 6"/></svg>
+<p style="font-size:24px;line-height:1.4">Mantenimiento del número, la línea, el servidor y los correos de aviso</p>
+</div>
+<div style="display:flex;gap:18px;align-items:center;background:#ffffff;border:1px solid #e3dcf2;border-radius:16px;padding:22px 28px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:36px;height:36px;color:#ee46bc"><path d="M4 12.5 10 18 20 6"/></svg>
+<p style="font-size:24px;line-height:1.4">300 minutos de llamada al mes incluidos</p>
+</div>
+<div style="display:flex;gap:18px;align-items:center;background:#ffffff;border:1px solid #e3dcf2;border-radius:16px;padding:22px 28px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:36px;height:36px;color:#ee46bc"><path d="M4 12.5 10 18 20 6"/></svg>
+<p style="font-size:24px;line-height:1.4">WhatsApp sin límite de conversaciones (modalidad telefonía + WhatsApp)</p>
+</div>
+<div style="display:flex;gap:18px;align-items:center;background:#ffffff;border:1px solid #e3dcf2;border-radius:16px;padding:22px 28px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:36px;height:36px;color:#ee46bc"><path d="M4 12.5 10 18 20 6"/></svg>
+<p style="font-size:24px;line-height:1.4">Soporte por correo en días laborables, con personas reales</p>
+</div>
+<div style="display:flex;gap:18px;align-items:center;background:#ffffff;border:1px solid #e3dcf2;border-radius:16px;padding:22px 28px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:36px;height:36px;color:#ee46bc"><path d="M4 12.5 10 18 20 6"/></svg>
+<p style="font-size:24px;line-height:1.4">Hasta 2 cambios al mes en textos, horarios o número de destino, aplicados en 2 días laborables</p>
+</div>
+<div style="display:flex;gap:18px;align-items:center;background:#ffffff;border:1px solid #e3dcf2;border-radius:16px;padding:22px 28px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:36px;height:36px;color:#ee46bc"><path d="M4 12.5 10 18 20 6"/></svg>
+<p style="font-size:24px;line-height:1.4">Atención automática del asistente 24/7, todos los días del año</p>
+</div>
+</div>
+<div style="flex:2;display:flex;flex-direction:column;gap:18px;background:#1a0f2e;border-radius:20px;padding:32px;color:#ffffff">
+<h3 style="font-size:26px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#ee46bc">Se factura aparte</h3>
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-size:40px;font-weight:800;line-height:1.1">0,15 € <span style="color:#ffffff">+ IVA / min</span></p>
+<p style="font-size:24px;line-height:1.4;color:#ffffff">Exceso sobre los 300 minutos, a mes vencido.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-size:40px;font-weight:800;line-height:1.1">90 € <span style="color:#ffffff">+ IVA / hora</span></p>
+<p style="font-size:24px;line-height:1.4;color:#ffffff">Cambios que superen el límite mensual o trabajos nuevos fuera del alcance.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-size:40px;font-weight:800;line-height:1.1">0,0166 € <span style="color:#ffffff">/ mensaje</span></p>
+<p style="font-size:24px;line-height:1.4;color:#ffffff">Tarifa de lista de Meta, antes de impuestos, por mensaje de servicio entregado a números de España (+34), después de los 1.000 gratuitos por número y mes. A mes vencido, sin recargo. Otras categorías y destinos: ver p. 14.</p>
+</div>
+</div>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#4a3d66">Sin límite de conversaciones del servicio. Los costes de Meta que correspondan se facturan aparte; cada número incluye 1.000 mensajes de servicio entregados gratuitos al mes.</p>
+
+</section>
+<section id="citas" data-transition="fade" style="background:#f8f5ff;color:#1a0f2e;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Módulo de gestión de citas (opcional)</p>
+<h2 style="font-size:60px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1600px">Reserva, cambia y cancela citas en la agenda de la empresa</h2>
+<p style="font-size:24px;line-height:1.45;color:#4a3d66;max-width:1660px">El asistente trabaja sobre Google Calendar como agenda central. Si la empresa utiliza otro programa, revisamos antes de contratar si su conexión con Google Calendar permite el funcionamiento necesario. La compatibilidad, el sentido de la sincronización y las posibles integraciones adicionales se confirman para cada caso.</p>
+</div>
+<div style="display:flex;gap:28px;align-items:start">
+<div style="flex:3;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div style="display:flex;flex-direction:column;gap:8px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:24px 28px">
+<p style="font-size:40px;font-weight:800;color:#ee46bc;line-height:1">1</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Consulta disponibilidad</h3>
+<p style="font-size:24px;line-height:1.4;color:#4a3d66">Ofrece los huecos libres según el horario y los tipos de cita que defina la empresa.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:24px 28px">
+<p style="font-size:40px;font-weight:800;color:#ee46bc;line-height:1">2</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Confirma y reserva</h3>
+<p style="font-size:24px;line-height:1.4;color:#4a3d66">Confirma fecha y hora con el cliente y crea la cita con nombre, teléfono y motivo.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:24px 28px">
+<p style="font-size:40px;font-weight:800;color:#ee46bc;line-height:1">3</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Cancela o modifica</h3>
+<p style="font-size:24px;line-height:1.4;color:#4a3d66">Cancela una cita cuando el cliente lo pide. Para cambiarla, cancela la previa y crea una nueva.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:24px 28px">
+<p style="font-size:40px;font-weight:800;color:#ee46bc;line-height:1">4</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.2">Avisa a todos</h3>
+<p style="font-size:24px;line-height:1.4;color:#4a3d66">Correo a la empresa por cada cita creada o cancelada. Con la modalidad con WhatsApp contratada, el cliente recibe además confirmación por mensaje.</p>
+</div>
+</div>
+<div style="flex:2;display:flex;flex-direction:column;gap:16px;background:#1a0f2e;border-radius:20px;padding:32px;color:#ffffff">
+<h3 style="font-size:26px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#ee46bc">Precio del módulo</h3>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-size:56px;font-weight:800;line-height:1.1">250 €</p>
+<p style="font-size:24px;color:#ffffff">+ IVA · puesta en marcha</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-size:56px;font-weight:800;line-height:1.1">75 €</p>
+<p style="font-size:24px;color:#ffffff">+ IVA · al mes, además de la cuota</p>
+</div>
+</div>
+<p style="font-size:24px;line-height:1.45;color:#ffffff">Incluye la conexión con el calendario y la configuración de tipos de cita, duraciones, horario y antelación mínima.</p>
+<p style="font-size:24px;line-height:1.45;color:#ffffff">Las confirmaciones de cita por WhatsApp son mensajes de plantilla y pueden generar costes de Meta según categoría y destino (ver p. 14).</p>
+</div>
+</div>
+
+</section>
+<section id="puesta-en-marcha" data-transition="fade" style="background:#1a0f2e;color:#ffffff;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Puesta en marcha · lo que hacemos por ti</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1600px">El alta cubre la implantación completa; la cuota, el servicio recurrente</h2>
+</div>
+<div style="display:flex;gap:28px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:36px">
+<h3 style="font-size:26px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#ee46bc">Incluido en el alta (pago único)</h3>
+<ul style="font-size:25px;line-height:1.5;color:#ffffff;padding:0 0 0 30px">
+<li>Creamos y configuramos el asistente: respuestas, voz, horarios, transferencias y recados.</li>
+<li>Damos de alta un número local nuevo o conectamos el que ya usas.</li>
+<li>Conectamos WhatsApp Business (modalidad con WhatsApp).</li>
+<li>Revisamos y adaptamos los textos que aporta la empresa para teléfono y mensaje.</li>
+<li>Probamos con llamadas y mensajes reales antes de la entrega.</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:20px;padding:36px">
+<h3 style="font-size:26px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#ee46bc">Qué aporta la empresa</h3>
+<ul style="font-size:25px;line-height:1.5;color:#ffffff;padding:0 0 0 30px">
+<li>Documentación para el alta del número: CIF, registro mercantil, dirección y justificante reciente.</li>
+<li>Cuenta de WhatsApp Business o acceso a su cuenta de empresa en Meta.</li>
+<li>Un texto con descripción, dirección, horario y preguntas frecuentes con respuestas.</li>
+<li>Horario laboral, festivos y números a los que se transfieren las llamadas.</li>
+<li>Correos que reciben los avisos.</li>
+</ul>
+</div>
+</div>
+<p style="font-size:24px;line-height:1.45;color:#ffffff">Operativo en un máximo de 10 días laborables desde la entrega de la documentación y los textos. La validación del número por el operador tarda unos 3 días laborables con la documentación completa. Los pasos, en la p. 12.</p>
+
+</section>
+<section id="datos" data-transition="fade" style="background:#f8f5ff;color:#1a0f2e;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Protección de datos</p>
+<h2 style="font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1500px">Conforme al RGPD y a la normativa sobre sistemas automáticos</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:48px;height:48px;color:#ee46bc"><path d="M12 2 15 4l3.5-.5.5 3.5 3 2-2 3 .5 3.5-3.5.5-2 3-3-2-3 2-2-3-3.5-.5.5-3.5-2-3 3-2 .5-3.5L9 4z"/><path d="M8.5 12 11 14.5 16 9.5"/></svg>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Aviso de IA en cada contacto</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">El asistente informa al inicio de cada llamada y conversación de que es un sistema automático.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:48px;height:48px;color:#ee46bc"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Sin grabaciones</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Las llamadas no se graban. La transcripción se conserva 30 días para resolver incidencias y después se borra.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:48px;height:48px;color:#ee46bc"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Datos en la Unión Europea</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Los datos del asistente se tratan en la UE. Los mensajes de WhatsApp siguen las condiciones de Meta.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:48px;height:48px;color:#ee46bc"><path d="M4 4h7a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4V4zM20 4h-7a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h7V4z"/></svg>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Contrato de encargo</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">La empresa es responsable del tratamiento y el proveedor, encargado. Se firma un contrato según el artículo 28 del RGPD.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:48px;height:48px;color:#ee46bc"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">Subencargados identificados</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Telefonía, mensajería, IA y alojamiento se detallan en el contrato. Ninguno usa los datos para entrenar modelos.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#1a0f2e;border-radius:20px;padding:40px;color:#ffffff">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:48px;height:48px;color:#ee46bc"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M15 12v2"/></svg>
+<h3 style="font-size:30px;font-weight:600;line-height:1.2">El número es de la empresa</h3>
+<p style="font-size:24px;line-height:1.5;color:#ffffff">Número de teléfono y cuenta de WhatsApp Business quedan en propiedad de la empresa, también al cancelar.</p>
+</div>
+</div>
+
+</section>
+<section id="condiciones" data-transition="fade" style="background:#1a0f2e;color:#ffffff;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Condiciones</p>
+<h2 style="font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1500px">Sin ataduras largas y con el número siempre en manos de la empresa</h2>
+</div>
+<table style="font-size:28px;color:#ffffff;border:1px solid rgba(238,70,188,0.25);border-radius:16px">
+<tr style="background:#2d1a52"><th style="width:30%;text-align:left;padding:22px 28px;font-weight:700;color:#ee46bc">Concepto</th><th style="width:70%;text-align:left;font-weight:700;color:#ee46bc">Condición</th></tr>
+<tr><td style="font-weight:600">Facturación</td><td style="color:#ffffff">La puesta en marcha se factura al aceptar la propuesta. La cuota mensual comienza con la activación del servicio. Las cuotas ordinarias se facturan por adelantado el día 1 de cada mes.</td></tr>
+<tr style="background:#221442"><td style="font-weight:600">Permanencia</td><td style="color:#ffffff">3 meses desde la puesta en marcha. Después, renovación mes a mes con 30 días de aviso por cualquiera de las partes.</td></tr>
+<tr><td style="font-weight:600">Baja</td><td style="color:#ffffff">La empresa conserva el número de teléfono y la cuenta de WhatsApp Business, y puede llevárselos a otro proveedor.</td></tr>
+<tr style="background:#221442"><td style="font-weight:600">Pago</td><td style="color:#ffffff">El pago se realiza por transferencia bancaria a 15 días desde la fecha de factura.</td></tr>
+<tr><td style="font-weight:600">Validez</td><td style="color:#ffffff">La propuesta es válida durante 30 días.</td></tr>
+</table>
+
+</section>
+<section id="siguientes-pasos" data-transition="fade" style="background:#f8f5ff;color:#1a0f2e;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Siguientes pasos</p>
+<h2 style="font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1500px">Cinco pasos desde el sí hasta la primera llamada atendida</h2>
+</div>
+<div style="display:flex;gap:16px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:36px">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">1</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.25">Confirmación</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">La empresa confirma la propuesta por correo.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:36px">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">2</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.25">Documentación</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Envía la documentación del número, el acceso a WhatsApp Business y los textos del asistente.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:36px">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">3</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.25">Configuración</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Se solicita el número, se conecta WhatsApp y se configura el asistente.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#ffffff;border:1px solid #e3dcf2;border-radius:20px;padding:36px">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">4</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.25">Pruebas</h3>
+<p style="font-size:24px;line-height:1.5;color:#4a3d66">Pruebas conjuntas con llamadas y mensajes reales.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1a0f2e;border-radius:20px;padding:36px;color:#ffffff">
+<p style="font-size:56px;font-weight:800;color:#ee46bc;line-height:1">5</p>
+<h3 style="font-size:28px;font-weight:600;line-height:1.25">Activación</h3>
+<p style="font-size:24px;line-height:1.5;color:#ffffff">Se activa el servicio y empieza a contar la cuota mensual.</p>
+</div>
+</div>
+<p style="font-size:26px;line-height:1.5;color:#4a3d66">Plazo total: máximo 10 días laborables desde la recepción de la documentación y los textos.</p>
+
+</section>
+<section id="faq" data-transition="fade" style="background:#1a0f2e;color:#ffffff;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Preguntas frecuentes</p>
+<h2 style="font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-2px;max-width:1500px">Lo que suelen preguntar antes de decidirse</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:16px;padding:36px 40px">
+<h3 style="font-size:32px;font-weight:600;line-height:1.25;color:#ee46bc">¿El cliente sabe que habla con un sistema automático?</h3>
+<p style="font-size:28px;line-height:1.5;color:#ffffff">Sí. El asistente lo dice al inicio de cada llamada y de cada conversación de WhatsApp, como exige la normativa vigente desde agosto de 2026.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:16px;padding:36px 40px">
+<h3 style="font-size:32px;font-weight:600;line-height:1.25;color:#ee46bc">¿Puede el asistente gestionar citas?</h3>
+<p style="font-size:28px;line-height:1.5;color:#ffffff">Sí*. Consulta el Google Calendar de la empresa, ofrece huecos libres, reserva, cambia o cancela citas y avisa por correo y, con WhatsApp contratado, también por mensaje.</p>
+<p style="font-size:24px;line-height:1.45;color:#ffffff">*Siempre que contrates el módulo de agenda: 250 € + IVA de alta y 75 € + IVA al mes. Las confirmaciones por WhatsApp requieren tener contratada también la modalidad con WhatsApp.</p>
+</div>
+<div style="display:flex;gap:16px;align-items:center;background:rgba(238,70,188,0.08);border:1px solid rgba(238,70,188,0.3);border-radius:16px;padding:24px 40px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:36px;height:36px;color:#ee46bc"><path d="M9 18h6M10 21h4"/><path d="M8 13a5.5 5.5 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3z"/></svg>
+<p style="font-size:24px;line-height:1.45;color:#ffffff">Minutos y mensajes: 300 minutos incluidos; exceso a 0,15 € + IVA/min, a mes vencido (p. 7). Costes de Meta por mensaje: p. 14.</p>
+</div>
+</div>
+
+</section>
+<section id="costes-meta" data-transition="fade" style="background:#1a0f2e;color:#ffffff;font-family:'Poppins', Arial, sans-serif;padding:112px 128px 150px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#ee46bc">Costes de Meta por mensaje · modalidad con WhatsApp</p>
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;letter-spacing:-2px">Lo que cobra Meta por cada WhatsApp según su categoría</h2>
+</div>
+<table style="font-size:24px;color:#ffffff;border:1px solid rgba(238,70,188,0.25);border-radius:16px">
+<tr style="background:#2d1a52"><th style="width:16%;text-align:left;padding:14px 20px;font-weight:700;color:#ee46bc">Categoría</th><th style="width:30%;text-align:left;font-weight:700;color:#ee46bc">Ejemplos</th><th style="width:36%;text-align:left;font-weight:700;color:#ee46bc">Cuándo se cobra</th><th style="width:18%;text-align:left;font-weight:700;color:#ee46bc">Tarifa España (+34)</th></tr>
+<tr><td style="font-weight:600">Servicio</td><td style="color:#ffffff">Respuestas del asistente dentro de la ventana de 24 h</td><td style="color:#ffffff">Desde el mensaje entregado 1.001 por número y mes</td><td style="font-weight:600">0,0166 €</td></tr>
+<tr style="background:#221442"><td style="font-weight:600">Utilidad</td><td style="color:#ffffff">Confirmación de cita, recordatorio, aviso (plantilla)</td><td style="color:#ffffff">Por mensaje entregado, también dentro de las 24 h</td><td style="font-weight:600">0,0166 €</td></tr>
+<tr><td style="font-weight:600">Autenticación</td><td style="color:#ffffff">Códigos de verificación (plantilla)</td><td style="color:#ffffff">Por mensaje entregado, también dentro de las 24 h</td><td style="font-weight:600">0,0166 €</td></tr>
+<tr style="background:#221442"><td style="font-weight:600">Marketing</td><td style="color:#ffffff">Promociones, ofertas, campañas (plantilla)</td><td style="color:#ffffff">Por mensaje entregado</td><td style="font-weight:600">0,0585 €</td></tr>
+</table>
+<div style="display:flex;gap:20px">
+<div style="flex:1;display:flex;gap:14px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:16px;padding:20px 24px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:32px;height:32px;color:#ee46bc"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+<p style="font-size:24px;line-height:1.4;color:#ffffff">La ventana de 24 h se renueva con cada mensaje del cliente. Recibir mensajes es gratuito. Los 1.000 mensajes de servicio se reinician cada mes y no se acumulan.</p>
+</div>
+<div style="flex:1;display:flex;gap:14px;align-items:start;background:#2d1a52;border:1px solid rgba(238,70,188,0.2);border-radius:16px;padding:20px 24px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;width:32px;height:32px;color:#ee46bc"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/></svg>
+<p style="font-size:24px;line-height:1.4;color:#ffffff">Se cobra por mensaje entregado, no por conversación, y se repercute a mes vencido sin recargo. Pueden aplicarse excepciones de gratuidad por puntos de entrada elegibles de WhatsApp y descuentos por volumen, según las condiciones vigentes de Meta.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:56px;width:1664px;font-size:24px;line-height:1.35;color:#ffffff">Política y tarifas de lista de Meta efectivas desde el 1 de octubre de 2026. Referencia: destinatarios con número de España (+34) y facturación en EUR. Importes antes de impuestos, sujetos a cambios de Meta y a las excepciones o descuentos aplicables. Fuente: developers.facebook.com/documentation/business-messaging/whatsapp/pricing</p>
+
+</section>
+<section id="cierre" data-transition="fade" style="background:#ee46bc;color:#1a0f2e;font-family:'Poppins', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<div style="position:absolute;left:1100px;top:-200px;width:1000px;height:1000px;background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18) 0%, rgba(238,70,188,0) 65%)"></div>
+<div style="display:flex;align-items:center;gap:16px">
+<hr style="width:40px;border-top:2px solid #1a0f2e">
+<p style="font-size:24px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#1a0f2e">Lidera tu Negocio</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:28px;max-width:1500px">
+<h1 style="font-size:104px;font-weight:800;line-height:1.05;letter-spacing:-3px">Ninguna llamada ni mensaje sin respuesta. También fuera de horario.</h1>
+<p style="font-size:32px;font-weight:400;line-height:1.4;color:#1a0f2e;max-width:1300px">Nosotros creamos tu asistente, lo montamos y lo probamos; en un máximo de 10 días laborables desde la documentación atiende el teléfono y el WhatsApp de tu empresa, y seguimos contigo después del alta.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:16px;flex-wrap:wrap">
+<p style="font-size:26px;font-weight:700;background:#1a0f2e;color:#ffffff;padding:18px 32px;border-radius:12px;white-space:nowrap">Solo telefonía: 490 € + IVA de alta y 225 € + IVA al mes</p>
+<p style="font-size:26px;font-weight:700;background:#1a0f2e;color:#ffffff;padding:18px 32px;border-radius:12px;white-space:nowrap">Telefonía + WhatsApp: 690 € + IVA de alta y 225 € + IVA al mes</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<p style="font-size:24px;color:#1a0f2e">Módulo de agenda opcional: +250 € + IVA de alta y +75 € + IVA al mes (300 € / mes en total)</p>
+<p style="font-size:24px;color:#1a0f2e">·</p>
+<p style="font-size:24px;color:#1a0f2e">Propuesta válida 30 días</p>
+</div>
+</div>
+
+</section>
+
+</div></div>
+<div id="nav"><button id="prev">&#8592;</button><span id="count"></span><button id="next">&#8594;</button></div>
+<script>
+(function(){
+  var sections=[].slice.call(document.querySelectorAll('#frame > section'));
+  var i=0, n=sections.length;
+  function fit(){
+    var s=Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    document.getElementById('frame').style.transform='scale('+s+')';
+  }
+  function show(k){
+    i=(k+n)%n;
+    sections.forEach(function(sec,j){sec.classList.toggle('active',j===i);});
+    document.getElementById('count').textContent=(i+1)+' / '+n;
+    location.hash='#'+(i+1);
+  }
+  document.getElementById('prev').onclick=function(){show(i-1);};
+  document.getElementById('next').onclick=function(){show(i+1);};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);
+    if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    if(e.key==='Home')show(0); if(e.key==='End')show(n-1);
+  });
+  document.getElementById('stage').addEventListener('click',function(e){
+    if(e.target.closest('#nav'))return;
+    show(e.clientX>window.innerWidth/2?i+1:i-1);
+  });
+  window.addEventListener('resize',fit);
+  var h=parseInt(location.hash.slice(1))||1;
+  fit(); show(h-1);
+})();
+</script>
+</body>
+</html>

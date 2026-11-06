@@ -16,7 +16,8 @@
     { "source": "/agro",                     "destination": "/agro/index.html" },
     { "source": "/diseno-web",               "destination": "/diseno-web/index.html" },
     { "source": "/agente-voz",               "destination": "/agente-voz/index.html" },
-    { "source": "/asistente-ia",             "destination": "/asistente-ia/index.html" }
+    { "source": "/asistente-ia",             "destination": "/asistente-ia/index.html" },
+    { "source": "/asistente-ia/presentacion", "destination": "/asistente-ia/presentacion/index.html" }
   ],
   "redirects": [
     { "source": "/calculadora",         "destination": "https://saas.lideratunegocio.com/calculadora", "permanent": false },
